@@ -5,6 +5,12 @@ USING_NS_CC;
 
 AppDelegate::AppDelegate() {
 
+<<<<<<< HEAD
+AppDelegate::AppDelegate()
+{
+
+=======
+>>>>>>> origin/master
 }
 
 AppDelegate::~AppDelegate() 
