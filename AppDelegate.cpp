@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "LoadingScene.h"
+#include "UI/scene/HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -28,13 +28,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::createWithRect("KingdomRush", Rect(0, 0, 960, 640));
-		glview->setFrameSize(1138,640);
+		glview->setFrameSize(1138,640); 
         director->setOpenGLView(glview);
     }
 	//director->setDisplayStats(true);
     director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::FIXED_HEIGHT);
     // create a scene. it's an autorelease object
-    auto scene = LoadingScene::createScene();
+    auto scene = HelloWorld::createScene();
     // run
     director->runWithScene(scene);
 
