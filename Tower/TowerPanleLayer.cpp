@@ -1,7 +1,9 @@
 #include "TowerPanleLayer.h"
 
-//#include "GameManager.h"
-//#include "BaseMap.h"
+#include "ArtilleryTowerV1.h"
+#include "KRTerrain.h"
+#include "GameManager.h"
+#include "BaseMap.h"
 
 
 bool TowerPanleLayer::init()
@@ -108,9 +110,9 @@ void TowerPanleLayer::addTempTower(int type)
 	circle->setVisible(true);
 
 	//ÅÚËþ»ÃÓ°
-	tempTower = Sprite::createWithSpriteFrameName("tower_preview_barrack.png");
+	tempTower = Sprite::createWithSpriteFrameName("tower_preview_artillery.png");
 	tempTower->setPosition(Point(0, 25));
-	static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(BARAACKS_1);
+	static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARTILLERY_1);
 	/*switch (type)
 	{
 	case(1): {
