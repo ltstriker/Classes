@@ -1,8 +1,8 @@
 #include "BaseTower.h"
 #include "KRTerrain.h"
 #include "TowerPanleLayer.h"
-#include "./ui/BaseMap.h"
-#include "./ui/GameManager.h"
+#include "../UI/map/BaseMap.h"
+#include "../UI/GameManager.h"
 
 
 BaseTower::BaseTower() :isUpdateMenuShown(false)

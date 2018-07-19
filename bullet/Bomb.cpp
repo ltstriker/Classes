@@ -48,17 +48,17 @@ bool Bomb::initWithType(int type)
 	}
 			 break;
 	case(2): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/bomb_level2.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
 	case(3): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/bomb_level3.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(40);
 	}
 			 break;
 	case(4): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/bomb_level2.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
@@ -86,9 +86,7 @@ void Bomb::shoot()
 	}
 	auto dist = target->getPosition();
 	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
-	auto rtt = RotateWithAction::create(10.0);
-	
-	bulletAction = Spawn::create(mt,rtt,NULL);
+	bulletAction = Spawn::create(mt);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
 		NULL));

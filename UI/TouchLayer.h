@@ -2,7 +2,7 @@
 #define _TOUCH_LAYER_H_
 
 #include "cocos2d.h"
-#include "./Tower/BaseTower.h"
+#include "../Tower/BaseTower.h"
 //#include "RallyCircle.h"
 
 USING_NS_CC;
@@ -19,6 +19,7 @@ public:
 	EventListenerTouchOneByOne* Dynamitelistener;
 	EventListenerTouchOneByOne* FiereBalllistener;
 
+	/*
 	void setDynamiteTouchShield();
 	void removeDynamiteTouchShield();
 	bool onDynamiteTouchBegan(Touch* touch, Event* event);
@@ -46,6 +47,7 @@ public:
 
 	void removeTouchShield();
 	void setTouchShield();
+	*/
 
 	BaseTower* tower;
 	void addRallyFlag(Point location);
@@ -58,7 +60,7 @@ public:
 	Size winSize;
 	bool isMoved;
 //	RallyCircle* rallyCircle;
-	void removeAllListener();
+//	void removeAllListener();
 };
 
 #endif

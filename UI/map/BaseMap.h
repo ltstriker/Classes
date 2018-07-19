@@ -1,11 +1,11 @@
 #ifndef _BASE_MAP_H_
 #define _BASE_MAP_H_ 
 
-#include "PlayerStateMenu.h"
+#include "../PlayerStateMenu.h"
 #include "cocos2d.h"
-#include "WaveFlag.h"
-#include "GroupMonster.h"
-#include "TouchLayer.h"
+#include "../WaveFlag.h"
+#include "../../Monster/GroupMonster.h"
+#include "../TouchLayer.h"
 //#include "MyAnimation.h"
 USING_NS_CC;
 
@@ -49,7 +49,7 @@ protected:
 
 	virtual void onEnterTransitionDidFinish();
 	//不同关卡不同的事件处理
-	virtual void waveEvent();
+//	virtual void waveEvent();
 	//设置初始地图位置
 	void setMapPosition();
 	//更新金钱和生命
@@ -62,9 +62,9 @@ protected:
 	//开始标记
 	bool isStart;
 	//开始新的一波敌人
-	virtual void addWaves(float dt);
+//	virtual void addWaves(float dt);
 	//添加怪物
-	virtual void addMonsters(float dt);
+//	virtual void addMonsters(float dt);
 	//初始化地图
 	void initMap();
 	//添加不同地图装饰物

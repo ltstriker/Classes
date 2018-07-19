@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 #include "Bullet.h"
-#include "RotateWithAction.h"
+
 USING_NS_CC;
 
 class Bomb : public Bullet
