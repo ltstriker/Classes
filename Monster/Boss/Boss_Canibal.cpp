@@ -1,8 +1,8 @@
 #include "Boss_Canibal.h"
-#include "GameManager.h"
-#include "BaseMap.h"
+#include "../../UI/GameManager.h"
+#include "../../UI/BaseMap.h"
 #include "CanibalOffspring.h"
-#include "SoundManager.h"
+// #include "SoundManager.h"
 
 // ´´½¨Monster
 Boss_Canibal* Boss_Canibal::createMonster(std::vector<Point> points, std::vector<std::vector<std::vector<Point>>> sonpath) {
