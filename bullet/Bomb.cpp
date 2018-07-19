@@ -86,7 +86,9 @@ void Bomb::shoot()
 	}
 	auto dist = target->getPosition();
 	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
-	bulletAction = Spawn::create(mt);
+	auto rtt = RotateWithAction::create(10.0);
+	
+	bulletAction = Spawn::create(mt,rtt,NULL);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
 		NULL));
