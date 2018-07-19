@@ -4,8 +4,8 @@
 #include "cocos2d.h"
 #include "TouchLayer.h"
 #include "GameManager.h"
-#include "BaseTower.h"
-#include "BaseMonster.h"
+#include "../Tower/BaseTower.h"
+#include "../Monster/BaseMonster.h"
 #include "GameOption.h"
 
 USING_NS_CC;
@@ -17,7 +17,7 @@ class PlayerStateMenu : public Layer
 {
 public:
 	void startProgressTimers();
-    static Scene* createScene();
+ //   static Scene* createScene();
     virtual bool init();
     CREATE_FUNC(PlayerStateMenu);
 	void onEnterTransitionDidFinish();

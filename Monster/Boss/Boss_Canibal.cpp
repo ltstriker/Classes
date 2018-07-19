@@ -1,6 +1,6 @@
 #include "Boss_Canibal.h"
 #include "../../UI/GameManager.h"
-#include "../../UI/BaseMap.h"
+#include "../../UI/map/BaseMap.h"
 #include "CanibalOffspring.h"
 // #include "SoundManager.h"
 
@@ -57,8 +57,8 @@ void Boss_Canibal::death() {
 	}
 	if (getState() != stateDeath) {
 		// 播放音效
-		SoundManager::playMonoDeath();
-		SoundManager::playEfreetiDeath();
+//		SoundManager::playMonoDeath();
+//		SoundManager::playEfreetiDeath();
 
 		setState(stateDeath);
 		hpBgSprite->setVisible(false);
@@ -76,7 +76,7 @@ void Boss_Canibal::death() {
 
 // 发射技能前状态
 void Boss_Canibal::beforeSkill(float dt) {
-	SoundManager::playChestdrum();
+//	SoundManager::playChestdrum();
 	if (skillTag == 0) {
 		pointCounter = pointCounter + 60;
 		location = this->getPointsVector().at(pointCounter);
@@ -103,13 +103,13 @@ void Boss_Canibal::beforeSkill(float dt) {
 
 // 左移
 void Boss_Canibal::changePositionLeft() {
-	SoundManager::playChimps_1();
+//	SoundManager::playChimps_1();
 	baseSprite->setPosition(Point(590, 510));
 }
 
 // 右移
 void Boss_Canibal::changePositionRight() {
-	SoundManager::playChimps_2();
+//	SoundManager::playChimps_2();
 	baseSprite->setPosition(Point(680, 510));
 }
 
