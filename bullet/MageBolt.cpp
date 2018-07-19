@@ -14,9 +14,24 @@ bool MageBolt::init()
 
 void MageBolt::shoot()
 {
-	GameManager* instance = GameManager::getInstance();
+	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	Sprite* target = nullptr;
+	auto instance = GameManager::getInstance();
+	auto tower = this->getParent();
 	auto monsterVector = instance->monsterVector;
-
+	double  min_dis = 1000000.0f;
+	for (int i = 0; i < monsterVector.size(); i++) {
+		auto monster = monsterVector.at(i);
+		auto towerPos = tower->getPosition();
+		double temp_dis = towerPos.distance(monster->getPosition());
+		if (temp_dis < min_dis) {
+			target = monster;
+			min_dis = temp_dis;
+		}
+	}
+	auto dist = target->getPosition();
+	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
+	bulletAction = Spawn::create(mt);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(MageBolt::removeBullet, this)),
 		NULL));

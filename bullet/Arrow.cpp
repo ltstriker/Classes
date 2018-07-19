@@ -6,7 +6,8 @@ bool Arrow::init()
 	{
 		return false;
 	}
-	sprite = Sprite::createWithSpriteFrameName("arrow.png");
+	sprite = Sprite::createWithSpriteFrameName("/bullet/arrow.png");
+	sprite->setScale(0.1, 0.1);
 	addChild(sprite);
 	return true;
 }
@@ -14,6 +15,26 @@ bool Arrow::init()
 void Arrow::shoot()
 {
 	//SoundManager::playArrowRelease();
+	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	Sprite* target = nullptr;
+	auto instance = GameManager::getInstance();
+	auto tower = this->getParent();
+	auto monsterVector = instance->monsterVector;
+	double  min_dis = 1000000.0f;
+	for (int i = 0; i < monsterVector.size(); i++) {
+		auto monster = monsterVector.at(i);
+		auto towerPos = tower->getPosition();
+		double temp_dis = towerPos.distance(monster->getPosition());
+		if (temp_dis < min_dis) {
+			target = monster;
+			min_dis = temp_dis;
+		}
+	}
+	auto dist = target->getPosition();
+	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
+	auto rtt = RotateWithAction::create(10.0);
+
+	bulletAction = Spawn::create(mt, rtt, NULL);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
 		NULL));
@@ -58,7 +79,7 @@ void Arrow::removeBullet()
 	}
 	if (isMissed) {
 
-		sprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("decal_arrow.png"));
+		sprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("/bullet/arrow_broken.png"));
 
 		sprite->runAction(Sequence::create(FadeOut::create(1.0f)
 			, CallFuncN::create(CC_CALLBACK_0(Bullet::removeFromParent, this))
