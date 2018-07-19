@@ -73,7 +73,7 @@ protected:
 	virtual void addTerrains() {};
 	//ÍË³ö
 	virtual void onExitTransitionDidStart();
-	virtual void onExit() {};
+	//virtual void onExit() {};
 };
 
 #endif

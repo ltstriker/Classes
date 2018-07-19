@@ -9,6 +9,7 @@ Level1::~Level1(){};
 
 bool Level1::initWithDifficulty(int difficulty)
 {
+	CCLOG("level init with difficulty");
     if ( !Layer::init() )
     {
         return false;
@@ -32,6 +33,7 @@ bool Level1::initWithDifficulty(int difficulty)
 
 Level1* Level1::createGame(int difficulty)
 {  
+	CCLOG("level1 create game");
    auto layer = new Level1();
 	if(layer && layer->initWithDifficulty(difficulty)){
 		layer->autorelease();
@@ -47,10 +49,11 @@ void Level1::addOrnament()
 
 }
 
-void Level1::onExit()
+/*void Level1::onExit()
 {
+	CCLOG("level1 on exit");
 	SpriteFrameCache::getInstance()->removeSpriteFrameByName("sprite_level1_2-hd.plist");
-}
+}*/
 
 void Level1::addTerrains()
 {
