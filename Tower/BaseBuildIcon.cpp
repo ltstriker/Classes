@@ -1,5 +1,5 @@
 #include "BaseBuildIcon.h"
-//#include "GameManager.h"
+#include "./ui/GameManager.h"
 
 bool BaseBuildIcon::initIcon(int type, int money)
 {
@@ -9,7 +9,7 @@ bool BaseBuildIcon::initIcon(int type, int money)
 	}
 
 	this->isSelected = false;
-	auto name = String::createWithFormat("icons_00%02d.png", type)->getCString();
+	auto name = String::createWithFormat("main_icons_00%02d.png", type)->getCString();
 	this->baseIcon = Sprite::createWithSpriteFrameName(name);
 	this->addChild(baseIcon);
 	
@@ -22,7 +22,7 @@ bool BaseBuildIcon::initIcon(int type, int money)
 	this->priceLabel->setPosition(Point(this->priceIcon->getContentSize().width / 2, this->priceIcon->getContentSize().height / 2 - 2));
 	this->priceIcon->addChild(priceLabel);
 
-	this->okIcon = Sprite::createWithSpriteFrameName("icons_0019.png");
+	this->okIcon = Sprite::createWithSpriteFrameName("main_icons_0019.png");
 	this->okIcon->setPosition(Point(this->baseIcon->getContentSize().width / 2, this->baseIcon->getContentSize().height / 2));
 	this->baseIcon->addChild(this->okIcon);
 	this->okIcon->setVisible(false);

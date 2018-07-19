@@ -2,9 +2,10 @@
 #define _BASE_TOWER_
 
 #include "cocos2d.h"
-//#include "Circle.h"
+#include "Circle.h"
 #include "KRTerrain.h"
-//#include "BaseMonster.h"
+#include "./Monster/BaseMonster.h"
+
 //#include "SoundManager.h"
 
 USING_NS_CC;

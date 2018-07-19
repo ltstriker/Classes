@@ -1,7 +1,9 @@
 #pragma once
-#include "SoundManager.h" 
+//#include "SoundManager.h" 
 #include "cocos2d.h"
-#include "GameManager.h"
+
+#include "ui/GameManager.h"
+#include "bullet/ParabolaTo.h"
 USING_NS_CC;
 class Bullet : public Sprite
 {
