@@ -1,13 +1,12 @@
 #include "TouchLayer.h"
 #include "GameManager.h"
-#include "RallyCircle.h"
+//#include "RallyCircle.h"
 #include "BaseMap.h"
-#include "RallyCircle.h"
-#include "ReinforceSoldier1.h"
-#include "ReinforceSoldier2.h"
-#include "Freeze.h"
-#include "Dynamite.h"
-#include "FireBall.h"
+//#include "ReinforceSoldier1.h"
+//#include "ReinforceSoldier2.h"
+//#include "Freeze.h"
+//#include "Dynamite.h"
+//#include "FireBall.h"
 #include "PlayerStateMenu.h"
 
 void TouchLayer::setTouchShield()
@@ -80,7 +79,7 @@ bool TouchLayer::onFireBallTouchBegan(Touch* touch, Event* event)
 	return true;
 }
 
-void TouchLayer::onFireBallTouchEnded(Touch* touch, Event* event)
+/*void TouchLayer::onFireBallTouchEnded(Touch* touch, Event* event)
 {
 	//播放音效
 	SoundManager::playFireballUnleash();
@@ -98,7 +97,7 @@ void TouchLayer::onFireBallTouchEnded(Touch* touch, Event* event)
 	static_cast<BaseMap*>(this->getParent())->playerState->startStone();
 	//移除此监听事件
 	removeFireBallTouchShield();
-}
+}*/
 
 void TouchLayer::setDynamiteTouchShield()
 {
@@ -119,13 +118,13 @@ bool TouchLayer::onDynamiteTouchBegan(Touch* touch, Event* event)
 {
 	return true;
 }
-void TouchLayer::onDynamiteTouchEnded(Touch* touch, Event* event)
+/*void TouchLayer::onDynamiteTouchEnded(Touch* touch, Event* event)
 {
 	auto dynamite = Dynamite::create();
 	this->getParent()->addChild(dynamite);
 	dynamite->shoot(static_cast<TouchLayer*>(event->getCurrentTarget())->convertTouchToNodeSpace(touch));
 	removeDynamiteTouchShield();
-}
+}*/
 
 void TouchLayer::setFreezeTouchShield()
 {
@@ -147,16 +146,16 @@ bool TouchLayer::onFreezeTouchBegan(Touch* touch, Event* event)
 	return true;
 }
 
-void TouchLayer::onFreezeTouchEnded(Touch* touch, Event* event)
+/*void TouchLayer::onFreezeTouchEnded(Touch* touch, Event* event)
 {
 	SoundManager::playFreeze();
 	auto freeze = Freeze::create();
 	this->getParent()->addChild(freeze);
 	freeze->shoot(static_cast<TouchLayer*>(event->getCurrentTarget())->convertTouchToNodeSpace(touch));
 	removeFreezeTouchShield();
-}
+}*/
 
-void TouchLayer::setRallyFlagTouchShield()
+/*void TouchLayer::setRallyFlagTouchShield()
 {
 	rallyCircle = RallyCircle::create();
 	rallyCircle->setPosition(tower->getParent()->getPosition());
@@ -174,7 +173,7 @@ void TouchLayer::removeRallyFlagTouchShield()
 	removeChildByTag(1001);
 	if(listener!=NULL)
 		_eventDispatcher->removeEventListener(listener);
-}
+}*/
 
 void TouchLayer::setSoldierTouchShield()
 {
@@ -205,7 +204,7 @@ void TouchLayer::removeAllListener()
 }
 
 
-void TouchLayer::onSoldierTouchEnded(Touch* touch, Event* event)
+/*void TouchLayer::onSoldierTouchEnded(Touch* touch, Event* event)
 {
 	SoundManager::playReinforcement();
 	auto target = static_cast<TouchLayer*>(event->getCurrentTarget());
@@ -225,9 +224,9 @@ void TouchLayer::onSoldierTouchEnded(Touch* touch, Event* event)
 	this->getParent()->addChild(reinforceSoldier2);
 	static_cast<BaseMap*>(this->getParent())->playerState->startParatrooper();
 	removeSoldierTouchShield();
-}
+}*/
 
-bool TouchLayer::onRallyFlagTouchBegan(Touch* touch, Event* event)
+/*bool TouchLayer::onRallyFlagTouchBegan(Touch* touch, Event* event)
 {
 	auto target = static_cast<TouchLayer*>(event->getCurrentTarget());
 	Point locationInNode = target->convertTouchToNodeSpace(touch);
@@ -240,7 +239,7 @@ bool TouchLayer::onRallyFlagTouchBegan(Touch* touch, Event* event)
 		addWrongPlace(static_cast<TouchLayer*>(event->getCurrentTarget())->convertTouchToNodeSpace(touch));
 	}
 	return true;
-}
+}*/
 
 void TouchLayer::onRallyFlagTouchEnded(Touch* touch, Event* event)
 {
