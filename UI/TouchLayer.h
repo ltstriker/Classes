@@ -2,8 +2,8 @@
 #define _TOUCH_LAYER_H_
 
 #include "cocos2d.h"
-#include "BaseTower.h"
-#include "RallyCircle.h"
+#include "./Tower/BaseTower.h"
+//#include "RallyCircle.h"
 
 USING_NS_CC;
 
@@ -57,7 +57,7 @@ public:
 	void onTouchMoved(Touch* touch, Event* event);
 	Size winSize;
 	bool isMoved;
-	RallyCircle* rallyCircle;
+//	RallyCircle* rallyCircle;
 	void removeAllListener();
 };
 

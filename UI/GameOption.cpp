@@ -1,8 +1,8 @@
 #include "GameOption.h"
 #include "GameScene.h"
-#include "TransitionGame.h"
-#include "GameView.h"
-#include "SoundManager.h"
+//#include "TransitionGame.h"
+//#include "GameView.h"
+//#include "SoundManager.h"
 #include "PlayerStateMenu.h"
 #include "SimpleAudioEngine.h"
 
@@ -137,7 +137,7 @@ void ::GameOption::initButton()
 	auto close = MenuItemSprite::create(Sprite::createWithSpriteFrameName("options_close_0001.png"),
 		Sprite::createWithSpriteFrameName("options_close_0002.png"));
 	close->setCallback([&](Ref *pSender){
-		SoundManager::playClickEffect();
+	//	SoundManager::playClickEffect();
 		/*Director::getInstance()->resume();
 		this->runAction(Sequence::create(
 			MoveBy::create(0.2f,Point(0,500))
@@ -206,7 +206,7 @@ void ::GameOption::initButton()
 		Rect rect = Rect(0, 0, size.width, size.height);
 		if (rect.containsPoint(locationInNode))
 		{  	
-			SoundManager::playClickEffect();
+		//	SoundManager::playClickEffect();
 			target->setScale(0.9f);
 			return true;  
 		}  
@@ -272,7 +272,7 @@ void GameOption::addOff(Sprite* target)
 	target->addChild(off);
 }
 
-void GameOption::onTouchEnded(Touch* touch, Event* event)
+/*void GameOption::onTouchEnded(Touch* touch, Event* event)
 {
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
 	target->setScale(1.0f);
@@ -293,7 +293,7 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 	default:
 		break;
 	}
-}
+}*/
 
 bool GameOption::onTouchBegan(Touch* touch, Event* event)
 {
@@ -305,7 +305,7 @@ bool GameOption::onTouchBegan(Touch* touch, Event* event)
 	Rect rect = Rect(0, 0, size.width, size.height);
 	if (rect.containsPoint(locationInNode))
 	{  	
-		SoundManager::playClickEffect();
+		//SoundManager::playClickEffect();
 		target->setScale(0.9f);
 		return true;  
 	}  
@@ -338,7 +338,7 @@ void GameOption::onKeyReleased(EventKeyboard::KeyCode keycode, Event* event)
     switch (keycode)
     {
 	case EventKeyboard::KeyCode::KEY_BACK:   //·µ»Ø¼üÌý
-		SoundManager::playClickEffect();
+		//SoundManager::playClickEffect();
 		static_cast<PlayerStateMenu*>(this->getParent())->removeGameOption();
 		
         break;
