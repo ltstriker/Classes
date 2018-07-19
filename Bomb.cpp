@@ -12,7 +12,7 @@ void Bomb::initBombAnimation()
 	for (int i = 0; i < num; i++) {
 		int index = start + i * 2;
 		char *bf = new char[50];
-		sprintf(bf,"/pictures/image %d.png", index);
+		sprintf(bf,"/bullet/image %d.png", index);
 		const std::string filename = bf;
 		auto sf = SpriteFrame::create(filename, CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 100, 100)));
 		bomb->addSpriteFrame(sf);
@@ -43,22 +43,22 @@ bool Bomb::initWithType(int type)
 	switch (type)
 	{
 	case(1): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(20);
 	}
 			 break;
 	case(2): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
 	case(3): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(40);
 	}
 			 break;
 	case(4): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
