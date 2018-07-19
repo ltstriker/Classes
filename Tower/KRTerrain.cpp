@@ -1,5 +1,5 @@
 #include "KRTerrain.h"
-#include "./ui/BaseMap.h"
+#include "../UI/map/BaseMap.h"
 #include "TowerPanleLayer.h"
 
 
@@ -12,13 +12,13 @@ bool KRTerrain::init(int type)
 	switch (type)
 	{
 	case(1): 
-		terrain = Sprite::createWithSpriteFrameName("terrain_01.png");
+		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
 		break;
 	case(2):
-		terrain = Sprite::createWithSpriteFrameName("terrain_02.png");
+		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0002.png");
 		break;
 	default:
-		terrain = Sprite::createWithSpriteFrameName("terrain_01.png");
+		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
 		break;
 	}
 	this->addChild(terrain);

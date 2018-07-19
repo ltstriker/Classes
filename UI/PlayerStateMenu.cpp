@@ -1,9 +1,9 @@
 #include "PlayerStateMenu.h"
 #include "GameOption.h"
 #include "GameManager.h"
-#include "SoundManager.h"
-#include "TowerInfoLayer.h"
-#include "MonsterInfoLayer.h"
+//#include "SoundManager.h"
+//#include "TowerInfoLayer.h"
+//#include "MonsterInfoLayer.h"
 
 bool PlayerStateMenu::init()
 {
@@ -129,7 +129,7 @@ bool PlayerStateMenu::init()
 		Rect rect = Rect(0, 0, size.width, size.height);
 		if (rect.containsPoint(locationInNode))
 		{  
-			SoundManager::playClickEffect();
+			//SoundManager::playClickEffect();
 			return true;  
 		}  
 		return false;  
@@ -160,7 +160,7 @@ bool PlayerStateMenu::init()
 		if(rect.containsPoint(locationInNode)){
 			//若冷却结束
 			if(completeThunder == true){
-				mTouchLayer->removeAllListener();
+//				mTouchLayer->removeAllListener();
 				if(thunderStoneSprite->getName() == "inactive"){
 					//设置为点击状态
 					thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0002.png"));
@@ -172,7 +172,7 @@ bool PlayerStateMenu::init()
 					packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 					packSprite->setName("inactive");
 					backPackSprite->setVisible(false);
-					mTouchLayer->setFireBallTouchShield();
+//					mTouchLayer->setFireBallTouchShield();
 				//第二次点击
 				}else{
 					thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0001.png"));
@@ -199,7 +199,7 @@ bool PlayerStateMenu::init()
 		
 		if(rect.containsPoint(locationInNode)){
 			if(completeParatrooper == true){
-				mTouchLayer->removeAllListener();
+//				mTouchLayer->removeAllListener();
 				if(paratrooperSprite->getName() == "inactive"){
 					paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0002.png"));
 					paratrooperSprite->setName("active");
@@ -208,7 +208,7 @@ bool PlayerStateMenu::init()
 					packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 					packSprite->setName("inactive");
 					backPackSprite->setVisible(false);
-					mTouchLayer->setSoldierTouchShield();
+//					mTouchLayer->setSoldierTouchShield();
 				}else{
 					paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0001.png"));
 					paratrooperSprite->setName("inactive");
@@ -234,7 +234,7 @@ bool PlayerStateMenu::init()
 		if (rect.containsPoint(locationInNode) && packSprite->getName() == "inactive"){  
 			removeTowerInfo();
 			removeMonsterInfo();
-			mTouchLayer->removeAllListener();
+//			mTouchLayer->removeAllListener();
 			packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0002.png"));
 			packSprite->setName("active");
 			backPackSprite->setVisible(true);
@@ -360,7 +360,7 @@ void PlayerStateMenu::startStone()
 
 void PlayerStateMenu::showTowerInfo(TowerType towerType)
 {
-	removeChildByTag(MONSTER_INFO);
+/*	removeChildByTag(MONSTER_INFO);
 	removeChildByTag(TOWER_INFO);
 	packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 	packSprite->setName("inactive");
@@ -370,7 +370,7 @@ void PlayerStateMenu::showTowerInfo(TowerType towerType)
 	addChild(towerInfoLayer);
 	towerInfoLayer->setAnchorPoint(Point(0,0));
 	towerInfoLayer->setPosition(Point(620,-50));
-	towerInfoLayer->runAction(MoveBy::create(0.2f,Point(0,100)));
+	towerInfoLayer->runAction(MoveBy::create(0.2f,Point(0,100)));*/
 }
 
 void PlayerStateMenu::removeTowerInfo()
@@ -380,7 +380,7 @@ void PlayerStateMenu::removeTowerInfo()
 
 void PlayerStateMenu::showMonsterInfo(BaseMonster* monster)
 {
-	removeChildByTag(TOWER_INFO);
+/*	removeChildByTag(TOWER_INFO);
 	removeChildByTag(MONSTER_INFO);
 	packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 	packSprite->setName("inactive");
@@ -390,7 +390,7 @@ void PlayerStateMenu::showMonsterInfo(BaseMonster* monster)
 	addChild(monsterInfoLayer);
 	monsterInfoLayer->setAnchorPoint(Point(0,0));
 	monsterInfoLayer->setPosition(Point(620,-50));
-	monsterInfoLayer->runAction(MoveBy::create(0.2f,Point(0,100)));
+	monsterInfoLayer->runAction(MoveBy::create(0.2f,Point(0,100)));*/
 }
 
 void PlayerStateMenu::removeMonsterInfo()
@@ -489,19 +489,19 @@ void PlayerStateMenu::shopSkill(int type)
 		frozenMonsters();	
 		break;
 	case(2)://小范围炸弹
-		mTouchLayer->removeAllListener();
-		mTouchLayer->setDynamiteTouchShield();
+//		mTouchLayer->removeAllListener();
+//		mTouchLayer->setDynamiteTouchShield();
 		break;
 	case(3)://小范围冰冻
-		mTouchLayer->removeAllListener();
-		mTouchLayer->setFreezeTouchShield();
+//		mTouchLayer->removeAllListener();
+//		mTouchLayer->setFreezeTouchShield();
 		break;
 	case(4)://增加生命
-		SoundManager::playCash();
+//		SoundManager::playCash();
 		GameManager::getInstance()->LIFE = GameManager::getInstance()->LIFE + 5;
 		break;
 	case(5)://增加金钱
-		SoundManager::playHearts();
+//		SoundManager::playHearts();
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + 500;
 		break;
 	}
