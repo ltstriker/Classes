@@ -1,16 +1,5 @@
 #include "Circle.h"
 
-
-
-Circle::Circle()
-{
-}
-
-
-Circle::~Circle()
-{
-}
-
 bool Circle::init()
 {
 	if (!Sprite::init())

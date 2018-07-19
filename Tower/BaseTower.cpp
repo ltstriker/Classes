@@ -1,8 +1,8 @@
 #include "BaseTower.h"
-//#include "Terrain.h"
-//#include "TowerPanleLayer.h"
-//#include "BaseMap.h"
-//#include "GameManager.h"
+#include "KRTerrain.h"
+#include "TowerPanleLayer.h"
+#include "./ui/BaseMap.h"
+#include "./ui/GameManager.h"
 
 
 BaseTower::BaseTower() :isUpdateMenuShown(false)
@@ -65,7 +65,7 @@ void BaseTower::checkNearestMonster()
 		}
 	}
 
-	this->checkNearestMonster = monsterTemp;
+	this->nearestMonster = monsterTemp;
 }
 
 bool BaseTower::onTouchBegan(Touch * touch, Event * event)
@@ -104,7 +104,7 @@ void BaseTower::onTouchEnded(Touch * touch, Event * event)
 
 void BaseTower::hideUpdateMenu()
 {
-	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag() + 100);
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag() + 100);
 	this->isUpdateMenuShown = false;
 }
 

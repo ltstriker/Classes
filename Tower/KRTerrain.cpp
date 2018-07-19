@@ -1,18 +1,7 @@
 #include "KRTerrain.h"
-//#include "BaseMap.h"
-//#include "TowerPanleLayer.h"
+#include "./ui/BaseMap.h"
+#include "TowerPanleLayer.h"
 
-
-
-KRTerrain::KRTerrain()
-{
-
-}
-
-
-KRTerrain::~KRTerrain()
-{
-}
 
 bool KRTerrain::init(int type)
 {
@@ -54,7 +43,7 @@ KRTerrain * KRTerrain::createTerrain(int type)
 
 void KRTerrain::showUpdateMenu()
 {
-	auto towerPanleLayer = TowerPanLeLayer::create();
+	auto towerPanleLayer = TowerPanleLayer::create();
 	towerPanleLayer->setPosition(this->getPosition());
 	towerPanleLayer->setTag(getTag());
 	towerPanleLayer->setMyTerrain(this);

@@ -1,6 +1,6 @@
 #include "BaseMonster.h"
-#include "GameManager.h"
-#include "BaseMap.h"
+#include "../UI/GameManager.h"
+#include "../UI/BaseMap.h"
 
 USING_NS_CC;
 
@@ -40,12 +40,12 @@ void BaseMonster::addListener() {
 
 // 创建血条
 void BaseMonster::createAndSetHpBar() {
-  hpBgSprite = Sprite::createWithSpriteFrameName("lifebar_bg_small.png");
+  hpBgSprite = Sprite::createWithSpriteFrameName("monster/image 3499.png");
 
   hpBgSprite->setPosition(Point(baseSprite->getContentSize().width / 2, baseSprite->getContentSize().height));
   baseSprite->addChild(hpBgSprite);
 
-  hpBar = ProgressTimer::create(Sprite::createWithSpriteFrameName("lifebar_small.png"));
+  hpBar = ProgressTimer::create(Sprite::createWithSpriteFrameName("monster/image 3502.png"));
   hpBar->setType(ProgressTimer::Type::BAR);
   hpBar->setMidpoint(Point(0, 0.5f));
   hpBar->setBarChangeRate(Point(1, 0));
