@@ -43,7 +43,7 @@ KRTerrain * KRTerrain::createTerrain(int type)
 
 void KRTerrain::showUpdateMenu()
 {
-	auto towerPanleLayer = TowerPanLeLayer::create();
+	auto towerPanleLayer = TowerPanleLayer::create();
 	towerPanleLayer->setPosition(this->getPosition());
 	towerPanleLayer->setTag(getTag());
 	towerPanleLayer->setMyTerrain(this);

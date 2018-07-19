@@ -76,7 +76,9 @@ void ArtilleryTowerV1::showUpdateMenu()
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);
 	updatePanleLayer->setPosition(this->getParent()->getPosition());
+
 	static_cast<BaseMap*>(this->getParent()->getParent())->mTouchLayer->addChild(updatePanleLayer);
+
 	if (GameManager::getInstance()->LEVEL == 0) {
 		updatePanleLayer->couldUpdate = false;
 	}
