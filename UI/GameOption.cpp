@@ -297,6 +297,7 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 
 bool GameOption::onTouchBegan(Touch* touch, Event* event)
 {
+	CCLOG("on touch begin");
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
 	Point locationInNode = target->convertTouchToNodeSpace(touch);
@@ -305,6 +306,7 @@ bool GameOption::onTouchBegan(Touch* touch, Event* event)
 	Rect rect = Rect(0, 0, size.width, size.height);
 	if (rect.containsPoint(locationInNode))
 	{  	
+		CCLOG("on touch hit");
 		//SoundManager::playClickEffect();
 		target->setScale(0.9f);
 		return true;  

@@ -37,10 +37,18 @@ float ParabolaTo::getAngle(Vec2 source, Vec2 end)
 			return 90;
 		}
 		else {
-			return 0;
+			if (dx <= 0) {
+				return 0;
+			}
+			else {
+				return 45;
+			}
 		}
 	}
 	else {
+		if (dx >= 0) {
+			return 70;
+		}
 		return 45;
 	}
 }
