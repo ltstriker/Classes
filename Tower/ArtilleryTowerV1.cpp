@@ -1,7 +1,7 @@
 #include "ArtilleryTowerV1.h"
-#include "./ui/UpdatePanleLayer.h"
-#include "./ui/GameManager.h"
-#include "./ui/BaseMap.h"
+#include "../UI/UpdatePanleLayer.h"
+#include "../UI/GameManager.h"
+#include "../UI/map/BaseMap.h"
 
 bool ArtilleryTowerV1::init()
 {
@@ -76,9 +76,7 @@ void ArtilleryTowerV1::showUpdateMenu()
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);
 	updatePanleLayer->setPosition(this->getParent()->getPosition());
-
 	static_cast<BaseMap*>(this->getParent()->getParent())->mTouchLayer->addChild(updatePanleLayer);
-
 	if (GameManager::getInstance()->LEVEL == 0) {
 		updatePanleLayer->couldUpdate = false;
 	}
