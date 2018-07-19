@@ -34,9 +34,9 @@ bool Boss_Efreeti::init() {
 	}
 	setMonsterType(BOSS_EFREETI);
 	setName("Boss_Efreeti_");
-	baseSprite = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png"); // ÕÒÍ¼
+	baseSprite = Sprite::createWithSpriteFrameName("monster/image 17760.png");
 	addChild(baseSprite);
-	cloud = Sprite::createWithSpriteFrameName("Boss_Efreeti_Cloud_0001.png"); // ÕÒÍ¼
+	cloud = Sprite::createWithSpriteFrameName("image 17936.png"); 
 	cloud->setPosition(Point(baseSprite->getContentSize().width / 2, baseSprite->getContentSize().height / 2));
 	baseSprite->addChild(cloud, -1);
 	// ÔÆ¶¯»­
