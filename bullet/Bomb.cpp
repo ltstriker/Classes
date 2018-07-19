@@ -12,7 +12,7 @@ void Bomb::initBombAnimation()
 	for (int i = 0; i < num; i++) {
 		int index = start + i * 2;
 		char *bf = new char[50];
-		sprintf(bf,"/pictures/image %d.png", index);
+		sprintf(bf,"/bullet/image %d.png", index);
 		const std::string filename = bf;
 		auto sf = SpriteFrame::create(filename, CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 100, 100)));
 		bomb->addSpriteFrame(sf);
@@ -43,22 +43,22 @@ bool Bomb::initWithType(int type)
 	switch (type)
 	{
 	case(1): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(20);
 	}
 			 break;
 	case(2): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
 	case(3): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(40);
 	}
 			 break;
 	case(4): {
-		sprite = Sprite::createWithSpriteFrameName("/pictures/image 5092.png");
+		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
 		setMaxForce(30);
 	}
 			 break;
@@ -69,9 +69,28 @@ bool Bomb::initWithType(int type)
 
 void Bomb::shoot()
 {
+	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	Sprite* target = nullptr;
+	auto instance = GameManager::getInstance();
+	auto tower = this->getParent();
+	auto monsterVector = instance->monsterVector;
+	double  min_dis = 1000000.0f;
+	for (int i = 0; i < monsterVector.size(); i++) {
+		auto monster = monsterVector.at(i);
+		auto towerPos = tower->getPosition();
+		double temp_dis = towerPos.distance(monster->getPosition());
+		if (temp_dis < min_dis) {
+			target = monster;
+			min_dis = temp_dis;
+		}
+	}
+	auto dist = target->getPosition();
+	auto mt = MoveTo::create(2.0f, dist);
+	bulletAction = Spawn::create(mt);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
 		NULL));
+	
 }
 
 void Bomb::removeBullet()
