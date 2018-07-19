@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "Circle.h"
 #include "KRTerrain.h"
-#include "./Monster/BaseMonster.hpp"
+#include "./Monster/BaseMonster.h"
 
 //#include "SoundManager.h"
 
