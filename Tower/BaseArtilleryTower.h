@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "BaseTower.h"
-#include "Bullet.h"
+#include "./bullet/Bullet.h"
 
 USING_NS_CC;
 
