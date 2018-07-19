@@ -23,3 +23,43 @@ Efreeti* Efreeti::createMonster(std::vector<Point> points, int pointCounter) {
 	CC_SAFE_DELETE(monster);
 	return NULL;
 }
+
+bool Efreeti::init() {
+	if (!BaseMonster::init()) {
+		return false;
+	}
+	setMonsterType(EFREETI);
+	setName("Efreeti_");
+	baseSprite = Sprite::createWithSpriteFrameName("monster/image 17981.png");
+	addChild(baseSprite);
+	createAndSetHpBar();
+	lastState = stateNone;
+	scheduleUpdate();
+	addListener();
+	return true;
+}
+
+void Efreeti::getHurt() {}
+
+// À¿Õˆ
+void Efreeti::death() {
+	if (GameManager::getInstance()->monsterVector.contains(this)) {
+		GameManager::getInstance()->monsterVector.eraseObject(this);
+	}
+	if (getState() != stateDeath) {
+		setState(stateDeath);
+		hpBgSprite->setVisible(false);
+		baseSprite->stopAllActions();
+		unscheduleUpdate();
+		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
+		baseSprite->runAction(Sequence::create(
+			Animate::create(AnimationCache::getInstance()->getAnimation(getName() + "death")),
+			CallFuncN::create(CC_CALLBACK_0(BaseMonster::setVisible, this, false))
+			, NULL));
+	}
+}
+
+// ±¨’®À¿Õˆ
+void Efreeti::explosion() {
+	death();
+}
