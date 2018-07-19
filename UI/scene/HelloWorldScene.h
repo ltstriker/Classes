@@ -11,6 +11,7 @@ public:
     virtual bool init();
     
 	void startMenuCallback(cocos2d::Ref* pSender);
+	void preLoad();
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);

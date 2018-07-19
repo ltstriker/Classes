@@ -7,7 +7,6 @@
 
 bool PlayerStateMenu::init()
 {
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ingame_gui-hd.plist");
     if ( !Layer::init() )
     {
         return false;
