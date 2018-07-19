@@ -85,7 +85,7 @@ void Bomb::shoot()
 		}
 	}
 	auto dist = target->getPosition();
-	auto mt = MoveTo::create(2.0f, dist);
+	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
 	bulletAction = Spawn::create(mt);
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
@@ -108,7 +108,7 @@ void Bomb::removeBullet()
 
 		if (monster != NULL && bombPostion.distance(monsterPosition) <= 50 && monster->getAttackBySoldier())
 		{
-			SoundManager::playBomb();
+			//SoundManager::playBomb();
 			auto currHp = monster->getCurrHp();
 
 			currHp = currHp - this->getMaxForce() + monster->getArmor();
