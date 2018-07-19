@@ -1,6 +1,6 @@
 #include "BaseMonster.h"
-#include "GameManager.h"
-#include "BaseMap.h"
+#include "../UI/GameManager.h"
+#include "../UI/BaseMap.h"
 
 USING_NS_CC;
 
