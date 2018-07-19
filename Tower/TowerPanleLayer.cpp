@@ -2,8 +2,8 @@
 
 #include "ArtilleryTowerV1.h"
 #include "KRTerrain.h"
-#include "GameManager.h"
-#include "BaseMap.h"
+#include "./ui/GameManager.h"
+#include "./ui/BaseMap.h"
 
 
 bool TowerPanleLayer::init()

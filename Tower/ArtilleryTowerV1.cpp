@@ -1,5 +1,5 @@
 #include "ArtilleryTowerV1.h"
-#include "UpdatePanleLayer.h" //Î´ÊµÏÖ
+#include "./ui/UpdatePanleLayer.h"
 #include "./ui/GameManager.h"
 #include "./ui/BaseMap.h"
 
@@ -51,7 +51,7 @@ void ArtilleryTowerV1::buildingSmokeAnimation(float dt)
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("build_smoke")),
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)), NULL));
-	SoundManager::playArtilleryReady();
+	//SoundManager::playArtilleryReady();
 	initTower(1);
 	setListener();
 
