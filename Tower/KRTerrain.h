@@ -7,8 +7,6 @@ USING_NS_CC;
 class KRTerrain: public Sprite
 {
 public:
-	KRTerrain();
-	~KRTerrain();
 	virtual bool init(int type);
 	static KRTerrain* createTerrain(int type);
 	void showUpdateMenu();

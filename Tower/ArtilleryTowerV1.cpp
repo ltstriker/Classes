@@ -1,7 +1,7 @@
 #include "ArtilleryTowerV1.h"
 #include "UpdatePanleLayer.h" //Œ¥ µœ÷
-#include "GameManager.h"
-#include "BaseMap.h"
+#include "./ui/GameManager.h"
+#include "./ui/BaseMap.h"
 
 bool ArtilleryTowerV1::init()
 {

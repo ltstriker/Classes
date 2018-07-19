@@ -1,18 +1,7 @@
 #include "KRTerrain.h"
-//#include "BaseMap.h"
-//#include "TowerPanleLayer.h"
+#include "BaseMap.h"
+#include "TowerPanleLayer.h"
 
-
-
-KRTerrain::KRTerrain()
-{
-
-}
-
-
-KRTerrain::~KRTerrain()
-{
-}
 
 bool KRTerrain::init(int type)
 {
