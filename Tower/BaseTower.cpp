@@ -65,7 +65,7 @@ void BaseTower::checkNearestMonster()
 		}
 	}
 
-	this->checkNearestMonster = monsterTemp;
+	this->nearestMonster = monsterTemp;
 }
 
 bool BaseTower::onTouchBegan(Touch * touch, Event * event)
@@ -104,7 +104,7 @@ void BaseTower::onTouchEnded(Touch * touch, Event * event)
 
 void BaseTower::hideUpdateMenu()
 {
-	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag() + 100);
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag() + 100);
 	this->isUpdateMenuShown = false;
 }
 
