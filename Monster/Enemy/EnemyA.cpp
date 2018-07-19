@@ -1,13 +1,13 @@
-#include "CanibalOffspring.h"
+#include "EnemyA.h"
 #include "../../UI/GameManager.h"
 USING_NS_CC;
 
 // ´´½¨MonsterµÄÐ¡µÜ
-CanibalOffspring* CanibalOffspring::createMonster(std::vector<Point> points, int pointCounter) {
-	auto monster = new CanibalOffspring();
+EnemyA* EnemyA::createMonster(std::vector<Point> points, int pointCounter) {
+	auto monster = new EnemyA();
 	if (monster && monster->init()) {
 		monster->setPointsVector(points);
-		monster->setMaxHp(100); 
+		monster->setMaxHp(100);
 		monster->setCurrHp(100);
 		monster->setMoney(20);
 		monster->setForce(15); // ¹¥»÷15
@@ -24,13 +24,14 @@ CanibalOffspring* CanibalOffspring::createMonster(std::vector<Point> points, int
 	return NULL;
 }
 
-bool CanibalOffspring::init() {
+bool EnemyA::init() {
 	if (!BaseMonster::init()) {
 		return false;
 	}
 	setMonsterType(CANIBAL_OFFSPRING);
-	setName("CanibalBoos_Offspring_");
-	baseSprite = Sprite::createWithSpriteFrameName("monster/image 14040.png");
+	//setName("CanibalBoos_Offspring_");
+	setName("EnemyA");
+	baseSprite = Sprite::createWithSpriteFrameName("monster/image 17016.png");
 	addChild(baseSprite);
 	createAndSetHpBar();
 	lastState = stateNone;
@@ -39,9 +40,9 @@ bool CanibalOffspring::init() {
 	return true;
 }
 
-void CanibalOffspring::getHurt() {}
+void EnemyA::getHurt() {}
 
-void CanibalOffspring::death() {
+void EnemyA::death() {
 	if (GameManager::getInstance()->monsterVector.contains(this)) {
 		GameManager::getInstance()->monsterVector.eraseObject(this);
 	}
@@ -60,6 +61,6 @@ void CanibalOffspring::death() {
 }
 
 // ±¬Õ¨ËÀÍö
-void CanibalOffspring::explosion() {
+void EnemyA::explosion() {
 	death();
 }
