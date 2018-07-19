@@ -53,6 +53,6 @@ bool HelloWorld::init()
 
 void HelloWorld::startMenuCallback(cocos2d::Ref* pSender)
 {
-	auto scene = GameScene::createScene();
+	auto scene = GameScene::playGame(0, 0);
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
 }
