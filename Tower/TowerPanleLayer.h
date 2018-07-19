@@ -2,7 +2,7 @@
 #include "cocos2d.h"
 #include "Circle.h"
 #include "KRTerrain.h"
-#include "BaseBuildIcon.h"
+#include "../Tower/BaseBuildIcon.h"
 
 USING_NS_CC;
 

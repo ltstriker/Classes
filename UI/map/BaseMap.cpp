@@ -1,10 +1,10 @@
 #include "BaseMap.h"
 //#include "RespirationSprite.h"
-#include "WaveFlag.h"
+#include "../WaveFlag.h"
 //#include "Thug.h"
 //#include "Raider.h"
-#include "GameManager.h"
-//#include "Victory.h"
+#include "../GameManager.h"
+#include "../scene/Victory.h"
 //#include "Wolf.h"
 //#include "Immortal.h"
 //#include "Fallen.h"
@@ -13,7 +13,7 @@
 //#include "Scorpion.h"
 //#include "Tremor.h"
 //#include "Munra.h"
-//#include "Failure.h"
+#include "../scene/Failure.h"
 //#include "SoundManager.h"
 //#include "Boss_Efreeti.h"
 //#include "Executioner.h"
@@ -24,7 +24,7 @@
 //#include "Shaman.h"
 //#include "Shield.h"
 //#include "WingRider.h"
-#include "Boss_Canibal.h"
+#include "../../Monster/Boss/Boss_Canibal.h"
 //#include "Blazefang.h"
 //#include "Broodguard.h"
 //#include "Elite.h"
@@ -115,7 +115,7 @@ void BaseMap::onEnterTransitionDidFinish()
 	playerState->setWave(0, maxWave);
 	playerState->startProgressTimers();
 	scheduleUpdate();
-	schedule(schedule_selector(BaseMap::addWaves), 0.5f);
+//	schedule(schedule_selector(BaseMap::addWaves), 0.5f);
 }
 
 void BaseMap::loadAndSetLevelData()
@@ -221,7 +221,7 @@ void BaseMap::bindPlayerStateMenu(PlayerStateMenu* playerState)
 	this->playerState->mTouchLayer = this->mTouchLayer;
 }
 
-void BaseMap::addWaves(float dt)
+/*void BaseMap::addWaves(float dt)
 {
 	bool newWave = false;
 	for (int i = 0; i<waveFlags.size(); i++) {
@@ -241,7 +241,7 @@ void BaseMap::addWaves(float dt)
 		playerState->setWave(wave + 1, maxWave);
 		waveEvent();
 	}
-}
+}*/
 
 //void BaseMap::addWaves(float dt)
 //{ 
@@ -263,10 +263,10 @@ void BaseMap::addWaves(float dt)
 //	}
 //}
 
-void BaseMap::waveEvent()
+/*void BaseMap::waveEvent()
 {
 	schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
-}
+}*/
 
 void BaseMap::initMap()
 {
@@ -292,14 +292,14 @@ void BaseMap::initMap()
 	setMapPosition();
 }
 
-/*void BaseMap::victory()
+void BaseMap::victory()
 {
 	//停止计时器
 	auto instance = GameManager::getInstance();
 	auto dataInstance = UserDefault::getInstance();
 	unscheduleUpdate();
-	unschedule(schedule_selector(BaseMap::addWaves));
-	unschedule(schedule_selector(BaseMap::addMonsters));
+//	unschedule(schedule_selector(BaseMap::addWaves));
+//	unschedule(schedule_selector(BaseMap::addMonsters));
 	//若此关卡得星数为0，则表示第一次完成
 	if (UserDefault::getInstance()->getIntegerForKey(String::createWithFormat(GameManager::getInstance()->LEVELX_STARNUM, getLevel())->getCString(), 0) == 0)
 	{
@@ -349,7 +349,7 @@ void BaseMap::initMap()
 	victory->level = getLevel();
 	victory->difficult = difficulty;
 	playerState->addChild(victory, 999);
-}*/
+}
 
 /*void BaseMap::addMonsters(float dt)
 {

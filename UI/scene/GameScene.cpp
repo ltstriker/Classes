@@ -1,6 +1,6 @@
 #include "GameScene.h"
 //#include "Level0.h"
-#include "Level1.h"
+#include "../map/Level1.h"
 /*#include "Level2.h"
 #include "Level3.h"
 #include "Level4.h"
@@ -12,8 +12,8 @@
 #include "Level10.h"
 #include "Level11.h"
 #include "Level12.h"*/
-#include "PlayerStateMenu.h"
-#include "GameManager.h"
+#include "../PlayerStateMenu.h"
+#include "../GameManager.h"
 
 Scene* GameScene::playGame(int Level,int Difficulty)
 {            

@@ -1,7 +1,7 @@
 #include "UpdatePanleLayer.h"
 #include "GameManager.h"
-#include "./Tower/BaseBuildIcon.h"
-#include "BaseMap.h"
+#include "../Tower/BaseBuildIcon.h"
+#include "map/BaseMap.h"
 
 USING_NS_CC;
 
@@ -129,7 +129,7 @@ void UpdatePanleLayer::showTowerInfo()
 {
 	switch (tower->getTowerType())
 	{
-	case(ARCHER_1):
+/*	case(ARCHER_1):
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARCHER_2);
 		break;
 	case(ARCHER_2):
@@ -140,7 +140,7 @@ void UpdatePanleLayer::showTowerInfo()
 		break;
 	case(MAGE_2):
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(MAGE_3);
-		break;
+		break;*/
 	case(ARTILLERY_1):
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARTILLERY_2);
 		break;
