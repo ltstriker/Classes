@@ -12,16 +12,16 @@ bool KRTerrain::init(int type)
 	switch (type)
 	{
 	case(1): {
-		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png"); }
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png");}
 			 break;
 	case(2): {
-		terrain = Sprite::createWithSpriteFrameName("build_terrain_0005.png"); }
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0005.png");}
 			 break;
 	case(3): {
-		terrain = Sprite::createWithSpriteFrameName("build_terrain_0006.png"); }
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0006.png");}
 			 break;
 	default: {
-		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png"); }
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png");}
 			 break;
 	}
 	this->addChild(terrain);
@@ -62,7 +62,7 @@ void KRTerrain::hideUpdateMenu()
 
 bool KRTerrain::onTouchBegan(Touch * touch, Event * event)
 {
-	return false;
+	return true;
 }
 
 void KRTerrain::onTouchEnded(Touch * touch, Event * event)
