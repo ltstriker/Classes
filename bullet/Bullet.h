@@ -2,8 +2,8 @@
 //#include "SoundManager.h" 
 #include "cocos2d.h"
 
-#include "../UI/GameManager.h"
-#include "ParabolaTo.h"
+#include "ui/GameManager.h"
+#include "bullet/ParabolaTo.h"
 USING_NS_CC;
 class Bullet : public Sprite
 {
