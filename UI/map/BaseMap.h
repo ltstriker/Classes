@@ -21,6 +21,9 @@ public:
 	//地图精灵
 	Sprite* mapSprite;
 	TouchLayer* mTouchLayer;
+
+	// 新模式创建怪物
+	void addMonstersPlus(int MonsterType);
 protected:
 	void initTouchLayer();
 	//本关难度
@@ -75,8 +78,7 @@ protected:
 	virtual void onExitTransitionDidStart();
 	//virtual void onExit() {};
 
-	// 新模式创建怪物
-	virtual void addMonstersPlus(int MonsterType);
+
 };
 
 #endif
