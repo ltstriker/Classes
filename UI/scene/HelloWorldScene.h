@@ -12,6 +12,7 @@ public:
     
 	void startMenuCallback(cocos2d::Ref* pSender);
 	void preLoad();
+	Animation* createAnimation(const char* prefixName, int start, int end, float delay);
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);

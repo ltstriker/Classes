@@ -55,7 +55,7 @@ bool HelloWorld::init()
 
 void HelloWorld::startMenuCallback(cocos2d::Ref* pSender)
 {
-	auto scene = GameScene::playGame(0, 0);
+	auto scene = GameScene::playGame(1, 0);
 	Director::getInstance()->replaceScene(TransitionGame::create(1.0f, scene));
 }
 
@@ -84,4 +84,19 @@ void HelloWorld::preLoad()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle_2-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level6-hd.plist");
+	AnimationCache::getInstance()->addAnimation(createAnimation("effect_sellSmoke_00%02d.png", 1, 11, 0.04f), "sell_smoke");
+	AnimationCache::getInstance()->addAnimation(createAnimation("effect_buildSmoke_00%02d.png", 1, 10, 0.04f), "build_smoke");
+}
+
+Animation* HelloWorld::createAnimation(const char* prefixName, int start, int end, float delay)
+{
+	Vector<SpriteFrame*> animFrames;
+
+	for (int i = start; i <= end; i++)
+	{
+		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(String::createWithFormat(prefixName, i)->getCString());
+		if (frame != nullptr)
+			animFrames.pushBack(frame);
+	}
+	return Animation::createWithSpriteFrames(animFrames, delay);
 }
