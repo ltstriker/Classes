@@ -17,6 +17,11 @@ typedef enum {
 	ARTILLERY_1,//1级炮塔
 	ARTILLERY_2,//2级炮塔
 	ARTILLERY_3,//3级炮塔
+	ASSASSIN,
+	BARAACKS_1,//兵营
+	BARAACKS_2,
+	BARAACKS_3,
+	TEMPLAR
 }TowerType;
 
 
