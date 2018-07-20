@@ -13,10 +13,14 @@ public:
 
 	void initAction();
 	void init_ArtilleryTower();
+	void init_MageTower();
+	void init_ArcherTower();
 	void init_BossEfreeti();
 	void init_BossCanibal();
 	void release_BossCanibal();
 	void release_BossEfreeti();
+	void init_Thug();
+	void init_Raider();
 
 	void startMenuCallback(cocos2d::Ref* pSender);
 	void preLoad();

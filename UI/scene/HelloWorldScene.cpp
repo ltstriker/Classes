@@ -85,6 +85,8 @@ void HelloWorld::preLoad()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle_2-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level6-hd.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level5-hd.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level10 - hd.plist");
 }
 
 void HelloWorld::initAction()
@@ -92,6 +94,8 @@ void HelloWorld::initAction()
 	init_ArtilleryTower();
 	init_BossEfreeti();
 	init_BossCanibal();
+	init_Thug();
+	init_Raider();
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_sellSmoke_00%02d.png", 1, 11, 0.04f), "sell_smoke");
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_buildSmoke_00%02d.png", 1, 10, 0.04f), "build_smoke");
 }
@@ -128,6 +132,28 @@ void HelloWorld::init_ArtilleryTower()
 
 	AnimationCache::getInstance()->addAnimation(createAnimation("explosion_air_00%02d.png", 1, 17, 0.04f), "bomb");
 	AnimationCache::getInstance()->addAnimation(createAnimation("states_small_00%02d.png", 22, 32, 0.04f), "explosion_Artillery");
+}
+
+void HelloWorld::init_MageTower()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl1_00%02d.png", 1, 12, 0.04f), "level1_mage_shine");
+	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl2_00%02d.png", 1, 12, 0.04f), "level2_mage_shine");
+	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl3_00%02d.png", 1, 12, 0.04f), "level3_mage_shine");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("mage_shooter_00%02d.png", 17, 29, 0.04f, "mage_shooter_0001.png"), "mage_shoot_up");
+	AnimationCache::getInstance()->addAnimation(createAnimation("mage_shooter_00%02d.png", 3, 16, 0.04f, "mage_shooter_0001.png"), "mage_shoot_down");
+}
+
+void HelloWorld::init_ArcherTower()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl1_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl1_shooter_0001.png"), "level1_shoot_down");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl2_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl2_shooter_0001.png"), "level2_shoot_down");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl3_shooter_0001.png"), "level3_shoot_down");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level1_shoot_top");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level2_shoot_top");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level3_shoot_top");
+
 }
 
 void HelloWorld::init_BossEfreeti()
@@ -207,6 +233,26 @@ void HelloWorld::init_BossCanibal()
 	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 1, 13, 0.04f), "CanibalBoos_Offspring_runright");
 	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 29, 53, 0.04f), "CanibalBoos_Offspring_attack");
 	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 56, 70, 0.04f), "CanibalBoos_Offspring_death");
+}
+
+void HelloWorld::init_Thug()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 89, 106, 0.04f), "Thug_death");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 23, 44, 0.04f), "Thug_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 45, 66, 0.04f), "Thug_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 1, 22, 0.04f), "Thug_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 1, 22, 0.04f), "Thug_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertThug_0%03d.png", 67, 88, 0.04f), "Thug_attack");
+}
+
+void HelloWorld::init_Raider()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 89, 106, 0.04f), "Raider_death");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 23, 44, 0.04f), "Raider_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 45, 66, 0.04f), "Raider_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 1, 22, 0.04f), "Raider_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 1, 22, 0.04f), "Raider_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertRaider_0%03d.png", 67, 88, 0.04f), "Raider_attack");
 }
 
 Animation* HelloWorld::createAnimation(const char* prefixName, int start, int end, float delay)

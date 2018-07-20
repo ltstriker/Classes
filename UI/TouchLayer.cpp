@@ -40,13 +40,13 @@ bool TouchLayer::init()
 	Dynamitelistener = NULL;
 	FiereBalllistener = NULL;
 
-	for (int len = 1;len <= 30; len++)
+/*	for (int len = 1;len <= 30; len++)
 	{
 		frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(String::createWithFormat("rally_feedback_00%2d.png",len)->getCString());
 		if(frame!=nullptr)
 			aFrames.pushBack(frame);
-	}
-	AnimationCache::getInstance()->addAnimation(Animation::createWithSpriteFrames(aFrames,0.04f),"rally_flag");
+	}*/
+//	AnimationCache::getInstance()->addAnimation(Animation::createWithSpriteFrames(aFrames,0.04f),"rally_flag");
 	isFlag = false;
 //	setTouchShield();
 	
@@ -251,22 +251,22 @@ void TouchLayer::onRallyFlagTouchEnded(Touch* touch, Event* event)
 
 void TouchLayer::addRallyFlag(Point location)
 {
-	auto flag = Sprite::createWithSpriteFrameName("rally_feedback_0015.png");
+/*	auto flag = Sprite::createWithSpriteFrameName("rally_feedback_0015.png");
 	flag->setPosition(location);
 	addChild(flag);
 	flag->runAction(Sequence::create(Animate::create(AnimationCache::getInstance()->getAnimation("rally_flag"))
 										,CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, flag))
-                                       , NULL));
+                                       , NULL));*/
 }
 
 void TouchLayer::addWrongPlace(Point location)
 {
-	auto wrong = Sprite::createWithSpriteFrameName("error_feedback_0001.png");
+/*	auto wrong = Sprite::createWithSpriteFrameName("error_feedback_0001.png");
 	wrong->setPosition(location);
 	wrong->runAction(Sequence::create(FadeOut::create(1.0f)
 										,CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, wrong))
                                        , NULL));
-	addChild(wrong);
+	addChild(wrong);*/
 }
 
 bool TouchLayer::onTouchBegan(Touch* touch, Event* event)

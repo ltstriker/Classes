@@ -21,24 +21,37 @@ public:
 	//地图精灵
 	Sprite* mapSprite;
 	TouchLayer* mTouchLayer;
+	// 新模式创建怪物
+	void addMonstersPlus(float dt, int MonsterType);
+	static BaseMap* getinstance();
+	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
+	int wave;
+	unsigned int time;
+	std::vector<std::vector<std::vector<Point>>> path;
+	void loadPathFromPlist();
+	void loadAndSetLevelData();
+
+private:
+	static BaseMap * instance;
+
 protected:
 	void initTouchLayer();
 	//本关难度
 	int difficulty;
-	int wave;
+//	int wave;
 	int maxWave;
 	int gold;
 	int life;
 	int startGold;
 	int maxLife;
-	unsigned int time;
+//	unsigned int time;
 	//wave怪物容器容器
-	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
+//	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
 	//加载路径和关卡数据
-	void loadPathFromPlist();
-	void loadAndSetLevelData();
+//	void loadPathFromPlist();
+//	void loadAndSetLevelData();
 	//存储路径的容器 从内到外为点，线路，路线
-	std::vector<std::vector<std::vector<Point>>> path;
+//	std::vector<std::vector<std::vector<Point>>> path;
 	//屏幕尺寸
 	Size winSize;
 
@@ -74,9 +87,6 @@ protected:
 	//退出
 	virtual void onExitTransitionDidStart();
 	//virtual void onExit() {};
-
-	// 新模式创建怪物
-	virtual void addMonstersPlus(int MonsterType);
 };
 
 #endif
