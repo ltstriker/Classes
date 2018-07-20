@@ -30,7 +30,8 @@ bool Efreeti::init() {
 	}
 	setMonsterType(EFREETI);
 	setName("Efreeti_");
-	baseSprite = Sprite::createWithSpriteFrameName("monster/image 17981.png");
+	// SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level5-hd.plist");
+	baseSprite = Sprite::createWithSpriteFrameName("desertEfreeti_0001.png");
 	addChild(baseSprite);
 	createAndSetHpBar();
 	lastState = stateNone;

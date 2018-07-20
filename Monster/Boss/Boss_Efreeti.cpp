@@ -1,6 +1,6 @@
 #include "Boss_Efreeti.h"
 #include "../../UI/GameManager.h"
-#include "../../UI/map/BaseMap.h"
+#include "../../UI/BaseMap.h"
 #include "Efreeti.h"
 // #include "../../UI/"
 
@@ -34,9 +34,12 @@ bool Boss_Efreeti::init() {
 	}
 	setMonsterType(BOSS_EFREETI);
 	setName("Boss_Efreeti_");
-	baseSprite = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png"); // ÕÒÍ¼
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level5-hd.plist");
+	baseSprite = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png");
 	addChild(baseSprite);
-	cloud = Sprite::createWithSpriteFrameName("Boss_Efreeti_Cloud_0001.png"); // ÕÒÍ¼
+
+	cloud = Sprite::createWithSpriteFrameName("Boss_Efreeti_Cloud_0001.png"); 
+
 	cloud->setPosition(Point(baseSprite->getContentSize().width / 2, baseSprite->getContentSize().height / 2));
 	baseSprite->addChild(cloud, -1);
 	// ÔÆ¶¯»­
