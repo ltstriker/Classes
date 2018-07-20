@@ -69,7 +69,7 @@ bool Bomb::initWithType(int type)
 
 void Bomb::shoot()
 {
-	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	/*auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Sprite* target = nullptr;
 	auto instance = GameManager::getInstance();
 	auto tower = this->getParent();
@@ -92,7 +92,11 @@ void Bomb::shoot()
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
 		NULL));
-	
+	*/
+
+	runAction(Sequence::create(bulletAction,
+		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
+		NULL));
 }
 
 void Bomb::removeBullet()
