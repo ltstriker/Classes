@@ -1,5 +1,4 @@
 ﻿#include "Level1.h"
-
 USING_NS_CC;
 
 Level1::Level1()

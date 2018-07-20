@@ -1,6 +1,8 @@
 #include "TowerPanleLayer.h"
 
+#include "ArrowTowerV1.h"
 #include "ArtilleryTowerV1.h"
+#include "MagicTowerV1.h"
 #include "KRTerrain.h"
 #include "../UI/GameManager.h"
 #include "../UI/map/BaseMap.h"
@@ -109,22 +111,18 @@ void TowerPanleLayer::addTempTower(int type)
 	}
 	circle->setVisible(true);
 
-	//ÅÚËþ»ÃÓ°
-	tempTower = Sprite::createWithSpriteFrameName("tower_preview_artillery.png");
-	tempTower->setPosition(Point(0, 25));
-	static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARTILLERY_1);
-	/*switch (type)
+	switch (type)
 	{
 	case(1): {
 		tempTower = Sprite::createWithSpriteFrameName("tower_preview_archer.png");
 		tempTower->setPosition(Point(0, 25));
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARCHER_1);}
 			 break;
-	case(2): {
+	/*case(2): {
 		tempTower = Sprite::createWithSpriteFrameName("tower_preview_barrack.png");
 		tempTower->setPosition(Point(0, 25));
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(BARAACKS_1);}
-			 break;
+			 break;*/
 	case(3): {
 		tempTower = Sprite::createWithSpriteFrameName("tower_preview_mage.png");
 		tempTower->setPosition(Point(0, 10));
@@ -135,7 +133,7 @@ void TowerPanleLayer::addTempTower(int type)
 		tempTower->setPosition(Point(0, 25));
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARTILLERY_1);}
 			 break;
-	}*/
+	}
 	addChild(tempTower);
 }
 
@@ -143,16 +141,9 @@ void TowerPanleLayer::addTower(int type)
 {
 	static_cast<BaseMap*>(this->getParent()->getParent())->playerState->removeTowerInfo();
 
-	//½¨ÅÚËþ
-	auto artilleryTower = ArtilleryTowerV1::create();
-	artilleryTower->setPosition(Point(0, 20));
-	artilleryTower->setTag(terrain->getTag());
-	artilleryTower->setMyTerrain(terrain);
-	terrain->addChild(artilleryTower);
-	GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - artilleryTower->getBuildMoney();
-	/*switch (type)
+	switch (type)
 	{
-	case(2): {
+	/*case(2): {
 		auto barracksTower = BaseBarracksTower::create();
 		barracksTower->setPosition(Point(0, 20));
 		barracksTower->setTag(terrain->getTag());
@@ -162,8 +153,9 @@ void TowerPanleLayer::addTower(int type)
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - barracksTower->getBuildMoney();
 	}
 			 break;
+			 */
 	case(1): {
-		auto arrowTower = SimpleArrowTowerlvl1::create();
+		auto arrowTower = ArrowTowerV1::create();
 		arrowTower->setPosition(Point(0, 20));
 		arrowTower->setTag(terrain->getTag());
 		arrowTower->setMyTerrain(terrain);
@@ -172,7 +164,7 @@ void TowerPanleLayer::addTower(int type)
 	}
 			 break;
 	case(4): {
-		auto artilleryTower = SimpleArtilleryTowerlvl1::create();
+		auto artilleryTower = ArtilleryTowerV1::create();
 		artilleryTower->setPosition(Point(0, 20));
 		artilleryTower->setTag(terrain->getTag());
 		artilleryTower->setMyTerrain(terrain);
@@ -181,14 +173,14 @@ void TowerPanleLayer::addTower(int type)
 	}
 			 break;
 	case(3):
-		auto mageTower = SimpleMageTowerlvl1::create();
+		auto mageTower = MagicTowerV1::create();
 		mageTower->setPosition(Point(0, 20));
 		mageTower->setTag(terrain->getTag());
 		mageTower->setMyTerrain(terrain);
 		terrain->addChild(mageTower);
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - mageTower->getBuildMoney();
 		break;
-	}*/
+	}
 	
 	//SoundManager::playTowerBuilding();
 	isBuilt = true;
