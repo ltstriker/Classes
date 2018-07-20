@@ -1,8 +1,10 @@
 ﻿#include "Level1.h"
+#include "../../Tower/TowerAIManager.h"
 USING_NS_CC;
 
 Level1::Level1()
-{};
+{
+};
 
 Level1::~Level1(){};
 
@@ -191,5 +193,11 @@ void Level1::addTerrains()
 	terrain11->setTag(11);
 	addChild(terrain11, 8);
 
+	TowerAIManager::getInstance()->initAI();
+	schedule(schedule_selector(Level1::Update), 1.0f);
+}
 
+void Level1::Update(float dt)
+{
+	TowerAIManager::getInstance()->update();
 }
