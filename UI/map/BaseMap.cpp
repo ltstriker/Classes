@@ -34,6 +34,15 @@
 
 USING_NS_CC;
 
+BaseMap* BaseMap::instance;
+
+BaseMap* BaseMap::getinstance()
+{
+	if (instance == NULL)
+		instance = new BaseMap();
+	return instance;
+}
+
 void BaseMap::loadPathFromPlist()
 {
 	CCLOG("basemap load path from plist");
@@ -176,7 +185,6 @@ void BaseMap::setMapPosition()
 
 void BaseMap::update(float dt)
 {
-	CCLOG("BaseMap::update");
 	updateGoldAndLife();
 	if (isStart && isEnd && GameManager::getInstance()->monsterVector.size() == 0)
 	{
@@ -188,7 +196,6 @@ void BaseMap::update(float dt)
 
 void BaseMap::updateGoldAndLife()
 {
-	CCLOG("BaseMap::updateGoldAndLife");
 	if (GameManager::getInstance()->LIFE>0) {
 		playerState->setGold(GameManager::getInstance()->MONEY);
 		playerState->setLife(GameManager::getInstance()->LIFE);
@@ -281,6 +288,7 @@ void BaseMap::addWaves(float dt)
 void BaseMap::waveEvent()
 {
 	schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
+//	schedule(schedule_selector(BaseMap::addMonstersplus), 1.0f, waveVector.at(wave).size(), 0);
 }
 
 void BaseMap::initMap()
@@ -379,12 +387,22 @@ void BaseMap::addMonsters(float dt)
 	//waveVector.size（）为波束
 	//waveVector.at()保存该wave怪物，size为怪物个数
 	//waveVector.at().at()保存该0.5s内需要创建的怪物,.size为怪物个数
+	for (int i = 0; i < path.size(); i++)
+	{
+		for (int j = 0; j < path[i].size(); j++)
+		{
+			for (int k = 0; k < path[i][j].size(); k++)
+			{
+				CCLOG("path[%d][%d][%d]: %f, %f\n", i, j, k, path[i][j][k].x, path[i][j][k].y);
+			}
+		}
+	}
 	if (time < waveVector.at(wave).size())
 	{
 		for (int i = 0; i<waveVector.at(wave).at(time).size(); i++)
 		{
 			auto monsterData = waveVector.at(wave).at(time).at(i);
-/*			switch (monsterData->getType())
+			switch (monsterData->getType())
 			{
 			case(0): {
 				auto thug = Thug::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
@@ -411,7 +429,7 @@ void BaseMap::addMonsters(float dt)
 				GameManager::getInstance()->monsterVector.pushBack(fallen);
 				addChild(fallen); }
 					 break;
-			case(5): {
+/*			case(5): {
 				auto waspHornet = WaspHornet::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 				GameManager::getInstance()->monsterVector.pushBack(waspHornet);
 				addChild(waspHornet); }
@@ -507,7 +525,7 @@ void BaseMap::addMonsters(float dt)
 				addChild(quetzal); }
 					  break;
 			case(100): {*/
-				auto Boss_Efreeti = Boss_Efreeti::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
+				/*auto Boss_Efreeti = Boss_Efreeti::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
 				GameManager::getInstance()->monsterVector.pushBack(Boss_Efreeti);
 				addChild(Boss_Efreeti); /*}
 					   break;
@@ -515,10 +533,10 @@ void BaseMap::addMonsters(float dt)
 				auto Boss_Canibal = Boss_Canibal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
 				GameManager::getInstance()->monsterVector.pushBack(Boss_Canibal);
 				addChild(Boss_Canibal); }
-					   break;
+					   break;*/
 			default:
 				break;
-			}*/
+			}
 		}
 		time++;
 	}
@@ -536,42 +554,50 @@ void BaseMap::addMonsters(float dt)
 	}
 }
 
-void BaseMap::addMonstersPlus(int MonsterType) {
-	if (time < waveVector.at(wave).size())
-	{
-		for (int i = 0; i<waveVector.at(wave).at(time).size(); i++)
+/*void BaseMap::addMonstersPlus(float dt, int MonsterType) {
+//	if (time < waveVector.at(wave).size())
+//	{
+	loadPathFromPlist();
+	loadAndSetLevelData();
+		for (int i = 0; i<waveVector.at(1).at(1).size(); i++)
 		{
 			auto monsterData = waveVector.at(wave).at(time).at(i);
 			switch (MonsterType)
 			{
 			case(0): {
 				auto thug = Thug::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				auto visibleSize = Director::getInstance()->getVisibleSize();
+				thug->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+				int x = thug->getPositionX();
+				int y = thug->getPositionX();
+				thug->setZOrder(99);
 				addChild(thug);
-				GameManager::getInstance()->monsterVector.pushBack(thug);
+		//		GameManager::getInstance()->monsterVector.pushBack(thug);
 			}
 			break;
 			case(1): {
 				auto raider = Raider::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 				addChild(raider);
-				GameManager::getInstance()->monsterVector.pushBack(raider);
+
+		//		GameManager::getInstance()->monsterVector.pushBack(raider);
 			}
 			break;
 			case(2): {
 				auto wolf = Wolf::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 				addChild(wolf);
-				GameManager::getInstance()->monsterVector.pushBack(wolf);
+		//		GameManager::getInstance()->monsterVector.pushBack(wolf);
 			}
 			break;
 			case(3): {
 				auto Immortal = Immortal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 				addChild(Immortal);
-				GameManager::getInstance()->monsterVector.pushBack(Immortal);
+		//		GameManager::getInstance()->monsterVector.pushBack(Immortal);
 			}
 			break;
 			case(4): {
 				auto fallen = Fallen::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 				addChild(fallen);
-				GameManager::getInstance()->monsterVector.pushBack(fallen);
+		//		GameManager::getInstance()->monsterVector.pushBack(fallen);
 			}
 			break;
 			/*
@@ -669,22 +695,24 @@ void BaseMap::addMonstersPlus(int MonsterType) {
 			auto quetzal = Quetzal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
 			GameManager::getInstance()->monsterVector.pushBack(quetzal);
 			addChild(quetzal); }
-			break;*/
+			break;
 			case(100): {
 				auto Boss_Efreeti = Boss_Efreeti::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
 				GameManager::getInstance()->monsterVector.pushBack(Boss_Efreeti);
 				addChild(Boss_Efreeti);
 			}
 			break;
-			/*case(101): {
+			case(101): {
 			auto Boss_Canibal = Boss_Canibal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
 			GameManager::getInstance()->monsterVector.pushBack(Boss_Canibal);
 			addChild(Boss_Canibal); }
-			break;*/
+			break;
 			default:
 			break;
 			}
-		}
+			int ss = GameManager::getInstance()->monsterVector.size();
+			log("Monster vector size: " + GameManager::getInstance()->monsterVector.size());
+}
 		time++;
 	}
 	else {
@@ -694,9 +722,9 @@ void BaseMap::addMonstersPlus(int MonsterType) {
 		{
 			//			SoundManager::playNextWaveReady();
 			scheduleOnce(schedule_selector(BaseMap::showWaveProgressBars), 15.0f);
-		}
+/*		}
 		else {
 			isEnd = true;
 		}
 	}
-}
+}*/
