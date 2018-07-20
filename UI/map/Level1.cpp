@@ -1,9 +1,10 @@
 ﻿#include "Level1.h"
-
+#include "../../Tower/TowerAIManager.h"
 USING_NS_CC;
 
 Level1::Level1()
-{};
+{
+};
 
 Level1::~Level1(){};
 
@@ -128,69 +129,75 @@ void Level1::addOrnament()
 void Level1::addTerrains()
 {
 	auto terrain1 = KRTerrain::createTerrain(1);
-	terrain1->setPosition(Point(610, 820));//�յ�
+	terrain1->setPosition(Point(610, 820));
 	terrain1->setTag(1);
 	addChild(terrain1, 2);
 
 	auto terrain13 = KRTerrain::createTerrain(1);
-	terrain13->setPosition(Point(340, 750));//�յ���
+	terrain13->setPosition(Point(340, 750));
 	terrain13->setTag(13);
 	addChild(terrain13, 3);
 
 	auto terrain12 = KRTerrain::createTerrain(1);
-	terrain12->setPosition(Point(650, 650));//ˮͰ����
+	terrain12->setPosition(Point(650, 650));
 	terrain12->setTag(12);
 	addChild(terrain12, 4);
 
 	auto terrain3 = KRTerrain::createTerrain(1);
-	terrain3->setPosition(Point(535, 620));//ˮͰ��
+	terrain3->setPosition(Point(535, 620));
 	terrain3->setTag(3);
 	addChild(terrain3, 4);
 
 	auto terrain10 = KRTerrain::createTerrain(1);
-	terrain10->setPosition(Point(540, 560));//��Բ���Թս��������
+	terrain10->setPosition(Point(540, 560));
 	terrain10->setTag(10);
 	addChild(terrain10, 5);
 
 	auto terrain7 = KRTerrain::createTerrain(1);
-	terrain7->setPosition(Point(590, 460));//��Բ���Թս����
+	terrain7->setPosition(Point(590, 460));
 	terrain7->setTag(7);
 	addChild(terrain7, 6);
 
 	auto terrain9 = KRTerrain::createTerrain(1);
-	terrain9->setPosition(Point(310, 440));//���ɽ��2
+	terrain9->setPosition(Point(310, 440));
 	terrain9->setTag(9);
 	addChild(terrain9, 6);
 
 	auto terrain6 = KRTerrain::createTerrain(1);
-	terrain6->setPosition(Point(900, 440));//��ţ���Թս����
+	terrain6->setPosition(Point(900, 440));
 	terrain6->setTag(6);
 	addChild(terrain6, 6);
 
 	auto terrain2 = KRTerrain::createTerrain(1);
-	terrain2->setPosition(Point(380, 360));//��ɽ�Ե�һ�ս�
+	terrain2->setPosition(Point(380, 360));
 	terrain2->setTag(2);
 	addChild(terrain2, 7);
 
 	auto terrain8 = KRTerrain::createTerrain(1);
-	terrain8->setPosition(Point(250, 360));//���ɽ��1
+	terrain8->setPosition(Point(250, 360));
 	terrain8->setTag(8);
 	addChild(terrain8, 7);
 
 	auto terrain4 = KRTerrain::createTerrain(1);
-	terrain4->setPosition(Point(590, 300));//Բ���Թս�
+	terrain4->setPosition(Point(590, 300));
 	terrain4->setTag(4);
 	addChild(terrain4, 7);
 
 	auto terrain5 = KRTerrain::createTerrain(1);
-	terrain5->setPosition(Point(920, 260));//ţ���Թս�
+	terrain5->setPosition(Point(920, 260));
 	terrain5->setTag(5);
 	addChild(terrain5, 8);
 
 	auto terrain11 = KRTerrain::createTerrain(1);
-	terrain11->setPosition(Point(530, 220));//Բ���Թս���
+	terrain11->setPosition(Point(530, 220));
 	terrain11->setTag(11);
 	addChild(terrain11, 8);
 
+	TowerAIManager::getInstance()->initAI();
+	schedule(schedule_selector(Level1::Update), 1.0f);
+}
 
+void Level1::Update(float dt)
+{
+	TowerAIManager::getInstance()->update();
 }

@@ -1,6 +1,8 @@
 #include "PlayerStateMenu.h"
 #include "GameOption.h"
 #include "GameManager.h"
+#include "map/BaseMap.h"
+#include "../Monster/Desert/Thug.h"
 //#include "SoundManager.h"
 //#include "TowerInfoLayer.h"
 //#include "MonsterInfoLayer.h"
@@ -79,14 +81,19 @@ bool PlayerStateMenu::init()
 	backPackSpritelistener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(backPackSpritelistener,backPackSprite);
 	//Ωıƒ“¡˘œ¿
-	for(int i = 0; i < 6 ; i ++){
+
+	for(int i = 0; i <  6; i ++){
 		int num = UserDefault::getInstance()->getIntegerForKey(String::createWithFormat(instance->SLOTX_SHOP,i)->getCString());
-		if(num > 0){
-			stringForSkillFileName = String::createWithFormat("backPack_icons_000%d.png",i+1)->getCString();
-		}else{
-			stringForSkillFileName = String::createWithFormat("backPack_icons_off_000%d.png",i+1)->getCString();
+		switch (i)
+		{
+			case(0): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertThug_0001.png"); }break;
+			case(1): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertRaider_0001.png"); }break;
+			case(2): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertWolf_0001.png"); }break;
+			case(3): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertImmortal_0001.png"); }break;
+			case(4): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("fallen_0001.png"); }break;
+			case(5): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png"); }break;
 		}
-		backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName(stringForSkillFileName);
+		
 		backPack_icons_Sprite[i]->setAnchorPoint(Point(1,0));
 		backPack_icons_Sprite[i]->setPosition(Point(540 - 85 * i,-20));
 
@@ -267,11 +274,11 @@ bool PlayerStateMenu::init()
 		Size size = target->getContentSize();
 		Rect rect = Rect(0, 0, size.width, size.height);
 		if (rect.containsPoint(locationInNode) && backPackSprite->isVisible()){  
-			
+		/*
 			int num = UserDefault::getInstance()->getIntegerForKey(target->getName().c_str());
 			if(num <= 0){
 				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),0);
-				target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(String::createWithFormat( "backPack_icons_off_00%02d.png",target->getTag()+1)->getCString()));
+				target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
 				static_cast<Label*>(target->getChildByTag(101))->setString("0");
 				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 				packSprite->setName("inactive");
@@ -280,17 +287,18 @@ bool PlayerStateMenu::init()
 				num--;
 				static_cast<Label*>(target->getChildByTag(101))->setString(String::createWithFormat("%d",num)->getCString());
 				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),num);
+				*/
 				shopSkill(target->getTag());
-
+/*
 				if(num<=0){
-					target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName((String::createWithFormat( "backPack_icons_off_00%02d.png",target->getTag()+1)->getCString())));
+					target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
 					target->setAnchorPoint(Point(1,0));
 					static_cast<Label*>(target->getChildByTag(101))->setString("0");
 				}
 				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 				packSprite->setName("inactive");
-				backPackSprite->setVisible(false);
-			}
+				backPackSprite->setVisible(false);*/
+			//}
 			return true;  
 		}
 		return false;  
@@ -395,7 +403,7 @@ void PlayerStateMenu::showMonsterInfo(BaseMonster* monster)
 
 void PlayerStateMenu::removeMonsterInfo()
 {
-	removeChildByTag(MONSTER_INFO);
+	//removeChildByTag(MONSTER_INFO);
 }
 
 void PlayerStateMenu::startParatrooper()
@@ -464,7 +472,64 @@ void PlayerStateMenu::clearMonsters()
 
 void PlayerStateMenu::shopSkill(int type)
 {
-	switch(type){
+//	float dt = 1;
+//	BaseMap::getinstance()->addMonstersPlus(dt, type);
+	std::vector<std::vector<std::vector<Point>>> path1;
+	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level1_paths.plist")->getCString());
+
+	auto path_array = dynamic_cast<__Array*>(plistDic->objectForKey("paths"));
+
+	for (int i = 0; i < path_array->count(); i++)
+	{
+		std::vector<std::vector<Point>> tempPathVector;
+		auto path_array2 = dynamic_cast<__Array*>(path_array->getObjectAtIndex(i));
+		for (int j = 0; j < path_array2->count(); j++)
+		{
+			std::vector<Point> tempRandomPathVector;
+			auto path_array3 = dynamic_cast<__Array*>(path_array2->getObjectAtIndex(j));
+			for (int k = 0; k < path_array3->count(); k++)
+			{
+				auto tempDic = dynamic_cast<__Dictionary*>(path_array3->getObjectAtIndex(k));
+				Point tempPath = Point();
+				tempPath.x = dynamic_cast<__String*>(tempDic->objectForKey("x"))->floatValue()*1.15;
+				tempPath.y = dynamic_cast<__String*>(tempDic->objectForKey("y"))->floatValue()*1.20 + 50;
+				tempRandomPathVector.push_back(tempPath);
+			}
+			tempPathVector.push_back(tempRandomPathVector);
+		}
+		path1.push_back(tempPathVector);
+	}
+
+	BaseMap::getinstance()->loadPathFromPlist();
+	BaseMap::getinstance()->loadAndSetLevelData();
+	int wave = BaseMap::getinstance()->wave;
+	int time = BaseMap::getinstance()->time;
+
+	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
+	auto thug = Thug::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+	addChild(thug);
+//	auto monsterData = BaseMap::getinstance()->waveVector.at(wave).at(time).at(1);
+
+/*	for (int i = 0; i < path1.size(); i++)
+	{
+		for (int j = 0; j < path1[i].size(); j++)
+		{
+			for (int k = 0; k < path1[i][j].size(); k++)
+			{
+				CCLOG("path[%d][%d][%d]: %f, %f\n", i, j, k, path1[i][j][k].x, path1[i][j][k].y);
+			}
+		}
+	}*/
+/*	if (time < BaseMap::getinstance()->waveVector.at(wave).size()) {
+		for (int i = 0; i < BaseMap::getinstance()->waveVector.at(wave).at(time).size(); i++) {
+
+			//auto monsterData = BaseMap::getinstance()->waveVector.at(wave).at(time).at(i);
+			auto thug = Thug::createMonster(BaseMap::getinstance()->path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(thug);
+		}
+	}*/
+	
+/*	switch(type){
 	case(0):{
 		auto atomicBomb_plane = Sprite::createWithSpriteFrameName("atomicBomb_plane.png");
 		atomicBomb_plane->setPosition(Point(0,Director::getInstance()->getWinSize().height/3*2));
@@ -504,7 +569,7 @@ void PlayerStateMenu::shopSkill(int type)
 //		SoundManager::playHearts();
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + 500;
 		break;
-	}
+	}*/
 }
 
 void PlayerStateMenu::reFrozenMonsters(float dt)

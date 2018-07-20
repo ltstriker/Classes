@@ -23,7 +23,7 @@ void ::GameOption::initOption()
 	option->addChild(chain_right);
 	for(int j =-40;j<=40;j++)
 	{
-		/*auto mid_center = Sprite::createWithSpriteFrameName("options_tileMid_center.png");*/
+		//auto mid_center = Sprite::createWithSpriteFrameName("options_tileMid_center.png");
 		auto mid_center = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()
 			->getSpriteFrameByName("options_tileMid_center.png"));
 		mid_center->setPosition(Point(8.5*j,-56));
@@ -33,7 +33,7 @@ void ::GameOption::initOption()
 	{
 		auto mid_center = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()
 			->getSpriteFrameByName("options_tileMid_center.png"));
-	/*	auto mid_center = Sprite::createWithSpriteFrameName("options_tileMid_center.png");*/
+	//	auto mid_center = Sprite::createWithSpriteFrameName("options_tileMid_center.png");
 		mid_center->setPosition(Point(8.5*j,+56));
 		option->addChild(mid_center);
 	}
@@ -41,7 +41,7 @@ void ::GameOption::initOption()
 	{
 		auto top_center = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()
 			->getSpriteFrameByName("options_tileTop_center.png"));
-		/*auto top_center = Sprite::createWithSpriteFrameName("options_tileTop_center.png");*/
+		//auto top_center = Sprite::createWithSpriteFrameName("options_tileTop_center.png");
 		top_center->setPosition(Point(32*j,+161));
 		option->addChild(top_center);
 	}
@@ -50,7 +50,7 @@ void ::GameOption::initOption()
 	{
 		auto top_center = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()
 			->getSpriteFrameByName("options_tileTop_center.png"));
-		/*auto top_center = Sprite::createWithSpriteFrameName("options_tileTop_center.png");*/
+		//auto top_center = Sprite::createWithSpriteFrameName("options_tileTop_center.png");
 		top_center->setPosition(Point(32*j,-161));
 		top_center->setFlippedY(true);
 		option->addChild(top_center);

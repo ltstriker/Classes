@@ -49,7 +49,7 @@ void BaseTower::checkNearestMonster()
 	auto instance = GameManager::getInstance();
 	auto monsterVector = instance->monsterVector;
 
-	auto min = this->scope;//初始化为攻击距离
+	auto min = this->scope*1.5;//初始化为攻击距离
 
 	BaseMonster *monsterTemp = NULL;//初始化当前最近怪兽
 
