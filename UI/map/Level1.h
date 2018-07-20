@@ -16,7 +16,7 @@ public:
 private:
 	//添加不同关卡的特殊装饰物
 	void addOrnament();
-	void onExit();
+	//void onExit();
 	//void addMonsters(float dt);
 	void addTerrains();
 };

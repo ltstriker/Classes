@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
+#include "TransitionGame.h"
 
 USING_NS_CC;
 
@@ -34,7 +35,7 @@ bool HelloWorld::init()
 	this->addChild(background, 0);
 
 	auto game_label = Sprite::create("/pictures/image 3289.png");
-	game_label->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height + origin.y - 80));
+	game_label->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height + origin.y - 150));
 	this->addChild(game_label, 0);
 
 	auto startItem = MenuItemImage::create(
@@ -55,7 +56,7 @@ bool HelloWorld::init()
 void HelloWorld::startMenuCallback(cocos2d::Ref* pSender)
 {
 	auto scene = GameScene::playGame(0, 0);
-	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
+	Director::getInstance()->replaceScene(TransitionGame::create(1.0f, scene));
 }
 
 void HelloWorld::preLoad()
