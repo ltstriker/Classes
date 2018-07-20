@@ -73,6 +73,7 @@ void ArtilleryTowerV1::updateTower()
 void ArtilleryTowerV1::showUpdateMenu()
 {
 	auto updatePanleLayer = UpdatePanleLayer::create();
+	CCLOG(std::to_string(myTerrain->getTag()).c_str());
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);
 	updatePanleLayer->setPosition(this->getParent()->getPosition());
