@@ -1,13 +1,13 @@
 #include "BaseMap.h"
 //#include "RespirationSprite.h"
 #include "../WaveFlag.h"
-//#include "Thug.h"
-//#include "Raider.h"
+#include "../../Monster/Desert/Thug.h"
+#include "../../Monster/Desert/Raider.h"
 #include "../GameManager.h"
 #include "../scene/Victory.h"
-//#include "Wolf.h"
-//#include "Immortal.h"
-//#include "Fallen.h"
+#include "../../Monster/Desert/Wolf.h"
+#include "../../Monster/Desert/Immortal.h"
+#include "../../Monster/Desert/Fallen.h"
 //#include "WaspHornet.h"
 //#include "WaspQueen.h"
 //#include "Scorpion.h"
@@ -215,6 +215,8 @@ void BaseMap::onExitTransitionDidStart()
 	this->unscheduleAllCallbacks();
 	CCLOG("after unschedule");
 }
+
+
 
 void BaseMap::initTouchLayer()
 {
@@ -526,6 +528,171 @@ void BaseMap::addMonsters(float dt)
 			//15秒后显示WaveProgressBar
 		{
 //			SoundManager::playNextWaveReady();
+			scheduleOnce(schedule_selector(BaseMap::showWaveProgressBars), 15.0f);
+		}
+		else {
+			isEnd = true;
+		}
+	}
+}
+
+void BaseMap::addMonstersPlus(int MonsterType) {
+	if (time < waveVector.at(wave).size())
+	{
+		for (int i = 0; i<waveVector.at(wave).at(time).size(); i++)
+		{
+			auto monsterData = waveVector.at(wave).at(time).at(i);
+			switch (MonsterType)
+			{
+			case(0): {
+				auto thug = Thug::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				addChild(thug);
+				GameManager::getInstance()->monsterVector.pushBack(thug);
+			}
+			break;
+			case(1): {
+				auto raider = Raider::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				addChild(raider);
+				GameManager::getInstance()->monsterVector.pushBack(raider);
+			}
+			break;
+			case(2): {
+				auto wolf = Wolf::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				addChild(wolf);
+				GameManager::getInstance()->monsterVector.pushBack(wolf);
+			}
+			break;
+			case(3): {
+				auto Immortal = Immortal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				addChild(Immortal);
+				GameManager::getInstance()->monsterVector.pushBack(Immortal);
+			}
+			break;
+			case(4): {
+				auto fallen = Fallen::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+				addChild(fallen);
+				GameManager::getInstance()->monsterVector.pushBack(fallen);
+			}
+			break;
+			/*
+			case(5): {
+			auto waspHornet = WaspHornet::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(waspHornet);
+			addChild(waspHornet); }
+			break;
+			case(6): {
+			auto waspQueen = WaspQueen::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(waspQueen);
+			addChild(waspQueen); }
+			break;
+			case(7): {
+			auto scorpion = Scorpion::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(scorpion);
+			addChild(scorpion); }
+			break;
+			case(8): {
+			auto tremor = Tremor::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(tremor);
+			addChild(tremor); }
+			break;
+			case(9): {
+			auto munra = Munra::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(munra);
+			addChild(munra); }
+			break;
+			case(10): {
+			auto executioner = Executioner::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(executioner);
+			addChild(executioner); }
+			break;
+			case(11): {
+			auto canibal = Canibal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(canibal);
+			addChild(canibal); }
+			break;
+			case(12): {
+			auto gorilla = Gorilla::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(gorilla);
+			addChild(gorilla); }
+			break;
+			case(13): {
+			auto hunter = Hunter::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(hunter);
+			addChild(hunter); }
+			break;
+			case(14): {
+			auto priest = Priest::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(priest);
+			addChild(priest); }
+			break;
+			case(15): {
+			auto shaman = Shaman::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(shaman);
+			addChild(shaman); }
+			break;
+			case(16): {
+			auto shield = Shield::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(shield);
+			addChild(shield); }
+			break;
+			case(17): {
+			auto wingRider = WingRider::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(wingRider);
+			addChild(wingRider); }
+			break;
+			case(18): {
+			auto blazefang = Blazefang::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(blazefang);
+			addChild(blazefang); }
+			break;
+			case(19): {
+			auto broodguard = Broodguard::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(broodguard);
+			addChild(broodguard); }
+			break;
+			case(20): {
+			auto elite = Elite::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(elite);
+			addChild(elite); }
+			break;
+			case(21): {
+			auto myrmidon = Myrmidon::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(myrmidon);
+			addChild(myrmidon); }
+			break;
+			case(22): {
+			auto nightscale = Nightscale::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(nightscale);
+			addChild(nightscale); }
+			break;
+			case(23): {
+			auto quetzal = Quetzal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
+			GameManager::getInstance()->monsterVector.pushBack(quetzal);
+			addChild(quetzal); }
+			break;*/
+			case(100): {
+				auto Boss_Efreeti = Boss_Efreeti::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
+				GameManager::getInstance()->monsterVector.pushBack(Boss_Efreeti);
+				addChild(Boss_Efreeti);
+			}
+			break;
+			/*case(101): {
+			auto Boss_Canibal = Boss_Canibal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
+			GameManager::getInstance()->monsterVector.pushBack(Boss_Canibal);
+			addChild(Boss_Canibal); }
+			break;*/
+			default:
+			break;
+			}
+		}
+		time++;
+	}
+	else {
+		time = 0;
+		if (wave != maxWave - 1)
+			//15秒后显示WaveProgressBar
+		{
+			//			SoundManager::playNextWaveReady();
 			scheduleOnce(schedule_selector(BaseMap::showWaveProgressBars), 15.0f);
 		}
 		else {

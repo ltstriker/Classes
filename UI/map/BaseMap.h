@@ -74,6 +74,9 @@ protected:
 	//退出
 	virtual void onExitTransitionDidStart();
 	//virtual void onExit() {};
+
+	// 新模式创建怪物
+	virtual void addMonstersPlus(int MonsterType);
 };
 
 #endif
