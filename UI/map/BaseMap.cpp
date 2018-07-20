@@ -15,7 +15,7 @@
 //#include "Munra.h"
 #include "../scene/Failure.h"
 //#include "SoundManager.h"
-//#include "Boss_Efreeti.h"
+#include "../../Monster/Boss/Boss_Efreeti.h"
 //#include "Executioner.h"
 //#include "Canibal.h"
 //#include "Gorilla.h"

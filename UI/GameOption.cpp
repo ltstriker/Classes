@@ -282,7 +282,7 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 	case(0)://重新开始
 	{
 		Director::getInstance()->resume();
-		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(0, 0)));
+		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
 	}
 		break;
 	case(1)://退出
