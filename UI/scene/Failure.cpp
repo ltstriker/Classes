@@ -2,6 +2,7 @@
 #include "TransitionGame.h"
 //#include "GameView.h"
 #include "GameScene.h"
+#include "HelloWorldScene.h"
 //#include "SoundManager.h"
 
 USING_NS_CC;
@@ -211,7 +212,7 @@ void Failure::onTouchEnded(Touch* touch, Event* event)
 		break;
 	case(1)://ÍË³ö
 		Director::getInstance()->resume();
-		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
+		Director::getInstance()->replaceScene(TransitionGame::create(1.0f,HelloWorld::createScene()));
 		break;
 	default:
 		break;
