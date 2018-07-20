@@ -290,6 +290,13 @@ void BaseMap::initMap()
 	mapSprite = Sprite::createWithSpriteFrameName(String::createWithFormat("Stage_%d.png", level + 1)->getCString());
 	mapSprite->setAnchorPoint(Point(0, 0));
 	mapSprite->setPosition(Point(0, 0));
+	Size mywinsize = Director::getInstance()->getWinSize();
+	float winh = mywinsize.height;
+	float spy = mapSprite->getTextureRect().getMaxY();
+	float winw = mywinsize.width;
+	float spx = mapSprite->getTextureRect().getMaxX();
+	mapSprite->setScaleY(winh / spy);
+	mapSprite->setScaleX(winw / spx);
 	addChild(mapSprite);
 
 	loadAndSetLevelData();
