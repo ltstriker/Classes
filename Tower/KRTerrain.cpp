@@ -11,15 +11,18 @@ bool KRTerrain::init(int type)
 	this->isUpdateMenuShown = false;
 	switch (type)
 	{
-	case(1): 
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
-		break;
-	case(2):
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0002.png");
-		break;
-	default:
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
-		break;
+	case(1): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png"); }
+			 break;
+	case(2): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0005.png"); }
+			 break;
+	case(3): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0006.png"); }
+			 break;
+	default: {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png"); }
+			 break;
 	}
 	this->addChild(terrain);
 	auto listener = EventListenerTouchOneByOne::create();
