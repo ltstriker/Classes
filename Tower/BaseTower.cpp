@@ -104,7 +104,8 @@ void BaseTower::onTouchEnded(Touch * touch, Event * event)
 
 void BaseTower::hideUpdateMenu()
 {
-	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag());
+	CCLOG(std::to_string(this->myTerrain->getTag()).c_str());
+	static_cast<BaseMap*>(this->getParent()->getParent())->mTouchLayer->removeChildByTag(this->getTag() + 100);
 	this->isUpdateMenuShown = false;
 }
 
