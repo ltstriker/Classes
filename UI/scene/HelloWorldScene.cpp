@@ -102,28 +102,6 @@ void HelloWorld::initAction()
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_buildSmoke_00%02d.png", 1, 10, 0.04f), "build_smoke");
 }
 
-void HelloWorld::init_MageTower()
-{
-	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl1_00%02d.png", 1, 12, 0.04f), "level1_mage_shine");
-	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl2_00%02d.png", 1, 12, 0.04f), "level2_mage_shine");
-	AnimationCache::getInstance()->addAnimation(createAnimation("mage_lvl3_00%02d.png", 1, 12, 0.04f), "level3_mage_shine");
-
-	AnimationCache::getInstance()->addAnimation(createAnimation("mage_shooter_00%02d.png", 17, 29, 0.04f, "mage_shooter_0001.png"), "mage_shoot_up");
-	AnimationCache::getInstance()->addAnimation(createAnimation("mage_shooter_00%02d.png", 3, 16, 0.04f, "mage_shooter_0001.png"), "mage_shoot_down");
-}
-
-void HelloWorld::init_ArcherTower()
-{
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl1_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl1_shooter_0001.png"), "level1_shoot_down");
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl2_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl2_shooter_0001.png"), "level2_shoot_down");
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 3, 10, 0.04f, "tower_archer_lvl3_shooter_0001.png"), "level3_shoot_down");
-
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level1_shoot_top");
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level2_shoot_top");
-	AnimationCache::getInstance()->addAnimation(createAnimation("tower_archer_lvl3_shooter_00%02d.png", 11, 18, 0.04f, "tower_archer_lvl3_shooter_0002.png"), "level3_shoot_top");
-
-}
-
 void HelloWorld::init_ArtilleryTower()
 {
 	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer1_00%02d.png", 1, 35, 0.04f), "level1_Artillery_towerBase");
