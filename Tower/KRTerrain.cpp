@@ -90,7 +90,7 @@ void KRTerrain::onTouchEnded(Touch * touch, Event * event)
 void KRTerrain::smokeEffect()
 {
 	//出售时的动画
-	auto smoke = Sprite::createWithSpriteFrameName("Smoke_01.png");
+	auto smoke = Sprite::createWithSpriteFrameName("effect_sellSmoke_0001.png");
 	addChild(smoke, 99);
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("sell_smoke")),
