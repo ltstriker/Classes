@@ -7,14 +7,14 @@ bool MageBolt::init()
 	{
 		return false;
 	}
-	sprite = Sprite::createWithSpriteFrameName("/bullet/image 4946.png.png");
+	sprite = Sprite::create("/bullet/image 4946.png");
 	addChild(sprite);
 	return true;
 }
 
 void MageBolt::shoot()
 {
-	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	/*auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Sprite* target = nullptr;
 	auto instance = GameManager::getInstance();
 	auto tower = this->getParent();
@@ -32,6 +32,10 @@ void MageBolt::shoot()
 	auto dist = target->getPosition();
 	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
 	bulletAction = Spawn::create(mt);
+	runAction(Sequence::create(bulletAction,
+		CallFuncN::create(CC_CALLBACK_0(MageBolt::removeBullet, this)),
+		NULL));*/
+
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(MageBolt::removeBullet, this)),
 		NULL));

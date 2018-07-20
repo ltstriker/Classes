@@ -46,6 +46,11 @@ KRTerrain * KRTerrain::createTerrain(int type)
 
 void KRTerrain::showUpdateMenu()
 {
+	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
 	isUpdateMenuShown = true;
 	auto towerPanleLayer = TowerPanleLayer::create();
 	towerPanleLayer->setPosition(this->getPosition());

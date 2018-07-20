@@ -1,6 +1,6 @@
 #pragma once
-
 #include "cocos2d.h"
+#include "TowerAIManager.h"
 
 USING_NS_CC;
 
@@ -17,4 +17,3 @@ public:
 	bool isUpdateMenuShown;
 	void smokeEffect();
 };
-

@@ -17,6 +17,8 @@ public:
 	void init_ArcherTower();
 	void init_BossEfreeti();
 	void init_BossCanibal();
+	void init_ArcherTower();
+	void init_MageTower();
 	void release_BossCanibal();
 	void release_BossEfreeti();
 	void init_Thug();
