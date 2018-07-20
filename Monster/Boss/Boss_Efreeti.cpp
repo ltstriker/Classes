@@ -1,6 +1,6 @@
 #include "Boss_Efreeti.h"
 #include "../../UI/GameManager.h"
-#include "../../UI/BaseMap.h"
+#include "../../UI/map/BaseMap.h"
 #include "Efreeti.h"
 // #include "../../UI/"
 

@@ -104,7 +104,7 @@ void BaseTower::onTouchEnded(Touch * touch, Event * event)
 
 void BaseTower::hideUpdateMenu()
 {
-	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag() + 100);
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag());
 	this->isUpdateMenuShown = false;
 }
 
