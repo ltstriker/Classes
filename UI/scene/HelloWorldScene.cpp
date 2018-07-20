@@ -30,9 +30,9 @@ bool HelloWorld::init()
 	background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
 	Size mywinsize = Director::getInstance()->getWinSize();
-	float winh = mywinsize.height;//获取屏幕高度
+/*	float winh = mywinsize.height;//获取屏幕高度
 	float spy = background->getTextureRect().getMaxY();
-	background->setScaleY(winh / spy); //设置精灵高度缩放比例
+	background->setScaleY(winh / spy); //设置精灵高度缩放比例*/
 	this->addChild(background, 0);
 
 	auto game_label = Sprite::create("/pictures/image 3289.png");

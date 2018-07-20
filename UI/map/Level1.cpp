@@ -1,4 +1,4 @@
-#include "Level1.h"
+ï»¿#include "Level1.h"
 
 USING_NS_CC;
 
@@ -20,9 +20,9 @@ bool Level1::initWithDifficulty(int difficulty)
 	initMap();
 
 	std::vector<Point> points;
-	//road 0ÌáÊ¾
+	//road 0æç¤º
 	points.push_back(Point(980,40));
-	//road 1 ÌáÊ¾
+	//road 1 æç¤º
 	points.push_back(Point(40,270));
 	addWaveProgressBars(points);
 	waveFlags.at(0)->restartWaveFlag();
@@ -55,72 +55,142 @@ void Level1::addOrnament()
 	SpriteFrameCache::getInstance()->removeSpriteFrameByName("sprite_level1_2-hd.plist");
 }*/
 
-void Level1::addTerrains()
+/*void Level1::addTerrains()
 {
 	auto terrain1 = KRTerrain::createTerrain(1);
-	terrain1->setPosition(Point(455,535));//ÖÕµã×óÒ»
+	terrain1->setPosition(Point(455,535));//ç»ˆç‚¹å·¦ä¸€
 	terrain1->setTag(1);
 	addChild(terrain1,2);
 
 	auto terrain13 = KRTerrain::createTerrain(1);
-	terrain13->setPosition(Point(340,520));//ÖÕµã×ó¶þ
+	terrain13->setPosition(Point(340,520));//ç»ˆç‚¹å·¦äºŒ
 	terrain13->setTag(13);
 	addChild(terrain13,3);
 
 	auto terrain12 = KRTerrain::createTerrain(1);
-	terrain12->setPosition(Point(655, 470));//Ë®Í°ÓÒÉÏ
+	terrain12->setPosition(Point(655, 470));//æ°´æ¡¶å³ä¸Š
 	terrain12->setTag(12);
 	addChild(terrain12,4);
 
 	auto terrain3 = KRTerrain::createTerrain(1);
-	terrain3->setPosition(Point(430,395));//Ë®Í°×óÉÏ
+	terrain3->setPosition(Point(430,395));//æ°´æ¡¶å·¦ä¸Š
 	terrain3->setTag(3);
 	addChild(terrain3,4);
 
 	auto terrain10 = KRTerrain::createTerrain(1);
-	terrain10->setPosition(Point(440,310));//Ë®Í°×óÏÂ
+	terrain10->setPosition(Point(440,310));//æ°´æ¡¶å·¦ä¸‹
 	terrain10->setTag(10);
 	addChild(terrain10,5);
 
 	auto terrain7 = KRTerrain::createTerrain(1);
-	terrain7->setPosition(Point(445,180));//Èý½Ç½»»ã´¦ÓÒÏÂ
+	terrain7->setPosition(Point(445,180));//ä¸‰è§’äº¤æ±‡å¤„å³ä¸‹
 	terrain7->setTag(7);
 	addChild(terrain7,6);
 
-/*	auto terrain9 = KRTerrain::createTerrain(1);
-	terrain9->setPosition(Point(200,320));//Óë¼ÙÉ½ÅÔ2
+	auto terrain9 = KRTerrain::createTerrain(1);
+	terrain9->setPosition(Point(200,320));//å‡å±±ä¸‹
 	terrain9->setTag(9);
 	addChild(terrain9,6);
 
 	auto terrain6 = KRTerrain::createTerrain(1);
-	terrain6->setPosition(Point(790,320));//ÓëÅ£½ÇÅÔ¹Õ½ÇÏà¶Ô
+	terrain6->setPosition(Point(740,290));//ä¸Žç‰›è§’æ—æ‹è§’ç›¸å¯¹
 	terrain6->setTag(6);
 	addChild(terrain6,6);
 
 	auto terrain2 = KRTerrain::createTerrain(1);
-	terrain2->setPosition(Point(160,120));//¼ÙÉ½ÅÔµÚÒ»¹Õ½Ç
+	terrain2->setPosition(Point(160,120));//å‡å±±æ—ç¬¬ä¸€æ‹è§’
 	terrain2->setTag(2);
 	addChild(terrain2,7);
 
 	auto terrain8 = KRTerrain::createTerrain(1);
-	terrain8->setPosition(Point(140,240));//Óë¼ÙÉ½ÅÔ1
+	terrain8->setPosition(Point(140,240));//ä¸Žå‡å±±æ—1
 	terrain8->setTag(8);
 	addChild(terrain8,7);
 
 	auto terrain4 = KRTerrain::createTerrain(1);
-	terrain4->setPosition(Point(480,180));//Ô²»·ÅÔ¹Õ½Ç
+	terrain4->setPosition(Point(280,200));//åœ†çŽ¯æ—æ‹è§’
 	terrain4->setTag(4);
 	addChild(terrain4,7);
 
 	auto terrain5 = KRTerrain::createTerrain(1);
-	terrain5->setPosition(Point(810,140));//Å£½ÇÅÔ¹Õ½Ç
+	terrain5->setPosition(Point(810,140));//ç‰›è§’æ—æ‹è§’
 	terrain5->setTag(5);
 	addChild(terrain5,8);
 
 	auto terrain11 = KRTerrain::createTerrain(1);
-	terrain11->setPosition(Point(420,100));//Ô²»·ÅÔ¹Õ½ÇÏÂ
+	terrain11->setPosition(Point(420,100));//åœ†çŽ¯æ—æ‹è§’ä¸‹
 	terrain11->setTag(11);
-	addChild(terrain11,8);*/
+	addChild(terrain11,8);
+
+
+}*/
+
+void Level1::addTerrains()
+{
+	auto terrain1 = KRTerrain::createTerrain(1);
+	terrain1->setPosition(Point(610, 820));//ï¿½Õµï¿½
+	terrain1->setTag(1);
+	addChild(terrain1, 2);
+
+	auto terrain13 = KRTerrain::createTerrain(1);
+	terrain13->setPosition(Point(340, 750));//ï¿½Õµï¿½ï¿½ï¿½
+	terrain13->setTag(13);
+	addChild(terrain13, 3);
+
+	auto terrain12 = KRTerrain::createTerrain(1);
+	terrain12->setPosition(Point(650, 650));//Ë®Í°ï¿½ï¿½ï¿½ï¿½
+	terrain12->setTag(12);
+	addChild(terrain12, 4);
+
+	auto terrain3 = KRTerrain::createTerrain(1);
+	terrain3->setPosition(Point(535, 620));//Ë®Í°ï¿½ï¿½
+	terrain3->setTag(3);
+	addChild(terrain3, 4);
+
+	auto terrain10 = KRTerrain::createTerrain(1);
+	terrain10->setPosition(Point(540, 560));//ï¿½ï¿½Ô²ï¿½ï¿½ï¿½Ô¹Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	terrain10->setTag(10);
+	addChild(terrain10, 5);
+
+	auto terrain7 = KRTerrain::createTerrain(1);
+	terrain7->setPosition(Point(590, 460));//ï¿½ï¿½Ô²ï¿½ï¿½ï¿½Ô¹Õ½ï¿½ï¿½ï¿½ï¿½
+	terrain7->setTag(7);
+	addChild(terrain7, 6);
+
+	auto terrain9 = KRTerrain::createTerrain(1);
+	terrain9->setPosition(Point(310, 440));//ï¿½ï¿½ï¿½É½ï¿½ï¿½2
+	terrain9->setTag(9);
+	addChild(terrain9, 6);
+
+	auto terrain6 = KRTerrain::createTerrain(1);
+	terrain6->setPosition(Point(900, 440));//ï¿½ï¿½Å£ï¿½ï¿½ï¿½Ô¹Õ½ï¿½ï¿½ï¿½ï¿½
+	terrain6->setTag(6);
+	addChild(terrain6, 6);
+
+	auto terrain2 = KRTerrain::createTerrain(1);
+	terrain2->setPosition(Point(380, 360));//ï¿½ï¿½É½ï¿½Ôµï¿½Ò»ï¿½Õ½ï¿½
+	terrain2->setTag(2);
+	addChild(terrain2, 7);
+
+	auto terrain8 = KRTerrain::createTerrain(1);
+	terrain8->setPosition(Point(250, 360));//ï¿½ï¿½ï¿½É½ï¿½ï¿½1
+	terrain8->setTag(8);
+	addChild(terrain8, 7);
+
+	auto terrain4 = KRTerrain::createTerrain(1);
+	terrain4->setPosition(Point(590, 300));//Ô²ï¿½ï¿½ï¿½Ô¹Õ½ï¿½
+	terrain4->setTag(4);
+	addChild(terrain4, 7);
+
+	auto terrain5 = KRTerrain::createTerrain(1);
+	terrain5->setPosition(Point(920, 260));//Å£ï¿½ï¿½ï¿½Ô¹Õ½ï¿½
+	terrain5->setTag(5);
+	addChild(terrain5, 8);
+
+	auto terrain11 = KRTerrain::createTerrain(1);
+	terrain11->setPosition(Point(530, 220));//Ô²ï¿½ï¿½ï¿½Ô¹Õ½ï¿½ï¿½ï¿½
+	terrain11->setTag(11);
+	addChild(terrain11, 8);
 
 
 }
