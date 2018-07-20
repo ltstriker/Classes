@@ -375,7 +375,7 @@ void PlayerStateMenu::showTowerInfo(TowerType towerType)
 
 void PlayerStateMenu::removeTowerInfo()
 {
-	removeChildByTag(TOWER_INFO);
+	//removeChildByTag(TOWER_INFO);
 }
 
 void PlayerStateMenu::showMonsterInfo(BaseMonster* monster)

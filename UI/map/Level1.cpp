@@ -58,36 +58,36 @@ void Level1::addOrnament()
 void Level1::addTerrains()
 {
 	auto terrain1 = KRTerrain::createTerrain(1);
-	terrain1->setPosition(Point(455,535));//终点
+	terrain1->setPosition(Point(455,535));//终点左一
 	terrain1->setTag(1);
 	addChild(terrain1,2);
 
 	auto terrain13 = KRTerrain::createTerrain(1);
-	terrain13->setPosition(Point(340,520));//终点下
+	terrain13->setPosition(Point(340,520));//终点左二
 	terrain13->setTag(13);
 	addChild(terrain13,3);
 
 	auto terrain12 = KRTerrain::createTerrain(1);
-	terrain12->setPosition(Point(670,530));//水桶旁上
+	terrain12->setPosition(Point(655, 470));//水桶右上
 	terrain12->setTag(12);
 	addChild(terrain12,4);
 
 	auto terrain3 = KRTerrain::createTerrain(1);
-	terrain3->setPosition(Point(325,500));//水桶旁
+	terrain3->setPosition(Point(430,395));//水桶左上
 	terrain3->setTag(3);
 	addChild(terrain3,4);
 
-/*	auto terrain10 = KRTerrain::createTerrain(1);
-	terrain10->setPosition(Point(430,440));//与圆环旁拐角相对相临
+	auto terrain10 = KRTerrain::createTerrain(1);
+	terrain10->setPosition(Point(440,310));//水桶左下
 	terrain10->setTag(10);
 	addChild(terrain10,5);
 
 	auto terrain7 = KRTerrain::createTerrain(1);
-	terrain7->setPosition(Point(480,340));//与圆环旁拐角相对
+	terrain7->setPosition(Point(445,180));//三角交汇处右下
 	terrain7->setTag(7);
 	addChild(terrain7,6);
 
-	auto terrain9 = KRTerrain::createTerrain(1);
+/*	auto terrain9 = KRTerrain::createTerrain(1);
 	terrain9->setPosition(Point(200,320));//与假山旁2
 	terrain9->setTag(9);
 	addChild(terrain9,6);

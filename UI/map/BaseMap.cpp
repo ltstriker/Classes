@@ -120,7 +120,7 @@ void BaseMap::onEnterTransitionDidFinish()
 	playerState->startProgressTimers();
 	scheduleUpdate();
 	CCLOG("after basemap on enter transition did finished");
-//	schedule(schedule_selector(BaseMap::addWaves), 0.5f);
+	schedule(schedule_selector(BaseMap::addWaves), 0.5f);
 }
 
 void BaseMap::loadAndSetLevelData()
@@ -234,7 +234,7 @@ void BaseMap::bindPlayerStateMenu(PlayerStateMenu* playerState)
 	this->playerState->mTouchLayer = this->mTouchLayer;
 }
 
-/*void BaseMap::addWaves(float dt)
+void BaseMap::addWaves(float dt)
 {
 	bool newWave = false;
 	for (int i = 0; i<waveFlags.size(); i++) {
@@ -254,7 +254,7 @@ void BaseMap::bindPlayerStateMenu(PlayerStateMenu* playerState)
 		playerState->setWave(wave + 1, maxWave);
 		waveEvent();
 	}
-}*/
+}
 
 //void BaseMap::addWaves(float dt)
 //{ 
@@ -276,10 +276,10 @@ void BaseMap::bindPlayerStateMenu(PlayerStateMenu* playerState)
 //	}
 //}
 
-/*void BaseMap::waveEvent()
+void BaseMap::waveEvent()
 {
 	schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
-}*/
+}
 
 void BaseMap::initMap()
 {
@@ -319,8 +319,8 @@ void BaseMap::victory()
 	auto instance = GameManager::getInstance();
 	auto dataInstance = UserDefault::getInstance();
 	unscheduleUpdate();
-//	unschedule(schedule_selector(BaseMap::addWaves));
-//	unschedule(schedule_selector(BaseMap::addMonsters));
+	unschedule(schedule_selector(BaseMap::addWaves));
+	unschedule(schedule_selector(BaseMap::addMonsters));
 	//若此关卡得星数为0，则表示第一次完成
 	if (UserDefault::getInstance()->getIntegerForKey(String::createWithFormat(GameManager::getInstance()->LEVELX_STARNUM, getLevel())->getCString(), 0) == 0)
 	{
@@ -372,7 +372,7 @@ void BaseMap::victory()
 	playerState->addChild(victory, 999);
 }
 
-/*void BaseMap::addMonsters(float dt)
+void BaseMap::addMonsters(float dt)
 {
 	//waveVector.size（）为波束
 	//waveVector.at()保存该wave怪物，size为怪物个数
@@ -382,7 +382,7 @@ void BaseMap::victory()
 		for (int i = 0; i<waveVector.at(wave).at(time).size(); i++)
 		{
 			auto monsterData = waveVector.at(wave).at(time).at(i);
-			switch (monsterData->getType())
+/*			switch (monsterData->getType())
 			{
 			case(0): {
 				auto thug = Thug::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()));
@@ -504,10 +504,10 @@ void BaseMap::victory()
 				GameManager::getInstance()->monsterVector.pushBack(quetzal);
 				addChild(quetzal); }
 					  break;
-			case(100): {
+			case(100): {*/
 				auto Boss_Efreeti = Boss_Efreeti::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
 				GameManager::getInstance()->monsterVector.pushBack(Boss_Efreeti);
-				addChild(Boss_Efreeti); }
+				addChild(Boss_Efreeti); /*}
 					   break;
 			case(101): {
 				auto Boss_Canibal = Boss_Canibal::createMonster(path.at(monsterData->getRoad()).at(monsterData->getPath()), path);
@@ -516,7 +516,7 @@ void BaseMap::victory()
 					   break;
 			default:
 				break;
-			}
+			}*/
 		}
 		time++;
 	}
@@ -525,11 +525,11 @@ void BaseMap::victory()
 		if (wave != maxWave - 1)
 			//15秒后显示WaveProgressBar
 		{
-			SoundManager::playNextWaveReady();
+//			SoundManager::playNextWaveReady();
 			scheduleOnce(schedule_selector(BaseMap::showWaveProgressBars), 15.0f);
 		}
 		else {
 			isEnd = true;
 		}
 	}
-}*/
+}

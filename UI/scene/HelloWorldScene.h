@@ -10,10 +10,18 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
+
+	void initAction();
+	void init_ArtilleryTower();
+	void init_BossEfreeti();
+	void init_BossCanibal();
+	void release_BossCanibal();
+	void release_BossEfreeti();
+
 	void startMenuCallback(cocos2d::Ref* pSender);
 	void preLoad();
 	Animation* createAnimation(const char* prefixName, int start, int end, float delay);
+	Animation* createAnimation(const char* prefixName, int start, int end, float delay, std::string lastFrame);
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
