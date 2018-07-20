@@ -21,6 +21,7 @@ bool HelloWorld::init()
     }
 	
 	preLoad();
+	initAction();
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -84,8 +85,128 @@ void HelloWorld::preLoad()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("enemies_jungle_2-hd.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level6-hd.plist");
+}
+
+void HelloWorld::initAction()
+{
+	init_ArtilleryTower();
+	init_BossEfreeti();
+	init_BossCanibal();
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_sellSmoke_00%02d.png", 1, 11, 0.04f), "sell_smoke");
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_buildSmoke_00%02d.png", 1, 10, 0.04f), "build_smoke");
+}
+
+void HelloWorld::init_ArtilleryTower()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer1_00%02d.png", 1, 35, 0.04f), "level1_Artillery_towerBase");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer1_00%02d.png", 1, 35, 0.04f), "level2_Artillery_towerBase");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer1_00%02d.png", 1, 35, 0.04f), "level3_Artillery_towerBase");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer2_00%02d.png", 1, 17, 0.04f), "level1_Artillery_leftShooter_hold");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer2_00%02d.png", 1, 17, 0.04f), "level2_Artillery_leftShooter_hold");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer2_00%02d.png", 1, 17, 0.04f), "level3_Artillery_leftShooter_hold");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer3_00%02d.png", 1, 35, 0.04f, "tower_artillery_lvl1_layer3_0001.png"), "level1_Artillery_rightShooter");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer3_00%02d.png", 1, 35, 0.04f, "tower_artillery_lvl2_layer3_0001.png"), "level2_Artillery_rightShooter");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer3_00%02d.png", 1, 35, 0.04f, "tower_artillery_lvl3_layer3_0001.png"), "level3_Artillery_rightShooter");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer4_00%02d.png", 1, 35, 0.04f), "level1_Artillery_barrel");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer4_00%02d.png", 1, 35, 0.04f), "level2_Artillery_barrel");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer4_00%02d.png", 1, 35, 0.04f), "level3_Artillery_barrel");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer5_00%02d.png", 1, 35, 0.04f), "level1_Artillery_smoke");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer5_00%02d.png", 1, 35, 0.04f), "level2_Artillery_smoke");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer5_00%02d.png", 1, 35, 0.04f), "level3_Artillery_smoke");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer6_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl1_layer6_0001.png"), "level1_Artillery_c4");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer6_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl2_layer6_0001.png"), "level2_Artillery_c4");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer6_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl3_layer6_0001.png"), "level3_Artillery_c4");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl1_layer2_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl1_layer2_0001.png"), "level1_Artillery_leftShooter_throw");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl2_layer2_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl2_layer2_0001.png"), "level2_Artillery_leftShooter_throw");
+	AnimationCache::getInstance()->addAnimation(createAnimation("tower_artillery_lvl3_layer2_00%02d.png", 18, 35, 0.04f, "tower_artillery_lvl3_layer2_0001.png"), "level3_Artillery_leftShooter_throw");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("explosion_air_00%02d.png", 1, 17, 0.04f), "bomb");
+	AnimationCache::getInstance()->addAnimation(createAnimation("states_small_00%02d.png", 22, 32, 0.04f), "explosion_Artillery");
+}
+
+void HelloWorld::init_BossEfreeti()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 1, 25, 0.04f), "Boss_Efreeti_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 1, 25, 0.04f), "Boss_Efreeti_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 1, 25, 0.04f), "Boss_Efreeti_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 26, 50, 0.04f), "Boss_Efreeti_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 53, 89, 0.04f), "Boss_Efreeti_attack");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 91, 127, 0.1f), "Boss_Efreeti_skill");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_0%03d.png", 130, 211, 0.04f), "Boss_Efreeti_death");
+	AnimationCache::getInstance()->addAnimation(createAnimation("Boss_Efreeti_Cloud_0%03d.png", 1, 11, 0.04f), "Boss_Efreeti_cloud");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 1, 11, 0.04f), "Efreeti_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 13, 23, 0.04f), "Efreeti_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 1, 11, 0.04f), "Efreeti_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 1, 11, 0.04f), "Efreeti_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 47, 61, 0.04f), "Efreeti_death");
+	AnimationCache::getInstance()->addAnimation(createAnimation("desertEfreeti_0%03d.png", 25, 46, 0.04f), "Efreeti_attack");
+}
+
+void HelloWorld::release_BossEfreeti()
+{
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_runleft");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_runright");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_runup");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_rundown");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_attack");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_skill");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_death");
+	AnimationCache::getInstance()->removeAnimation("Boss_Efreeti_cloud");
+
+	AnimationCache::getInstance()->removeAnimation("Efreeti_runleft");
+	AnimationCache::getInstance()->removeAnimation("Efreeti_rundown");
+	AnimationCache::getInstance()->removeAnimation("Efreeti_runup");
+	AnimationCache::getInstance()->removeAnimation("Efreeti_runright");
+	AnimationCache::getInstance()->removeAnimation("Efreeti_death");
+	AnimationCache::getInstance()->removeAnimation("Efreeti_attack");
+}
+
+void HelloWorld::release_BossCanibal()
+{
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_runleft");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_runright");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_runup");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_rundown");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_attack");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_skill_before");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_skill");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_skill_after");
+	AnimationCache::getInstance()->removeAnimation("Boss_Canibal_death");
+
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_runleft");
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_rundown");
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_runup");
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_runright");
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_attack");
+	AnimationCache::getInstance()->removeAnimation("CanibalBoos_Offspring_death");
+}
+
+void HelloWorld::init_BossCanibal()
+{
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 1, 31, 0.04f), "Boss_Canibal_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 1, 31, 0.04f), "Boss_Canibal_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 1, 31, 0.04f), "Boss_Canibal_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 33, 62, 0.04f), "Boss_Canibal_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 65, 91, 0.04f), "Boss_Canibal_attack");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 92, 143, 0.1f), "Boss_Canibal_skill_before");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 197, 242, 0.04f), "Boss_Canibal_skill");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 244, 252, 0.04f), "Boss_Canibal_skill_after");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 251, 292, 0.04f), "Boss_Canibal_death");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_0%03d.png", 184, 197, 0.04f), "Boss_Canibal_jump");
+
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 1, 13, 0.04f), "CanibalBoos_Offspring_runleft");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 15, 27, 0.04f), "CanibalBoos_Offspring_rundown");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 1, 13, 0.04f), "CanibalBoos_Offspring_runup");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 1, 13, 0.04f), "CanibalBoos_Offspring_runright");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 29, 53, 0.04f), "CanibalBoos_Offspring_attack");
+	AnimationCache::getInstance()->addAnimation(createAnimation("CanibalBoos_Offspring_0%03d.png", 56, 70, 0.04f), "CanibalBoos_Offspring_death");
 }
 
 Animation* HelloWorld::createAnimation(const char* prefixName, int start, int end, float delay)
@@ -98,5 +219,19 @@ Animation* HelloWorld::createAnimation(const char* prefixName, int start, int en
 		if (frame != nullptr)
 			animFrames.pushBack(frame);
 	}
+	return Animation::createWithSpriteFrames(animFrames, delay);
+}
+
+Animation* HelloWorld::createAnimation(const char* prefixName, int start, int end, float delay, std::string lastFrame)
+{
+	Vector<SpriteFrame*> animFrames;
+
+	for (int i = start; i <= end; i++)
+	{
+		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(String::createWithFormat(prefixName, i)->getCString());
+		if (frame != nullptr)
+			animFrames.pushBack(frame);
+	}
+	animFrames.pushBack(SpriteFrameCache::getInstance()->getSpriteFrameByName(lastFrame));
 	return Animation::createWithSpriteFrames(animFrames, delay);
 }
