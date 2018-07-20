@@ -5,6 +5,7 @@
 //#include "SoundManager.h"
 #include "PlayerStateMenu.h"
 #include "SimpleAudioEngine.h"
+#include "scene/HelloWorldScene.h"
 
 using namespace CocosDenshion;
 
@@ -287,7 +288,7 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 	case(1)://ÍË³ö
 	{
 		Director::getInstance()->resume();
-		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(0, 0)));
+		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, HelloWorld::createScene()));
 	}
 		break;
 	default:

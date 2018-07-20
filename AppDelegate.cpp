@@ -29,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::createWithRect("KingdomRush", Rect(0, 0, 960, 640));
-		glview->setFrameSize(1138,640); 
+		glview->setFrameSize(1138,800); 
         director->setOpenGLView(glview);
     }
 	//director->setDisplayStats(true);
