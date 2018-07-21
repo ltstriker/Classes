@@ -154,7 +154,8 @@ void TowerPanleLayer::addTower(int type)
 		arrowTower->setTag(terrain->getTag());
 		arrowTower->setMyTerrain(terrain);
 		terrain->addChild(arrowTower);
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
+		if (GameManager::getInstance()->mode == false)
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
 	}
 			 break;
 	case(1): {
@@ -163,7 +164,8 @@ void TowerPanleLayer::addTower(int type)
 		arrowTower->setTag(terrain->getTag());
 		arrowTower->setMyTerrain(terrain);
 		terrain->addChild(arrowTower);
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
+		if (GameManager::getInstance()->mode == false)
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
 	}
 			 break;
 	case(4): {
@@ -172,7 +174,8 @@ void TowerPanleLayer::addTower(int type)
 		artilleryTower->setTag(terrain->getTag());
 		artilleryTower->setMyTerrain(terrain);
 		terrain->addChild(artilleryTower);
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - artilleryTower->getBuildMoney();
+		if (GameManager::getInstance()->mode == false)
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - artilleryTower->getBuildMoney();
 	}
 			 break;
 	case(3): 		
@@ -181,7 +184,8 @@ void TowerPanleLayer::addTower(int type)
 		mageTower->setTag(terrain->getTag());
 		mageTower->setMyTerrain(terrain);
 		terrain->addChild(mageTower);
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - mageTower->getBuildMoney();
+		if(GameManager::getInstance()->mode == false)
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - mageTower->getBuildMoney();
 		break;
 	}
 	
