@@ -38,7 +38,7 @@ bool UpdatePanleLayer::init()
 
 void UpdatePanleLayer::inAnimation()
 {
-	//SoundManager::playTowerMenu();
+	 
 	planesprite->runAction(Sequence::create(ScaleTo::create(0.1f, 1.0f, 1.0f),
 		CallFuncN::create(CC_CALLBACK_0(UpdatePanleLayer::addIcons, this)),
 		NULL));
@@ -90,12 +90,12 @@ bool UpdatePanleLayer::onTouchBegan(Touch *touch, Event *event)
 				switch (target->getTag())
 				{
 				case(1)://Éý¼¶
-					//SoundManager::playTowerUpdate();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - tower->getUpdateMoney();
 					tower->updateTower();
 					break;
 				case(2)://ÊÛ³ö
-					//SoundManager::playTowerSell();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + (tower->getBuildMoney() / 2);
 					tower->sellTower();
 					break;

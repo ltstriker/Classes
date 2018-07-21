@@ -67,7 +67,7 @@ void TowerPanleLayer::onTouchEnded(Touch * touch, Event * event)
 
 void TowerPanleLayer::inAnimation()
 {
-	//SoundManager::playTowerMenu();
+	 
 	planesprite->runAction(Sequence::create(ScaleTo::create(0.1f, 1.0f, 1.0f),
 		CallFuncN::create(CC_CALLBACK_0(TowerPanleLayer::addIcons, this)),
 		NULL));
@@ -184,7 +184,7 @@ void TowerPanleLayer::addTower(int type)
 		break;
 	}
 	
-	//SoundManager::playTowerBuilding();
+	 
 	isBuilt = true;
 	terrain->isBuilt = true;
 	terrain->terrain->setVisible(false);

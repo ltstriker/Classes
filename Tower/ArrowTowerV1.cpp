@@ -56,7 +56,7 @@ void ArrowTowerV1::buildingSmokeAnimation(float dt)
 		Animate::create(AnimationCache::getInstance()->getAnimation("build_smoke")),
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)),
 		NULL));
-	//SoundManager::playArcherReady();
+	 
 	initTower(1);
 	setListener();
 

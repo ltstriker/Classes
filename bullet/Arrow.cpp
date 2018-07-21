@@ -16,7 +16,7 @@ void Arrow::shoot()
 {
 	//auto sf = SpriteFrame::create("/bullet/arrow_broken.png", CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 500, 500)));
 	//sprite->setSpriteFrame(sf);
-	//SoundManager::playArrowRelease();
+	 
 	//auto firePosition = nearestMonster->baseSprite->getPosition() - this->getParent()->getPosition();
 	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Node* target = nullptr;
@@ -40,21 +40,21 @@ void Arrow::shoot()
 		}
 	}
 	if (target == nullptr) {
-		CCLOG("nullptr");
+		 
 		return;
 	}
 	if (target == tower) {
-		CCLOG("tower == target");
+		 
 		return;
 	}
 	
 	//target = monsterVector.at(0);
-	///CCLOG("target x= %f,y=%f", target->getPosition().x, target->getPosition().y);
+	/// 
 	//target = tower;
-	/*CCLOG("arrow x=%f,y=%f", getPosition().x, getPosition().y);
+	/* 
 	//CCLOG("arr")
-	CCLOG("target x= %f,y=%f", target->getPosition().x,target->getPosition().y);
-	CCLOG("tower x = %f ,y=%f", tower->getPosition().x, tower->getPosition().y);*/
+	 
+	 */
 	//auto ccvisi
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -148,14 +148,14 @@ void Arrow::removeBullet()
 		}
 	}
 	if (isMissed) {
-		CCLOG("isMissed1");
+		 
 		auto sfcc = SpriteFrameCache::getInstance();
 		//auto sf = sfcc->getSpriteFrameByName("/bullet/arrow_broken.png");
 		auto sf = SpriteFrame::create("/bullet/arrow_broken.png", CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 500, 500)));
 		auto test = sf == nullptr ? 0 : 1;
 		sprite->setSpriteFrame(sf);
-		CCLOG("test == %d", test);
-		CCLOG("isMissed2");
+		 
+		 
 		sprite->runAction(Sequence::create(FadeOut::create(1.0f)
 			, CallFuncN::create(CC_CALLBACK_0(Bullet::removeFromParent, this))
 			, NULL));

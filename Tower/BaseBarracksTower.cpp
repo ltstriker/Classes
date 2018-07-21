@@ -41,7 +41,7 @@ void BaseBarracksTower::initTower()
 	addChild(Soldier_1);
 	addChild(Soldier_2);
 	addChild(Soldier_3);
-	//SoundManager::playBarrackOpendoor();
+	 
 	door->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(String::createWithFormat("level%d_barracks_opendoor",getLevel())->getCString())));
 
 	schedule(schedule_selector(BaseBarracksTower::cureSoldiers), 10.0f,-1,10.0f);
@@ -77,7 +77,7 @@ void BaseBarracksTower::cureSoldiers(float dt)
 		}
 		else if(Soldier->getState() == SoldierStateDeath){
 			if(level <= 3){
-				//SoundManager::playBarrackOpendoor();
+				 
 				door->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(String::createWithFormat("level%d_barracks_opendoor",getLevel())->getCString())));
 				auto point = Soldier->getLocation();
 				Soldier ->removeFromParent();
@@ -86,7 +86,7 @@ void BaseBarracksTower::cureSoldiers(float dt)
 				Soldiers.replace(i,newSoldier);
 				addChild(newSoldier);
 			}else if(level == 4){
-				//SoundManager::playBarrackOpendoor();
+				 
 				door->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(String::createWithFormat("level%d_barracks_opendoor",getLevel())->getCString())));
 				auto point = Soldier->getLocation();
 				Soldier ->removeFromParent();
@@ -97,7 +97,7 @@ void BaseBarracksTower::cureSoldiers(float dt)
 				addChild(asssaain);
 				asssaain->cheakState();
 			}else if(level == 5){
-				//SoundManager::playBarrackOpendoor();
+				 
 				door->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(String::createWithFormat("level%d_barracks_opendoor",getLevel())->getCString())));
 				auto point = Soldier->getLocation();
 				Soldier ->removeFromParent();
@@ -160,7 +160,7 @@ void BaseBarracksTower::buildingSmokeAnimation(float dt)
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("build_smoke")),
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)),NULL));
-	//SoundManager::playBarrackReady();
+	 
 	initTower();
 	setListener();
 
@@ -280,9 +280,9 @@ void BaseBarracksTower::updateTower()
 void BaseBarracksTower::setRallyPoint(Point point)
 {
 	/*if(level == 1||level == 2||level ==3)
-		//SoundManager::playBarrackMove();
+		 
 	else if(level == 4 )
-		//SoundManager::playAssassinMove();*/
+		 */
 	auto rally = point - this->getParent()->getPosition();
 
 	Soldiers.at(0)->setLocation(Point(rally.x + 20,rally.y - 20));

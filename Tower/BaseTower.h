@@ -6,7 +6,7 @@
 #include "KRTerrain.h"
 #include "../Monster/BaseMonster.h"
 
-//#include "SoundManager.h"
+ 
 
 USING_NS_CC;
 
