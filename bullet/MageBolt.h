@@ -2,9 +2,9 @@
 
 #include "cocos2d.h"
 #include "bullet/Bullet.h"
-
+#include "Monster/BaseMonster.h"
 USING_NS_CC;
-
+using namespace cocos2d;
 class MageBolt : public Bullet
 {
 public:

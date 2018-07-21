@@ -3,8 +3,9 @@
 #include "cocos2d.h"
 #include "Bullet.h"
 #include "RotateWithAction.h"
+#include "Monster/BaseMonster.h"
 USING_NS_CC;
-
+using namespace cocos2d;
 class Bomb : public Bullet
 {
 private:

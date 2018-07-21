@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "bullet/Bullet.h"
 #include "RotateWithAction.h"
+
 USING_NS_CC;
 
 class Arrow : public Bullet

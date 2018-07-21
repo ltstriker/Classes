@@ -17,24 +17,26 @@ void Arrow::shoot()
 	//auto sf = SpriteFrame::create("/bullet/arrow_broken.png", CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 500, 500)));
 	//sprite->setSpriteFrame(sf);
 	//SoundManager::playArrowRelease();
+	//auto firePosition = nearestMonster->baseSprite->getPosition() - this->getParent()->getPosition();
 	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Node* target = nullptr;
 	auto instance = GameManager::getInstance();
 	auto tower = this->getParent();
 	auto monsterVector = instance->monsterVector;
 	double  min_dis = 1000000.0f;
+	auto gamemap = CCDirector::getInstance()->getRunningScene()->getChildByTag(10086);
 	for (int i = 0; i < monsterVector.size(); i++) {
 		auto monster = monsterVector.at(i);
-		CCLOG("%d\tmonsters x=%f,y=%f", i,monster->getPosition().x, monster->getPosition().y);
+		auto sprite = monster->baseSprite;
+		
 		auto towerPos = tower->getPosition();
-		double temp_dis = towerPos.distance(monster->getPosition());
-		CCLOG("distance:%f", temp_dis);
+		double temp_dis = towerPos.distance(sprite->getPosition());
+		
 		if (temp_dis < min_dis) {
 			target = monster;
 			min_dis = temp_dis;
-			auto spritepos = monster->getPosition();
-			CCLOG("hit by min distance = %f",min_dis);
-			//CCLOG("target x= %f,y=%f", target->getPosition().x, target->getPosition().y);
+			//auto spritepos = monster->getPosition();
+			
 		}
 	}
 	if (target == nullptr) {
@@ -45,8 +47,9 @@ void Arrow::shoot()
 		CCLOG("tower == target");
 		return;
 	}
-	target = monsterVector.at(0);
-	CCLOG("target x= %f,y=%f", target->getPosition().x, target->getPosition().y);
+	
+	//target = monsterVector.at(0);
+	///CCLOG("target x= %f,y=%f", target->getPosition().x, target->getPosition().y);
 	//target = tower;
 	/*CCLOG("arrow x=%f,y=%f", getPosition().x, getPosition().y);
 	//CCLOG("arr")
@@ -56,9 +59,9 @@ void Arrow::shoot()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	auto rightup = Vec2(origin.x + visibleSize.width, origin.y +0* visibleSize.height);
-	auto dist = tower->convertToNodeSpace(rightup);
-	auto mt = ParabolaTo::create(1.0f, (CCPoint)getPosition(), (CCPoint)dist);
-	auto rtt = RotateWithAction::create(10.0);
+	auto dist = ((BaseMonster*)target)->baseSprite->getPosition();
+	auto mt = ParabolaTo::create(0.5f, (CCPoint)getPosition(), (CCPoint)(dist-getParent()->getPosition()));
+	auto rtt = RotateWithAction::create(0.5);
 
 	auto bulletAction0 = Spawn::create(mt, rtt, NULL);
 	runAction(Sequence::create(bulletAction0,
