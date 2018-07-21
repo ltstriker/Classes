@@ -3,6 +3,11 @@
 #include "GameManager.h"
 #include "map/BaseMap.h"
 #include "../Monster/Desert/Thug.h"
+#include "../Monster/Desert/Fallen.h"
+#include "../Monster/Desert/Wolf.h"
+#include "../Monster/Desert/Immortal.h"
+#include "../Monster/Desert/Raider.h"
+#include "../Monster/Boss/Boss_Efreeti.h"
 //#include "SoundManager.h"
 //#include "TowerInfoLayer.h"
 //#include "MonsterInfoLayer.h"
@@ -506,8 +511,53 @@ void PlayerStateMenu::shopSkill(int type)
 	int time = BaseMap::getinstance()->time;
 
 	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
-	auto thug = Thug::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-	addChild(thug);
+	
+	switch (type)
+	{
+		case (0):
+		{
+			auto thug = Thug::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(thug);
+			GameManager::getInstance()->monsterVector.pushBack(thug); 
+		}
+		break;
+		case (1):
+		{
+			auto raider = Raider::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(raider);
+			GameManager::getInstance()->monsterVector.pushBack(raider);
+		}
+		break;
+		case (2):
+		{			
+			auto wolf = Wolf::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(wolf);
+			GameManager::getInstance()->monsterVector.pushBack(wolf);
+		}
+		break;
+		case (3):
+		{
+			auto immortal = Immortal::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(immortal);
+			GameManager::getInstance()->monsterVector.pushBack(immortal);
+		}
+		break;
+		case (4):
+		{
+			auto fallen = Fallen::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
+			addChild(fallen);
+			GameManager::getInstance()->monsterVector.pushBack(fallen);
+		}
+		break;
+		case (5):
+		{
+			auto boss_efreeti = Boss_Efreeti::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()), path1);
+			addChild(boss_efreeti);
+			GameManager::getInstance()->monsterVector.pushBack(boss_efreeti);
+		}
+		break;
+	}
+
 //	auto monsterData = BaseMap::getinstance()->waveVector.at(wave).at(time).at(1);
 
 /*	for (int i = 0; i < path1.size(); i++)
