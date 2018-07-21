@@ -6,7 +6,7 @@ bool Arrow::init()
 	{
 		return false;
 	}
-	sprite = Sprite::createWithSpriteFrameName("/bullet/arrow.png");
+	sprite = Sprite::create("/bullet/arrow.png");
 	sprite->setScale(0.1, 0.1);
 	addChild(sprite);
 	return true;
@@ -15,7 +15,7 @@ bool Arrow::init()
 void Arrow::shoot()
 {
 	//SoundManager::playArrowRelease();
-	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	/*auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Sprite* target = nullptr;
 	auto instance = GameManager::getInstance();
 	auto tower = this->getParent();
@@ -35,6 +35,10 @@ void Arrow::shoot()
 	auto rtt = RotateWithAction::create(10.0);
 
 	bulletAction = Spawn::create(mt, rtt, NULL);
+	runAction(Sequence::create(bulletAction,
+		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
+		NULL));*/
+
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
 		NULL));

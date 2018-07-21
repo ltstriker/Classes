@@ -1,30 +1,35 @@
-#include "ArtilleryTowerV1.h"
-#include "../UI/UpdatePanleLayer.h"
-#include "../UI/GameManager.h"
-#include "../UI/map/BaseMap.h"
+#include "ArrowTowerV1.h"
+//#include "SimpleArrowTowerlvl2.h"
+#include "./ui/UpdatePanleLayer.h"
+#include "./ui/map/BaseMap.h"
+#include "./UI/GameManager.h"
+#include "./bullet/Arrow.h"
 
-bool ArtilleryTowerV1::init()
+bool ArrowTowerV1::init()
 {
 	if (!Sprite::init())
 	{
 		return false;
 	}
-	setTowerType(ARTILLERY_1);
+	setTowerType(ARCHER_1);
 	setLevel(1);
 	addTerrain();
 	buildingAnimation();
 
+	setForce(8);
 	setScope(160.0f);
-	setUpdateMoney(150);
-	setBuildMoney(120);
+	setUpdateMoney(100);
+	setBuildMoney(70);
+	setNextScope(180.0f);
+
 	isUpdateMenuShown = false;
 	return true;
 }
 
-void ArtilleryTowerV1::buildingAnimation()
+void ArrowTowerV1::buildingAnimation()
 {
 	auto building = Sprite::create();
-	auto constructing = Sprite::createWithSpriteFrameName("tower_constructing_0001.png");
+	auto constructing = Sprite::createWithSpriteFrameName("tower_constructing_0004.png");
 	auto hpBgSprite = Sprite::createWithSpriteFrameName("buildbar_bg.png");
 	hpBgSprite->setPosition(Point(constructing->getContentSize().width / 2, constructing->getContentSize().height / 2 + 10));
 	auto hpBar = ProgressTimer::create(Sprite::createWithSpriteFrameName("buildbar.png"));
@@ -37,40 +42,40 @@ void ArtilleryTowerV1::buildingAnimation()
 	constructing->addChild(hpBgSprite);
 	building->addChild(constructing);
 	addChild(building);
-
 	hpBar->runAction(Sequence::create(ProgressTo::create(0.5f, 100)
 		, CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, building))
 		, NULL));
-	scheduleOnce(schedule_selector(ArtilleryTowerV1::buildingSmokeAnimation), 0.5f);
+	scheduleOnce(schedule_selector(ArrowTowerV1::buildingSmokeAnimation), 0.5f);
 }
 
-void ArtilleryTowerV1::buildingSmokeAnimation(float dt)
+void ArrowTowerV1::buildingSmokeAnimation(float dt)
 {
 	auto smoke = Sprite::createWithSpriteFrameName("effect_buildSmoke_0001.png");
 	addChild(smoke, 99);
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("build_smoke")),
-		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)), NULL));
-	//SoundManager::playArtilleryReady();
+		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)),
+		NULL));
+	//SoundManager::playArcherReady();
 	initTower(1);
 	setListener();
 
-	schedule(schedule_selector(ArtilleryTowerV1::shoot), 3.0f);
+	schedule(schedule_selector(ArrowTowerV1::shoot), 1.0f);
 }
 
-void ArtilleryTowerV1::updateTower()
+void ArrowTowerV1::updateTower()
 {
-	//cannot
-
-	/*auto simpleArtilleryTowerlvl2 = SimpleArtilleryTowerlvl2::create();
-	simpleArtilleryTowerlvl2->setMyTerrain(myTerrain);
-	simpleArtilleryTowerlvl2->setTag(myTerrain->getTag());
-	simpleArtilleryTowerlvl2->setPosition(Point(0, 20));
-	myTerrain->addChild(simpleArtilleryTowerlvl2);
-	this->removeTower();*/
+	/*
+	auto simpleArrowTowerlvl2 = SimpleArrowTowerlvl2::create();
+	simpleArrowTowerlvl2->setMyTerrain(myTerrain);
+	simpleArrowTowerlvl2->setTag(myTerrain->getTag());
+	simpleArrowTowerlvl2->setPosition(Point(0, 20));
+	myTerrain->addChild(simpleArrowTowerlvl2);
+	this->removeTower();
+	*/
 }
 
-void ArtilleryTowerV1::showUpdateMenu()
+void ArrowTowerV1::showUpdateMenu()
 {
 	if (TowerAIManager::getInstance()->getAble())
 	{
@@ -78,7 +83,6 @@ void ArtilleryTowerV1::showUpdateMenu()
 	}
 
 	auto updatePanleLayer = UpdatePanleLayer::create();
-	CCLOG(std::to_string(myTerrain->getTag()).c_str());
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);
 	updatePanleLayer->setPosition(this->getParent()->getPosition());
@@ -88,4 +92,13 @@ void ArtilleryTowerV1::showUpdateMenu()
 	}
 	updatePanleLayer->inAnimation();
 	isUpdateMenuShown = true;
+}
+
+Bullet* ArrowTowerV1::ArrowTowerBullet()
+{
+	auto bullet = Arrow::create();
+	bullet->setRotation(90.0f);
+	bullet->setMaxForce(getForce());
+	this->getParent()->addChild(bullet);
+	return bullet;
 }

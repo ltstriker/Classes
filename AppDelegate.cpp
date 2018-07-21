@@ -33,8 +33,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 	//director->setDisplayStats(true);
-    director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::FIXED_HEIGHT);
-    // create a scene. it's an autorelease object
+//    director->getOpenGLView()->setDesignResolutionSize(1280, 960, ResolutionPolicy::FIXED_HEIGHT);
+	  director->getOpenGLView()->setDesignResolutionSize(1280, 960, ResolutionPolicy::SHOW_ALL);
+// create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
     // run
     director->runWithScene(scene);

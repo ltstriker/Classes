@@ -37,7 +37,8 @@ bool Boss_Canibal::init() {
 	}
 	setMonsterType(BOSS_CANIBAL);
 	setName("Boss_Canibal_");
-	baseSprite = Sprite::createWithSpriteFrameName("monster/image 17528.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite_level10 - hd.plist"); 
+	baseSprite = Sprite::createWithSpriteFrameName("CanibalBoos_0001.png");
 	addChild(baseSprite);
 	createAndSetHpBar();
 	lastState = stateNone;

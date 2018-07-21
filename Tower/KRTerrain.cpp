@@ -11,16 +11,20 @@ bool KRTerrain::init(int type)
 	this->isUpdateMenuShown = false;
 	switch (type)
 	{
-	case(1): 
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
-		break;
-	case(2):
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0002.png");
-		break;
-	default:
-		terrain = Sprite::createWithSpriteFrameName("Stage6_Trees_lft_Terrain_0001.png");
-		break;
+	case(1): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png");}
+			 break;
+	case(2): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0005.png");}
+			 break;
+	case(3): {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0006.png");}
+			 break;
+	default: {
+		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png");}
+			 break;
 	}
+	isBuilt = false;
 	this->addChild(terrain);
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(KRTerrain::onTouchBegan, this);
@@ -41,8 +45,32 @@ KRTerrain * KRTerrain::createTerrain(int type)
 	return nullptr;
 }
 
+void KRTerrain::AIAddTower(int type)
+{
+	if (!TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
+	auto towerPanleLayer = TowerPanleLayer::create();
+	towerPanleLayer->setPosition(this->getPosition());
+	towerPanleLayer->setTag(getTag());
+	towerPanleLayer->setMyTerrain(this);
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->addChild(towerPanleLayer);
+
+	towerPanleLayer->addTower(type);
+
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag());
+}
+
 void KRTerrain::showUpdateMenu()
 {
+	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
+	isUpdateMenuShown = true;
 	auto towerPanleLayer = TowerPanleLayer::create();
 	towerPanleLayer->setPosition(this->getPosition());
 	towerPanleLayer->setTag(getTag());
@@ -59,7 +87,7 @@ void KRTerrain::hideUpdateMenu()
 
 bool KRTerrain::onTouchBegan(Touch * touch, Event * event)
 {
-	return false;
+	return true;
 }
 
 void KRTerrain::onTouchEnded(Touch * touch, Event * event)
@@ -87,10 +115,12 @@ void KRTerrain::onTouchEnded(Touch * touch, Event * event)
 void KRTerrain::smokeEffect()
 {
 	//出售时的动画
-	auto smoke = Sprite::createWithSpriteFrameName("Smoke_01.png");
+	auto smoke = Sprite::createWithSpriteFrameName("effect_sellSmoke_0001.png");
 	addChild(smoke, 99);
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("sell_smoke")),
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)),
 		NULL));
 }
+
+

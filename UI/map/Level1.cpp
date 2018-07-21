@@ -1,9 +1,11 @@
-#include "Level1.h"
-
+ï»¿#include "Level1.h"
+#include "../../Tower/TowerAIManager.h"
+#include "../GameManager.h"
 USING_NS_CC;
 
 Level1::Level1()
-{};
+{
+};
 
 Level1::~Level1(){};
 
@@ -20,9 +22,9 @@ bool Level1::initWithDifficulty(int difficulty)
 	initMap();
 
 	std::vector<Point> points;
-	//road 0ÌáÊ¾
+	//road 0æç¤º
 	points.push_back(Point(980,40));
-	//road 1 ÌáÊ¾
+	//road 1 æç¤º
 	points.push_back(Point(40,270));
 	addWaveProgressBars(points);
 	waveFlags.at(0)->restartWaveFlag();
@@ -55,72 +57,168 @@ void Level1::addOrnament()
 	SpriteFrameCache::getInstance()->removeSpriteFrameByName("sprite_level1_2-hd.plist");
 }*/
 
-void Level1::addTerrains()
+/*void Level1::addTerrains()
 {
 	auto terrain1 = KRTerrain::createTerrain(1);
-	terrain1->setPosition(Point(610,820));//ÖÕµã
+	terrain1->setPosition(Point(455,535));//ç»ˆç‚¹å·¦ä¸€
 	terrain1->setTag(1);
 	addChild(terrain1,2);
 
 	auto terrain13 = KRTerrain::createTerrain(1);
-	terrain13->setPosition(Point(340,750));//ÖÕµãÏÂ
+	terrain13->setPosition(Point(340,520));//ç»ˆç‚¹å·¦äºŒ
 	terrain13->setTag(13);
 	addChild(terrain13,3);
 
 	auto terrain12 = KRTerrain::createTerrain(1);
-	terrain12->setPosition(Point(650,650));//Ë®Í°ÅÔÉÏ
+	terrain12->setPosition(Point(655, 470));//æ°´æ¡¶å³ä¸Š
 	terrain12->setTag(12);
 	addChild(terrain12,4);
 
 	auto terrain3 = KRTerrain::createTerrain(1);
-	terrain3->setPosition(Point(535,620));//Ë®Í°ÅÔ
+	terrain3->setPosition(Point(430,395));//æ°´æ¡¶å·¦ä¸Š
 	terrain3->setTag(3);
 	addChild(terrain3,4);
 
 	auto terrain10 = KRTerrain::createTerrain(1);
-	terrain10->setPosition(Point(540,560));//ÓëÔ²»·ÅÔ¹Õ½ÇÏà¶ÔÏàÁÙ
+	terrain10->setPosition(Point(440,310));//æ°´æ¡¶å·¦ä¸‹
 	terrain10->setTag(10);
 	addChild(terrain10,5);
 
 	auto terrain7 = KRTerrain::createTerrain(1);
-	terrain7->setPosition(Point(590,460));//ÓëÔ²»·ÅÔ¹Õ½ÇÏà¶Ô
+	terrain7->setPosition(Point(445,180));//ä¸‰è§’äº¤æ±‡å¤„å³ä¸‹
 	terrain7->setTag(7);
 	addChild(terrain7,6);
 
 	auto terrain9 = KRTerrain::createTerrain(1);
-	terrain9->setPosition(Point(310,440));//Óë¼ÙÉ½ÅÔ2
+	terrain9->setPosition(Point(200,320));//å‡å±±ä¸‹
 	terrain9->setTag(9);
 	addChild(terrain9,6);
 
 	auto terrain6 = KRTerrain::createTerrain(1);
-	terrain6->setPosition(Point(900,440));//ÓëÅ£½ÇÅÔ¹Õ½ÇÏà¶Ô
+	terrain6->setPosition(Point(740,290));//ä¸Žç‰›è§’æ—æ‹è§’ç›¸å¯¹
 	terrain6->setTag(6);
 	addChild(terrain6,6);
 
 	auto terrain2 = KRTerrain::createTerrain(1);
-	terrain2->setPosition(Point(380,360));//¼ÙÉ½ÅÔµÚÒ»¹Õ½Ç
+	terrain2->setPosition(Point(160,120));//å‡å±±æ—ç¬¬ä¸€æ‹è§’
 	terrain2->setTag(2);
 	addChild(terrain2,7);
 
 	auto terrain8 = KRTerrain::createTerrain(1);
-	terrain8->setPosition(Point(250,360));//Óë¼ÙÉ½ÅÔ1
+	terrain8->setPosition(Point(140,240));//ä¸Žå‡å±±æ—1
 	terrain8->setTag(8);
 	addChild(terrain8,7);
 
 	auto terrain4 = KRTerrain::createTerrain(1);
-	terrain4->setPosition(Point(590,300));//Ô²»·ÅÔ¹Õ½Ç
+	terrain4->setPosition(Point(280,200));//åœ†çŽ¯æ—æ‹è§’
 	terrain4->setTag(4);
 	addChild(terrain4,7);
 
 	auto terrain5 = KRTerrain::createTerrain(1);
-	terrain5->setPosition(Point(920,260));//Å£½ÇÅÔ¹Õ½Ç
+	terrain5->setPosition(Point(810,140));//ç‰›è§’æ—æ‹è§’
 	terrain5->setTag(5);
 	addChild(terrain5,8);
 
 	auto terrain11 = KRTerrain::createTerrain(1);
-	terrain11->setPosition(Point(530,220));//Ô²»·ÅÔ¹Õ½ÇÏÂ
+	terrain11->setPosition(Point(420,100));//åœ†çŽ¯æ—æ‹è§’ä¸‹
 	terrain11->setTag(11);
 	addChild(terrain11,8);
 
 
+}*/
+
+void Level1::addTerrains()
+{
+	GameManager::getInstance()->terrain_vector.clear();
+	auto terrain1 = KRTerrain::createTerrain(1);
+	terrain1->setPosition(Point(610, 820));
+	terrain1->setTag(1);
+	addChild(terrain1, 2);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain1);
+
+	auto terrain13 = KRTerrain::createTerrain(1);
+	terrain13->setPosition(Point(340, 750));
+	terrain13->setTag(13);
+	addChild(terrain13, 3);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain13);
+
+	auto terrain12 = KRTerrain::createTerrain(1);
+	terrain12->setPosition(Point(650, 650));
+	terrain12->setTag(12);
+	addChild(terrain12, 4);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain12);
+
+	auto terrain3 = KRTerrain::createTerrain(1);
+	terrain3->setPosition(Point(535, 620));
+	terrain3->setTag(3);
+	addChild(terrain3, 4);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain3);
+
+	auto terrain10 = KRTerrain::createTerrain(1);
+	terrain10->setPosition(Point(540, 560));
+	terrain10->setTag(10);
+	addChild(terrain10, 5);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain10);
+
+	auto terrain7 = KRTerrain::createTerrain(1);
+	terrain7->setPosition(Point(590, 460));
+	terrain7->setTag(7);
+	addChild(terrain7, 6);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain7);
+
+	auto terrain9 = KRTerrain::createTerrain(1);
+	terrain9->setPosition(Point(310, 440));
+	terrain9->setTag(9);
+	addChild(terrain9, 6);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain9);
+
+
+	auto terrain6 = KRTerrain::createTerrain(1);
+	terrain6->setPosition(Point(900, 440));
+	terrain6->setTag(6);
+	addChild(terrain6, 6);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain6);
+
+	auto terrain2 = KRTerrain::createTerrain(1);
+	terrain2->setPosition(Point(380, 360));
+	terrain2->setTag(2);
+	addChild(terrain2, 7);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain2);
+
+
+	auto terrain8 = KRTerrain::createTerrain(1);
+	terrain8->setPosition(Point(250, 360));
+	terrain8->setTag(8);
+	addChild(terrain8, 7);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain8);
+
+	auto terrain4 = KRTerrain::createTerrain(1);
+	terrain4->setPosition(Point(590, 300));
+	terrain4->setTag(4);
+	addChild(terrain4, 7);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain4);
+
+	auto terrain5 = KRTerrain::createTerrain(1);
+	terrain5->setPosition(Point(920, 260));
+	terrain5->setTag(5);
+	addChild(terrain5, 8);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain5);
+
+	auto terrain11 = KRTerrain::createTerrain(1);
+	terrain11->setPosition(Point(530, 220));
+	terrain11->setTag(11);
+	addChild(terrain11, 8);
+	GameManager::getInstance()->terrain_vector.pushBack(terrain11);
+
+
+	if (GameManager::getInstance()->mode == true)
+	{
+		TowerAIManager::getInstance()->initAI();
+		schedule(schedule_selector(Level1::Update), 1.0f);
+	}
+}
+
+void Level1::Update(float dt)
+{
+	TowerAIManager::getInstance()->update();
 }

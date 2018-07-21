@@ -1,6 +1,7 @@
 #include "BaseMonster.h"
 #include "../UI/GameManager.h"
 #include "../UI/map/BaseMap.h"
+#include "../UI/scene/HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -40,12 +41,13 @@ void BaseMonster::addListener() {
 
 // 创建血条
 void BaseMonster::createAndSetHpBar() {
-  hpBgSprite = Sprite::createWithSpriteFrameName("monster/image 3499.png");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("towers-hd.plist");
+  hpBgSprite = Sprite::createWithSpriteFrameName("lifebar_bg_small.png");
 
   hpBgSprite->setPosition(Point(baseSprite->getContentSize().width / 2, baseSprite->getContentSize().height));
   baseSprite->addChild(hpBgSprite);
 
-  hpBar = ProgressTimer::create(Sprite::createWithSpriteFrameName("monster/image 3502.png"));
+  hpBar = ProgressTimer::create(Sprite::createWithSpriteFrameName("lifebar_small.png"));
   hpBar->setType(ProgressTimer::Type::BAR);
   hpBar->setMidpoint(Point(0, 0.5f));
   hpBar->setBarChangeRate(Point(1, 0));
@@ -278,11 +280,20 @@ void BaseMonster::death() {
     auto decal_blood = Sprite::createWithSpriteFrameName("decal_blood_0001.png");
     decal_blood->setPosition(Point(baseSprite->getContentSize().width / 2, -baseSprite->getContentSize().height / 4));
     baseSprite->addChild(decal_blood);
-    GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
+    
     baseSprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(getName() + "death")));
     decal_blood->runAction(Sequence::create(FadeOut::create(1.0f)
       , CallFuncN::create(CC_CALLBACK_0(BaseMonster::setVisible, this, false))
       , NULL));
+	// 基础模式下，monster死亡金钱增加
+	if (GameManager::getInstance()->mode == false) {
+		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
+	}
+	// 新模式下，monster死亡金钱不变
+	else {
+
+	}
+	
   }
 }
 
@@ -301,11 +312,20 @@ void BaseMonster::explosion()
     auto decal_blood = Sprite::createWithSpriteFrameName("decal_blood_0001.png");
     decal_blood->setPosition(Point(baseSprite->getContentSize().width / 2, -baseSprite->getContentSize().height / 4));
     baseSprite->addChild(decal_blood);
-    GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
+    //GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
     baseSprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation("explosion_Artillery")));
     decal_blood->runAction(Sequence::create(FadeOut::create(1.0f)
       , CallFuncN::create(CC_CALLBACK_0(BaseMonster::setVisible, this, false))
       , NULL));
+
+	// 基础模式下，monster死亡金钱增加
+	if (GameManager::getInstance()->mode == false) {
+		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + getMoney();
+	}
+	// 新模式下，monster死亡金钱不变
+	else {
+
+	}
   }
 }
 
@@ -315,6 +335,7 @@ void BaseMonster::frozen()
     tempState = lastState;
     setState(stateFrozen);
     baseSprite->stopAllActions();
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ingame_gui-hd.plist");
     ice = Sprite::createWithSpriteFrameName("freeze_creep_0007.png");
     ice->setPosition(Point(baseSprite->getContentSize().width / 2, baseSprite->getContentSize().height / 4));
     baseSprite->addChild(ice);

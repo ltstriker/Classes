@@ -43,17 +43,17 @@ bool Bomb::initWithType(int type)
 	switch (type)
 	{
 	case(1): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/image 5092.png");
+		sprite = Sprite::create("/bullet/image 5092.png");
 		setMaxForce(20);
 	}
 			 break;
 	case(2): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/bomb_level2.png");
+		sprite = Sprite::create("/bullet/bomb_level2.png");
 		setMaxForce(30);
 	}
 			 break;
 	case(3): {
-		sprite = Sprite::createWithSpriteFrameName("/bullet/bomb_level3.png");
+		sprite = Sprite::create("/bullet/bomb_level3.png");
 		setMaxForce(40);
 	}
 			 break;
@@ -69,7 +69,7 @@ bool Bomb::initWithType(int type)
 
 void Bomb::shoot()
 {
-	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
+	/*auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Sprite* target = nullptr;
 	auto instance = GameManager::getInstance();
 	auto tower = this->getParent();
@@ -92,7 +92,11 @@ void Bomb::shoot()
 	runAction(Sequence::create(bulletAction,
 		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
 		NULL));
-	
+	*/
+
+	runAction(Sequence::create(bulletAction,
+		CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
+		NULL));
 }
 
 void Bomb::removeBullet()

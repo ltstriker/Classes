@@ -17,6 +17,9 @@ typedef enum {
 	ARTILLERY_1,//1级炮塔
 	ARTILLERY_2,//2级炮塔
 	ARTILLERY_3,//3级炮塔
+	MAGE_1,//1级法师塔
+	MAGE_2,//2级法师塔
+	MAGE_3,//3级法师塔
 	ASSASSIN,
 	BARAACKS_1,//兵营
 	BARAACKS_2,

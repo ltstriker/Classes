@@ -1,18 +1,17 @@
-#ifndef _BASE_MAP_H_
-#define _BASE_MAP_H_ 
+#ifndef _MONSTER_MANAGER_H_
+#define _MONSTER_MANAGER_H_
 
-#include "../PlayerStateMenu.h"
+#include "PlayerStateMenu.h"
 #include "cocos2d.h"
-#include "../WaveFlag.h"
-#include "../../Monster/GroupMonster.h"
-#include "../TouchLayer.h"
+#include "WaveFlag.h"
+#include "GroupMonster.h"
+#include "TouchLayer.h"
 //#include "MyAnimation.h"
 USING_NS_CC;
 
-class BaseMap : public Layer
-{
+class MonsterManager : public Layer {
 public:
-	CREATE_FUNC(BaseMap);
+	CREATE_FUNC(MonsterManager);
 	//当前关卡
 	CC_SYNTHESIZE(int, level, Level);
 	//玩家状态栏
@@ -21,42 +20,27 @@ public:
 	//地图精灵
 	Sprite* mapSprite;
 	TouchLayer* mTouchLayer;
-	// 新模式创建怪物
-	void addMonstersPlus(float dt, int MonsterType);
-	static BaseMap* getinstance();
-	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
-	int wave;
-	unsigned int time;
-	std::vector<std::vector<std::vector<Point>>> path;
-	void loadPathFromPlist();
-	void loadAndSetLevelData();
-
-private:
-	static BaseMap * instance;
 
 protected:
 	void initTouchLayer();
 	//本关难度
 	int difficulty;
-//	int wave;
+	int wave;
 	int maxWave;
 	int gold;
 	int life;
 	int startGold;
 	int maxLife;
-//	unsigned int time;
+	unsigned int time;
 	//wave怪物容器容器
-//	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
+	std::vector<std::vector<Vector<GroupMonster*>>> waveVector;
 	//加载路径和关卡数据
-//	void loadPathFromPlist();
-//	void loadAndSetLevelData();
+	void loadPathFromPlist();
+	void loadAndSetLevelData();
 	//存储路径的容器 从内到外为点，线路，路线
-//	std::vector<std::vector<std::vector<Point>>> path;
+	std::vector<std::vector<std::vector<Point>>> path;
 	//屏幕尺寸
 	Size winSize;
-
-	void addMoney(float dt);
-	void addwave(float dt);
 
 	//下一波提示精灵 0为路线1,1为路线2
 	Vector<WaveFlag*> waveFlags;
@@ -89,7 +73,7 @@ protected:
 	virtual void addTerrains() {};
 	//退出
 	virtual void onExitTransitionDidStart();
-	//virtual void onExit() {};
+	virtual void onExit() {};
 };
 
-#endif
+#endif // !_MONSTER_MANAGER_H_

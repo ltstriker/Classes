@@ -15,11 +15,11 @@ public:
 	bool onTouchBegan(Touch *touch, Event *event);
 	void onTouchEnded(Touch* touch, Event* event);
 	CC_SYNTHESIZE(KRTerrain*, terrain, MyTerrain);
+	void addTower(int type);
 	void inAnimation();
 private:
 	void addIcons();
 	void addTempTower(int type);
-	void addTower(int type);
 	BaseBuildIcon* archerIcon;
 	BaseBuildIcon* artilleryIcon;
 	BaseBuildIcon* barracksIcon;

@@ -66,6 +66,7 @@ private:
 	void reFrozenMonsters(float dt);
 	void clearMonsters();
 	bool isFrozen;
+	std::vector<std::vector<std::vector<Point>>> path1;
 	GameOption *gameOption;
 	void addGameOption();
 	void pauseGame();

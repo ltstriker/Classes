@@ -18,6 +18,7 @@ BaseTower::~BaseTower()
 void BaseTower::sellTower()
 {
 	static_cast<KRTerrain*>(this->getParent())->terrain->setVisible(true);
+	static_cast<KRTerrain*>(this->getParent())->isBuilt = false;
 	this->removeTower();
 }
 
@@ -49,7 +50,7 @@ void BaseTower::checkNearestMonster()
 	auto instance = GameManager::getInstance();
 	auto monsterVector = instance->monsterVector;
 
-	auto min = this->scope;//初始化为攻击距离
+	auto min = this->scope*1.5;//初始化为攻击距离
 
 	BaseMonster *monsterTemp = NULL;//初始化当前最近怪兽
 
@@ -104,7 +105,8 @@ void BaseTower::onTouchEnded(Touch * touch, Event * event)
 
 void BaseTower::hideUpdateMenu()
 {
-	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag() + 100);
+	CCLOG(std::to_string(this->myTerrain->getTag()).c_str());
+	static_cast<BaseMap*>(this->getParent()->getParent())->mTouchLayer->removeChildByTag(this->getTag() + 100);
 	this->isUpdateMenuShown = false;
 }
 
