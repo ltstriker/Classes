@@ -18,6 +18,33 @@ bool PlayerStateMenu::init()
     {
         return false;
     }
+
+//	std::vector<std::vector<std::vector<Point>>> path1;
+	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level1_paths.plist")->getCString());
+
+	auto path_array = dynamic_cast<__Array*>(plistDic->objectForKey("paths"));
+
+	for (int i = 0; i < path_array->count(); i++)
+	{
+		std::vector<std::vector<Point>> tempPathVector;
+		auto path_array2 = dynamic_cast<__Array*>(path_array->getObjectAtIndex(i));
+		for (int j = 0; j < path_array2->count(); j++)
+		{
+			std::vector<Point> tempRandomPathVector;
+			auto path_array3 = dynamic_cast<__Array*>(path_array2->getObjectAtIndex(j));
+			for (int k = 0; k < path_array3->count(); k++)
+			{
+				auto tempDic = dynamic_cast<__Dictionary*>(path_array3->getObjectAtIndex(k));
+				Point tempPath = Point();
+				tempPath.x = dynamic_cast<__String*>(tempDic->objectForKey("x"))->floatValue()*1.15;
+				tempPath.y = dynamic_cast<__String*>(tempDic->objectForKey("y"))->floatValue()*1.20 + 50;
+				tempRandomPathVector.push_back(tempPath);
+			}
+			tempPathVector.push_back(tempRandomPathVector);
+		}
+		path1.push_back(tempPathVector);
+	}
+
 	isFrozen = false;
 	instance = GameManager::getInstance();
 	stateSprite = Sprite::createWithSpriteFrameName("hud_background.png");
@@ -96,7 +123,7 @@ bool PlayerStateMenu::init()
 			case(2): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertWolf_0001.png"); }break;
 			case(3): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertImmortal_0001.png"); }break;
 			case(4): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("fallen_0001.png"); }break;
-			case(5): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png"); }break;
+			case(5): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("fallen_0001.png"); }break;
 		}
 		
 		backPack_icons_Sprite[i]->setAnchorPoint(Point(1,0));
@@ -236,84 +263,89 @@ bool PlayerStateMenu::init()
 	paratrooperListener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(paratrooperListener,paratrooperSprite);
 	//监听锦囊
-	auto packListener = EventListenerTouchOneByOne::create();
-	packListener->onTouchBegan = [&](Touch* touch, Event* event){
+	if (GameManager::getInstance()->mode == true)
+	{ 
+		auto packListener = EventListenerTouchOneByOne::create();
+		packListener->onTouchBegan = [&](Touch* touch, Event* event){
 
-		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		Point locationInNode = target->convertTouchToNodeSpace(touch);
-		Size size = target->getContentSize();
-		Rect rect = Rect(0, 0, size.width, size.height);
-		if (rect.containsPoint(locationInNode) && packSprite->getName() == "inactive"){  
-			removeTowerInfo();
-			removeMonsterInfo();
-//			mTouchLayer->removeAllListener();
-			packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0002.png"));
-			packSprite->setName("active");
-			backPackSprite->setVisible(true);
-			if(thunderStoneSprite->getName() == "active" || paratrooperSprite->getName() == "active"){
-				thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0001.png"));
-				thunderStoneSprite->setName("inactive");
-				paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0001.png"));
-				paratrooperSprite->setName("inactive");
+			auto target = static_cast<Sprite*>(event->getCurrentTarget());
+			Point locationInNode = target->convertTouchToNodeSpace(touch);
+			Size size = target->getContentSize();
+			Rect rect = Rect(0, 0, size.width, size.height);
+			if (rect.containsPoint(locationInNode) && packSprite->getName() == "inactive"){  
+				removeTowerInfo();
+				removeMonsterInfo();
+	//			mTouchLayer->removeAllListener();
+				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0002.png"));
+				packSprite->setName("active");
+				backPackSprite->setVisible(true);
+				if(thunderStoneSprite->getName() == "active" || paratrooperSprite->getName() == "active"){
+					thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0001.png"));
+					thunderStoneSprite->setName("inactive");
+					paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0001.png"));
+					paratrooperSprite->setName("inactive");
+				}
+				return true;  
 			}
-			return true;  
-		}
-		if(rect.containsPoint(locationInNode) && packSprite->getName() == "active"){
-			packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
-			packSprite->setName("inactive");
-			backPackSprite->setVisible(false);
-		}
-		return false;  
-	};
-	packListener->setSwallowTouches(true);
-	paratrooperListener->onTouchEnded = [&](Touch* touch, Event* event){
-	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(packListener,packSprite);
-
-	//监听锦囊五大技能
-	auto skillListener = EventListenerTouchOneByOne::create();
-	skillListener->onTouchBegan = [&](Touch* touch, Event* event){
-		
-		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		Point locationInNode = target->convertTouchToNodeSpace(touch);
-		Size size = target->getContentSize();
-		Rect rect = Rect(0, 0, size.width, size.height);
-		if (rect.containsPoint(locationInNode) && backPackSprite->isVisible()){  
-		/*
-			int num = UserDefault::getInstance()->getIntegerForKey(target->getName().c_str());
-			if(num <= 0){
-				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),0);
-				target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
-				static_cast<Label*>(target->getChildByTag(101))->setString("0");
+			if(rect.containsPoint(locationInNode) && packSprite->getName() == "active"){
 				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 				packSprite->setName("inactive");
 				backPackSprite->setVisible(false);
-			}else{
-				num--;
-				static_cast<Label*>(target->getChildByTag(101))->setString(String::createWithFormat("%d",num)->getCString());
-				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),num);
-				*/
+			}
+			return false;  
+		};
+		packListener->setSwallowTouches(true);
+		paratrooperListener->onTouchEnded = [&](Touch* touch, Event* event){
+		};
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(packListener,packSprite);
+
+	//监听锦囊五大技能
+
+	
+		auto skillListener = EventListenerTouchOneByOne::create();
+		skillListener->onTouchBegan = [&](Touch* touch, Event* event) {
+
+			auto target = static_cast<Sprite*>(event->getCurrentTarget());
+			Point locationInNode = target->convertTouchToNodeSpace(touch);
+			Size size = target->getContentSize();
+			Rect rect = Rect(0, 0, size.width, size.height);
+			if (rect.containsPoint(locationInNode) && backPackSprite->isVisible()) {
+				/*
+					int num = UserDefault::getInstance()->getIntegerForKey(target->getName().c_str());
+					if(num <= 0){
+						UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),0);
+						target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
+						static_cast<Label*>(target->getChildByTag(101))->setString("0");
+						packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
+						packSprite->setName("inactive");
+						backPackSprite->setVisible(false);
+					}else{
+						num--;
+						static_cast<Label*>(target->getChildByTag(101))->setString(String::createWithFormat("%d",num)->getCString());
+						UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),num);
+						*/
 				shopSkill(target->getTag());
-/*
-				if(num<=0){
-					target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
-					target->setAnchorPoint(Point(1,0));
-					static_cast<Label*>(target->getChildByTag(101))->setString("0");
-				}
-				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
-				packSprite->setName("inactive");
-				backPackSprite->setVisible(false);*/
-			//}
-			return true;  
+				/*
+								if(num<=0){
+									target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
+									target->setAnchorPoint(Point(1,0));
+									static_cast<Label*>(target->getChildByTag(101))->setString("0");
+								}
+								packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
+								packSprite->setName("inactive");
+								backPackSprite->setVisible(false);*/
+								//}
+				return true;
+			}
+			return false;
+		};
+		skillListener->onTouchEnded = [&](Touch* touch, Event* event) {
+		};
+		skillListener->setSwallowTouches(true);
+		for (int i = 0; i < 6; i++) {
+			_eventDispatcher->addEventListenerWithSceneGraphPriority(skillListener->clone(), backPack_icons_Sprite[i]);
 		}
-		return false;  
-	};
-	skillListener->onTouchEnded = [&](Touch* touch, Event* event){
-	};
-	skillListener->setSwallowTouches(true);
-	for(int i = 0; i < 6; i++){
-		_eventDispatcher->addEventListenerWithSceneGraphPriority(skillListener->clone(),backPack_icons_Sprite[i]);
-	}	
+	}
 	return true;
 }
 
@@ -479,7 +511,7 @@ void PlayerStateMenu::shopSkill(int type)
 {
 //	float dt = 1;
 //	BaseMap::getinstance()->addMonstersPlus(dt, type);
-	std::vector<std::vector<std::vector<Point>>> path1;
+/*	std::vector<std::vector<std::vector<Point>>> path1;
 	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level1_paths.plist")->getCString());
 
 	auto path_array = dynamic_cast<__Array*>(plistDic->objectForKey("paths"));
@@ -509,51 +541,93 @@ void PlayerStateMenu::shopSkill(int type)
 	BaseMap::getinstance()->loadAndSetLevelData();
 	int wave = BaseMap::getinstance()->wave;
 	int time = BaseMap::getinstance()->time;
-
-	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
+*/
+//	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
 	
 	switch (type)
 	{
 		case (0):
 		{
-			auto thug = Thug::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(thug);
-			GameManager::getInstance()->monsterVector.pushBack(thug); 
+			auto thug = Thug::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(thug);
+				GameManager::getInstance()->monsterVector.pushBack(thug);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (1):
 		{
-			auto raider = Raider::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(raider);
-			GameManager::getInstance()->monsterVector.pushBack(raider);
+			auto raider = Raider::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(raider);
+				GameManager::getInstance()->monsterVector.pushBack(raider);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (2):
 		{			
-			auto wolf = Wolf::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(wolf);
-			GameManager::getInstance()->monsterVector.pushBack(wolf);
+			auto wolf = Wolf::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(wolf);
+				GameManager::getInstance()->monsterVector.pushBack(wolf);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (3):
 		{
-			auto immortal = Immortal::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(immortal);
-			GameManager::getInstance()->monsterVector.pushBack(immortal);
+			auto immortal = Immortal::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(immortal);
+				GameManager::getInstance()->monsterVector.pushBack(immortal);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (4):
 		{
-			auto fallen = Fallen::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(fallen);
-			GameManager::getInstance()->monsterVector.pushBack(fallen);
+			auto fallen = Fallen::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(fallen);
+				GameManager::getInstance()->monsterVector.pushBack(fallen);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (5):
 		{
-			auto boss_efreeti = Boss_Efreeti::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()), path1);
-			addChild(boss_efreeti);
-			GameManager::getInstance()->monsterVector.pushBack(boss_efreeti);
+			auto fallen = Fallen::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(fallen);
+				GameManager::getInstance()->monsterVector.pushBack(fallen);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 	}

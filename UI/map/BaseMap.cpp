@@ -187,11 +187,27 @@ void BaseMap::setMapPosition()
 void BaseMap::update(float dt)
 {
 	updateGoldAndLife();
-	if (isStart && isEnd && GameManager::getInstance()->monsterVector.size() == 0)
+	if (GameManager::getInstance()->mode == false)
 	{
-		isStart = false;
-		isEnd = false;
-		victory();
+		if (isStart && isEnd && GameManager::getInstance()->monsterVector.size() == 0)
+		{
+			isStart = false;
+			isEnd = false;
+			victory();
+		}
+	}
+	else
+	{
+		if (isStart && isEnd && wave > maxWave)
+		{
+			isStart = false;
+			isEnd = false;
+			auto failure = Failure::create();
+			mTouchLayer->removeAllChildren();
+			failure->level = getLevel();
+			failure->difficulty = difficulty;
+			playerState->addChild(failure, 99);
+		}
 	}
 }
 
@@ -208,11 +224,18 @@ void BaseMap::updateGoldAndLife()
 		for (int i = 0; i<waveFlags.size(); i++) {
 			waveFlags.at(i)->stopRespiration();
 		}
-		auto failure = Failure::create();
-		mTouchLayer->removeAllChildren();
-		failure->level = getLevel();
-		failure->difficulty = difficulty;
-		playerState->addChild(failure, 99);
+		if (GameManager::getInstance()->mode == false)
+		{
+			auto failure = Failure::create();
+			mTouchLayer->removeAllChildren();
+			failure->level = getLevel();
+			failure->difficulty = difficulty;
+			playerState->addChild(failure, 99);
+		}
+		else
+		{
+			victory();
+		}
 	}
 }
 
@@ -290,7 +313,26 @@ void BaseMap::waveEvent()
 {
 	if(GameManager::getInstance()->mode == false)
 		schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
-//	schedule(schedule_selector(BaseMap::addMonstersplus), 1.0f, waveVector.at(wave).size(), 0);
+	else
+	{
+		schedule(schedule_selector(BaseMap::addMoney), 1.0f);
+		schedule(schedule_selector(BaseMap::addwave), 30.0f);
+	}
+	//	schedule(schedule_selector(BaseMap::addMonstersplus), 1.0f, waveVector.at(wave).size(), 0);
+}
+
+void BaseMap::addMoney(float dt)
+{
+	GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY + 10;
+}
+
+void BaseMap::addwave(float dt)
+{
+	wave++;
+	if (wave > maxWave)
+		isEnd = true;
+	playerState->setWave(wave, maxWave);
+	
 }
 
 void BaseMap::initMap()

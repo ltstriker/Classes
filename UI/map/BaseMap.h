@@ -55,6 +55,9 @@ protected:
 	//屏幕尺寸
 	Size winSize;
 
+	void addMoney(float dt);
+	void addwave(float dt);
+
 	//下一波提示精灵 0为路线1,1为路线2
 	Vector<WaveFlag*> waveFlags;
 	void addWaveProgressBars(std::vector<Point> waveFlagLocations);
