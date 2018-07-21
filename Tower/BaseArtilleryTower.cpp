@@ -56,8 +56,7 @@ void BaseArtilleryTower::fire(Point firePosition)
 	auto currBullet = ArtilleryTowerBullet();
 
 	auto shootVector = firePosition;
-
-	Point highPoint = Point(shootVector.x, shootVector.y + 200);
+	/*Point highPoint = Point(shootVector.x, shootVector.y + 200);
 
 
 	ccBezierConfig bezier;
@@ -72,8 +71,10 @@ void BaseArtilleryTower::fire(Point firePosition)
 	else
 		endRotate = -180.0f;
 	auto action = Spawn::create(BezierTo::create(1.0f, bezier), RotateTo::create(1.0f, endRotate), NULL);
-	currBullet->setBulletAction(action);
-	currBullet->shoot();
+	currBullet->setBulletAction(action);*/
+	currBullet->shoot(Vec2(firePosition.x,firePosition.y));
+
+
 	runAction(Sequence::create(DelayTime::create(1.0f),
 		CallFuncN::create(CC_CALLBACK_0(BaseArtilleryTower::filledAnimation, this)),
 		NULL));
