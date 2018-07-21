@@ -29,8 +29,15 @@ void TowerAIManager::initAI()
 void TowerAIManager::update()
 {
 	static int count = 0;
-	Level1::getinstance();
-	KRTerrain* p;
+	auto vec = GameManager::getInstance()->terrain_vector;
+	if (count != 0)
+		return;
+
+	if (vec.size() == 0)
+	{
+		return;
+	}
+	auto p= vec.at(0);
 	p->AIAddTower(2);
 
 	count++;
