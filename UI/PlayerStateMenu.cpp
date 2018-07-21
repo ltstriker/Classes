@@ -18,6 +18,33 @@ bool PlayerStateMenu::init()
     {
         return false;
     }
+
+//	std::vector<std::vector<std::vector<Point>>> path1;
+	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level1_paths.plist")->getCString());
+
+	auto path_array = dynamic_cast<__Array*>(plistDic->objectForKey("paths"));
+
+	for (int i = 0; i < path_array->count(); i++)
+	{
+		std::vector<std::vector<Point>> tempPathVector;
+		auto path_array2 = dynamic_cast<__Array*>(path_array->getObjectAtIndex(i));
+		for (int j = 0; j < path_array2->count(); j++)
+		{
+			std::vector<Point> tempRandomPathVector;
+			auto path_array3 = dynamic_cast<__Array*>(path_array2->getObjectAtIndex(j));
+			for (int k = 0; k < path_array3->count(); k++)
+			{
+				auto tempDic = dynamic_cast<__Dictionary*>(path_array3->getObjectAtIndex(k));
+				Point tempPath = Point();
+				tempPath.x = dynamic_cast<__String*>(tempDic->objectForKey("x"))->floatValue()*1.15;
+				tempPath.y = dynamic_cast<__String*>(tempDic->objectForKey("y"))->floatValue()*1.20 + 50;
+				tempRandomPathVector.push_back(tempPath);
+			}
+			tempPathVector.push_back(tempRandomPathVector);
+		}
+		path1.push_back(tempPathVector);
+	}
+
 	isFrozen = false;
 	instance = GameManager::getInstance();
 	stateSprite = Sprite::createWithSpriteFrameName("hud_background.png");
@@ -96,7 +123,7 @@ bool PlayerStateMenu::init()
 			case(2): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertWolf_0001.png"); }break;
 			case(3): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("desertImmortal_0001.png"); }break;
 			case(4): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("fallen_0001.png"); }break;
-			case(5): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("Boss_Efreeti_0001.png"); }break;
+			case(5): {backPack_icons_Sprite[i] = Sprite::createWithSpriteFrameName("fallen_0001.png"); }break;
 		}
 		
 		backPack_icons_Sprite[i]->setAnchorPoint(Point(1,0));
@@ -479,7 +506,7 @@ void PlayerStateMenu::shopSkill(int type)
 {
 //	float dt = 1;
 //	BaseMap::getinstance()->addMonstersPlus(dt, type);
-	std::vector<std::vector<std::vector<Point>>> path1;
+/*	std::vector<std::vector<std::vector<Point>>> path1;
 	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level1_paths.plist")->getCString());
 
 	auto path_array = dynamic_cast<__Array*>(plistDic->objectForKey("paths"));
@@ -509,51 +536,93 @@ void PlayerStateMenu::shopSkill(int type)
 	BaseMap::getinstance()->loadAndSetLevelData();
 	int wave = BaseMap::getinstance()->wave;
 	int time = BaseMap::getinstance()->time;
-
-	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
+*/
+//	auto monsterData = BaseMap::getinstance()->waveVector.at(0).at(0).at(1);
 	
 	switch (type)
 	{
 		case (0):
 		{
-			auto thug = Thug::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(thug);
-			GameManager::getInstance()->monsterVector.pushBack(thug); 
+			auto thug = Thug::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(thug);
+				GameManager::getInstance()->monsterVector.pushBack(thug);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (1):
 		{
-			auto raider = Raider::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(raider);
-			GameManager::getInstance()->monsterVector.pushBack(raider);
+			auto raider = Raider::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(raider);
+				GameManager::getInstance()->monsterVector.pushBack(raider);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (2):
 		{			
-			auto wolf = Wolf::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(wolf);
-			GameManager::getInstance()->monsterVector.pushBack(wolf);
+			auto wolf = Wolf::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(wolf);
+				GameManager::getInstance()->monsterVector.pushBack(wolf);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (3):
 		{
-			auto immortal = Immortal::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(immortal);
-			GameManager::getInstance()->monsterVector.pushBack(immortal);
+			auto immortal = Immortal::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(immortal);
+				GameManager::getInstance()->monsterVector.pushBack(immortal);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (4):
 		{
-			auto fallen = Fallen::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()));
-			addChild(fallen);
-			GameManager::getInstance()->monsterVector.pushBack(fallen);
+			auto fallen = Fallen::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(fallen);
+				GameManager::getInstance()->monsterVector.pushBack(fallen);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 		case (5):
 		{
-			auto boss_efreeti = Boss_Efreeti::createMonster(path1.at(monsterData->getRoad()).at(monsterData->getPath()), path1);
-			addChild(boss_efreeti);
-			GameManager::getInstance()->monsterVector.pushBack(boss_efreeti);
+			auto fallen = Fallen::createMonster(path1.at(1).at(2));
+			if (GameManager::getInstance()->MONEY > 0)
+			{
+				addChild(fallen);
+				GameManager::getInstance()->monsterVector.pushBack(fallen);
+			}
+			else
+			{
+				GameManager::getInstance()->MONEY = 0;
+			}
 		}
 		break;
 	}
