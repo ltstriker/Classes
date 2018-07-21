@@ -100,7 +100,7 @@ bool PlayerStateMenu::init()
 		}
 		
 		backPack_icons_Sprite[i]->setAnchorPoint(Point(1,0));
-		backPack_icons_Sprite[i]->setPosition(Point(540 - 85 * i,-20));
+		backPack_icons_Sprite[i]->setPosition(Point(540 - 85 * i,0));
 
 		backPack_icons_Sprite[i]->setTag(i);
 		backPack_icons_Sprite[i]->setName(String::createWithFormat(instance->SLOTX_SHOP,i)->getCString());
