@@ -3,8 +3,10 @@
 #include "cocos2d.h"
 
 #include "ui/GameManager.h"
+#include "Monster/BaseMonster.h"
 #include "bullet/ParabolaTo.h"
 USING_NS_CC;
+using namespace cocos2d;
 class Bullet : public Sprite
 {
 public:
@@ -21,6 +23,8 @@ public:
  	CC_SYNTHESIZE(Spawn*, bulletAction, BulletAction);
  	Sprite* sprite;
  	virtual void shoot() {};
+	virtual void shoot(Vec2 dist) {};
+	virtual void shoot(BaseMonster* target) {};
  	virtual void removeBullet() {};
 };
 
