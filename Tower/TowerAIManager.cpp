@@ -1,7 +1,5 @@
 #include "TowerAIManager.h"
 
-#include "./ui/map/Level1.h"
-#include "TowerAIManager.h"
 
 TowerAIManager* TowerAIManager::_instance;
 
@@ -26,14 +24,24 @@ void TowerAIManager::initAI()
 	isAble = true;
 }
 
-void TowerAIManager::update()
+void TowerAIManager::update(KRTerrain* t)
 {
+	if (!isAble)
+	{
+		return;
+	}
 	static int count = 0;
-	Level1::getinstance();
-	KRTerrain* p;
-	p->AIAddTower(2);
-
-	count++;
+	if (count == 0)
+	{
+		/*auto vec = l->terrain_vector;
+		if (vec.size()==0)
+		{
+			return;
+		}
+		auto t = vec.at(0);*/
+		t->AIAddTower(1);
+		count++;
+	}
 }
 
 
