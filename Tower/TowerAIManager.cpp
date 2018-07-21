@@ -1,6 +1,6 @@
 #include "TowerAIManager.h"
 
-#include "ArrowTowerV1.h"
+#include "./ui/map/Level1.h"
 #include "TowerAIManager.h"
 
 TowerAIManager* TowerAIManager::_instance;
@@ -22,17 +22,18 @@ TowerAIManager * TowerAIManager::getInstance()
 
 void TowerAIManager::initAI()
 {
-	/*this->terrainVector = vec;
-	for each (KRTerrain* t in terrainVector)
-	{
-		//make menu unable
-	}*/
+
 	isAble = true;
 }
 
 void TowerAIManager::update()
 {
+	static int count = 0;
+	Level1::getinstance();
+	KRTerrain* p;
+	p->AIAddTower(2);
 
+	count++;
 }
 
 
