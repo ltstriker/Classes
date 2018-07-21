@@ -387,7 +387,7 @@ void BaseMap::addMonsters(float dt)
 	//waveVector.size（）为波束
 	//waveVector.at()保存该wave怪物，size为怪物个数
 	//waveVector.at().at()保存该0.5s内需要创建的怪物,.size为怪物个数
-	for (int i = 0; i < path.size(); i++)
+/*	for (int i = 0; i < path.size(); i++)
 	{
 		for (int j = 0; j < path[i].size(); j++)
 		{
@@ -396,7 +396,7 @@ void BaseMap::addMonsters(float dt)
 				CCLOG("path[%d][%d][%d]: %f, %f\n", i, j, k, path[i][j][k].x, path[i][j][k].y);
 			}
 		}
-	}
+	}*/
 	if (time < waveVector.at(wave).size())
 	{
 		for (int i = 0; i<waveVector.at(wave).at(time).size(); i++)

@@ -8,7 +8,7 @@ class HelloWorld : public cocos2d::Scene
 {
 public:
     static cocos2d::Scene* createScene();
-
+	static HelloWorld* getinstance();
     virtual bool init();
 
 	void initAction();
@@ -38,6 +38,10 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+	
+private:
+	static HelloWorld * instance;
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
