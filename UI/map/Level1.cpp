@@ -193,11 +193,11 @@ void Level1::addTerrains()
 	terrain11->setTag(11);
 	addChild(terrain11, 8);
 
-	TowerAIManager::getInstance()->initAI();
-	schedule(schedule_selector(Level1::Update), 1.0f);
+//	TowerAIManager::getInstance()->initAI();
+//	schedule(schedule_selector(Level1::Update), 1.0f);
 }
 
-void Level1::Update(float dt)
+/*void Level1::Update(float dt)
 {
 	TowerAIManager::getInstance()->update();
-}
+}*/
