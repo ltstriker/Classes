@@ -316,7 +316,7 @@ void BaseMap::waveEvent()
 	else
 	{
 		schedule(schedule_selector(BaseMap::addMoney), 1.0f);
-		schedule(schedule_selector(BaseMap::addwave), 2.0f);
+		schedule(schedule_selector(BaseMap::addwave), 30.0f);
 	}
 	//	schedule(schedule_selector(BaseMap::addMonstersplus), 1.0f, waveVector.at(wave).size(), 0);
 }

@@ -263,84 +263,89 @@ bool PlayerStateMenu::init()
 	paratrooperListener->setSwallowTouches(true);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(paratrooperListener,paratrooperSprite);
 	//监听锦囊
-	auto packListener = EventListenerTouchOneByOne::create();
-	packListener->onTouchBegan = [&](Touch* touch, Event* event){
+	if (GameManager::getInstance()->mode == true)
+	{ 
+		auto packListener = EventListenerTouchOneByOne::create();
+		packListener->onTouchBegan = [&](Touch* touch, Event* event){
 
-		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		Point locationInNode = target->convertTouchToNodeSpace(touch);
-		Size size = target->getContentSize();
-		Rect rect = Rect(0, 0, size.width, size.height);
-		if (rect.containsPoint(locationInNode) && packSprite->getName() == "inactive"){  
-			removeTowerInfo();
-			removeMonsterInfo();
-//			mTouchLayer->removeAllListener();
-			packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0002.png"));
-			packSprite->setName("active");
-			backPackSprite->setVisible(true);
-			if(thunderStoneSprite->getName() == "active" || paratrooperSprite->getName() == "active"){
-				thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0001.png"));
-				thunderStoneSprite->setName("inactive");
-				paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0001.png"));
-				paratrooperSprite->setName("inactive");
+			auto target = static_cast<Sprite*>(event->getCurrentTarget());
+			Point locationInNode = target->convertTouchToNodeSpace(touch);
+			Size size = target->getContentSize();
+			Rect rect = Rect(0, 0, size.width, size.height);
+			if (rect.containsPoint(locationInNode) && packSprite->getName() == "inactive"){  
+				removeTowerInfo();
+				removeMonsterInfo();
+	//			mTouchLayer->removeAllListener();
+				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0002.png"));
+				packSprite->setName("active");
+				backPackSprite->setVisible(true);
+				if(thunderStoneSprite->getName() == "active" || paratrooperSprite->getName() == "active"){
+					thunderStoneSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_fireball_0001.png"));
+					thunderStoneSprite->setName("inactive");
+					paratrooperSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_reinforcement_0001.png"));
+					paratrooperSprite->setName("inactive");
+				}
+				return true;  
 			}
-			return true;  
-		}
-		if(rect.containsPoint(locationInNode) && packSprite->getName() == "active"){
-			packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
-			packSprite->setName("inactive");
-			backPackSprite->setVisible(false);
-		}
-		return false;  
-	};
-	packListener->setSwallowTouches(true);
-	paratrooperListener->onTouchEnded = [&](Touch* touch, Event* event){
-	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(packListener,packSprite);
-
-	//监听锦囊五大技能
-	auto skillListener = EventListenerTouchOneByOne::create();
-	skillListener->onTouchBegan = [&](Touch* touch, Event* event){
-		
-		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		Point locationInNode = target->convertTouchToNodeSpace(touch);
-		Size size = target->getContentSize();
-		Rect rect = Rect(0, 0, size.width, size.height);
-		if (rect.containsPoint(locationInNode) && backPackSprite->isVisible()){  
-		/*
-			int num = UserDefault::getInstance()->getIntegerForKey(target->getName().c_str());
-			if(num <= 0){
-				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),0);
-				target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
-				static_cast<Label*>(target->getChildByTag(101))->setString("0");
+			if(rect.containsPoint(locationInNode) && packSprite->getName() == "active"){
 				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
 				packSprite->setName("inactive");
 				backPackSprite->setVisible(false);
-			}else{
-				num--;
-				static_cast<Label*>(target->getChildByTag(101))->setString(String::createWithFormat("%d",num)->getCString());
-				UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),num);
-				*/
+			}
+			return false;  
+		};
+		packListener->setSwallowTouches(true);
+		paratrooperListener->onTouchEnded = [&](Touch* touch, Event* event){
+		};
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(packListener,packSprite);
+
+	//监听锦囊五大技能
+
+	
+		auto skillListener = EventListenerTouchOneByOne::create();
+		skillListener->onTouchBegan = [&](Touch* touch, Event* event) {
+
+			auto target = static_cast<Sprite*>(event->getCurrentTarget());
+			Point locationInNode = target->convertTouchToNodeSpace(touch);
+			Size size = target->getContentSize();
+			Rect rect = Rect(0, 0, size.width, size.height);
+			if (rect.containsPoint(locationInNode) && backPackSprite->isVisible()) {
+				/*
+					int num = UserDefault::getInstance()->getIntegerForKey(target->getName().c_str());
+					if(num <= 0){
+						UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),0);
+						target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
+						static_cast<Label*>(target->getChildByTag(101))->setString("0");
+						packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
+						packSprite->setName("inactive");
+						backPackSprite->setVisible(false);
+					}else{
+						num--;
+						static_cast<Label*>(target->getChildByTag(101))->setString(String::createWithFormat("%d",num)->getCString());
+						UserDefault::getInstance()->setIntegerForKey(target->getName().c_str(),num);
+						*/
 				shopSkill(target->getTag());
-/*
-				if(num<=0){
-					target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
-					target->setAnchorPoint(Point(1,0));
-					static_cast<Label*>(target->getChildByTag(101))->setString("0");
-				}
-				packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
-				packSprite->setName("inactive");
-				backPackSprite->setVisible(false);*/
-			//}
-			return true;  
+				/*
+								if(num<=0){
+									target->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("Boss_Efreeti_0001.png"));
+									target->setAnchorPoint(Point(1,0));
+									static_cast<Label*>(target->getChildByTag(101))->setString("0");
+								}
+								packSprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("power_portrait_backpack_0001.png"));
+								packSprite->setName("inactive");
+								backPackSprite->setVisible(false);*/
+								//}
+				return true;
+			}
+			return false;
+		};
+		skillListener->onTouchEnded = [&](Touch* touch, Event* event) {
+		};
+		skillListener->setSwallowTouches(true);
+		for (int i = 0; i < 6; i++) {
+			_eventDispatcher->addEventListenerWithSceneGraphPriority(skillListener->clone(), backPack_icons_Sprite[i]);
 		}
-		return false;  
-	};
-	skillListener->onTouchEnded = [&](Touch* touch, Event* event){
-	};
-	skillListener->setSwallowTouches(true);
-	for(int i = 0; i < 6; i++){
-		_eventDispatcher->addEventListenerWithSceneGraphPriority(skillListener->clone(),backPack_icons_Sprite[i]);
-	}	
+	}
 	return true;
 }
 
