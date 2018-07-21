@@ -11,6 +11,11 @@ Immortal* Immortal::createMonster(std::vector<Point> points) {
 		monster->setMaxHp(290);
 		monster->setCurrHp(290);
 		monster->setMoney(100);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 100;
+		}
+
 		monster->setRunSpeed(40); // ËÙ¶È40
 		monster->setArmor(10); // ·ÀÓù10
 		monster->setForce(30); // ¹¥»÷30

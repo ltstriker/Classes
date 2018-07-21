@@ -1,5 +1,5 @@
 #include "Wolf.h"
-
+#include "../../UI/GameManager.h"
 USING_NS_CC;
 
 Wolf* Wolf::createMonster(std::vector<Point> points) {
@@ -12,6 +12,11 @@ Wolf* Wolf::createMonster(std::vector<Point> points) {
 		monster->setRunSpeed(100); // ËÙ¶È100
 		monster->runNextPoint();
 		monster->setMoney(20);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 20;
+		}
+
 		monster->setForce(2); // ¹¥»÷2
 		monster->setArmor(0); // ·ÀÓù0
 		monster->setAttackBySoldier(true);

@@ -77,6 +77,11 @@ void ArrowTowerV1::updateTower()
 
 void ArrowTowerV1::showUpdateMenu()
 {
+	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
 	auto updatePanleLayer = UpdatePanleLayer::create();
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);

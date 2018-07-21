@@ -14,7 +14,7 @@ public:
 
 	static Level1* createGame(int difficulty);
     virtual bool initWithDifficulty(int difficulty);
-//	void Update(float dt);
+	void Update(float dt);
 private:
 	//添加不同关卡的特殊装饰物
 	void addOrnament();

@@ -8,6 +8,7 @@ class KRTerrain: public Sprite
 {
 public:
 	virtual bool init(int type);
+	bool isBuilt;
 	static KRTerrain* createTerrain(int type);
 	void AIAddTower(int type);
 	void showUpdateMenu();

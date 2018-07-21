@@ -73,6 +73,11 @@ void MagicTowerV1::updateTower()
 
 void MagicTowerV1::showUpdateMenu()
 {
+	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
 	auto updatePanleLayer = UpdatePanleLayer::create();
 	updatePanleLayer->setTag(myTerrain->getTag()+100);
 	updatePanleLayer->setTower(this);
