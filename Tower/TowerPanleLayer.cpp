@@ -133,6 +133,11 @@ void TowerPanleLayer::addTempTower(int type)
 		tempTower->setPosition(Point(0, 25));
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARTILLERY_1);}
 			 break;
+	default:
+		tempTower = Sprite::createWithSpriteFrameName("tower_preview_archer.png");
+		tempTower->setPosition(Point(0, 25));
+		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARCHER_1);
+		break;
 	}
 	addChild(tempTower);
 }
@@ -172,14 +177,24 @@ void TowerPanleLayer::addTower(int type)
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - artilleryTower->getBuildMoney();
 	}
 			 break;
-	case(3):
+	case(3): {
 		auto mageTower = MagicTowerV1::create();
 		mageTower->setPosition(Point(0, 20));
 		mageTower->setTag(terrain->getTag());
 		mageTower->setMyTerrain(terrain);
 		terrain->addChild(mageTower);
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - mageTower->getBuildMoney();
-		break;
+	}
+			 break;
+	default: {
+		auto arrowTower = ArrowTowerV1::create();
+		arrowTower->setPosition(Point(0, 20));
+		arrowTower->setTag(terrain->getTag());
+		arrowTower->setMyTerrain(terrain);
+		terrain->addChild(arrowTower);
+		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
+	}
+			 break;
 	}
 	
 	//SoundManager::playTowerBuilding();

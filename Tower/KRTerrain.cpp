@@ -44,6 +44,24 @@ KRTerrain * KRTerrain::createTerrain(int type)
 	return nullptr;
 }
 
+void KRTerrain::AIAddTower(int type)
+{
+	if (!TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
+	auto towerPanleLayer = TowerPanleLayer::create();
+	towerPanleLayer->setPosition(this->getPosition());
+	towerPanleLayer->setTag(getTag());
+	towerPanleLayer->setMyTerrain(this);
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->addChild(towerPanleLayer);
+
+	towerPanleLayer->addTower(type);
+
+	static_cast<BaseMap*>(this->getParent())->mTouchLayer->removeChildByTag(getTag());
+}
+
 void KRTerrain::showUpdateMenu()
 {
 	if (TowerAIManager::getInstance()->getAble())
@@ -103,3 +121,5 @@ void KRTerrain::smokeEffect()
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)),
 		NULL));
 }
+
+
