@@ -10,6 +10,8 @@ public:
 	virtual bool init();
 	CREATE_FUNC(Arrow);
 	void shoot();
+	void shoot(Vec2 dist);
+	void shoot(BaseMonster* target);
 	void removeBullet();
 };
 

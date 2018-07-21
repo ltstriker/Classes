@@ -21,6 +21,8 @@ public:
  	CC_SYNTHESIZE(Spawn*, bulletAction, BulletAction);
  	Sprite* sprite;
  	virtual void shoot() {};
+	virtual void shoot(Vec2 dist) {};
+	virtual void shoot(BaseMonster* target) {};
  	virtual void removeBullet() {};
 };
 
