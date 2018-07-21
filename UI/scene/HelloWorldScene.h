@@ -17,12 +17,19 @@ public:
 	void init_ArcherTower();
 	void init_BossEfreeti();
 	void init_BossCanibal();
-//	void init_ArcherTower();
-//	void init_MageTower();
 	void release_BossCanibal();
 	void release_BossEfreeti();
 	void init_Thug();
 	void init_Raider();
+	void init_Immortal();
+	void init_Fallen();
+	void init_Wolf();
+
+	MenuItemImage* mode1;
+	void ChangetoBasicMode(Ref* pSender);
+	MenuItemImage* mode2;
+	void ChangetoAdvMode(Ref* pSender);
+	bool mode;
 
 	void startMenuCallback(cocos2d::Ref* pSender);
 	void preLoad();
