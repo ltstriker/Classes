@@ -25,6 +25,7 @@
 //#include "Shield.h"
 //#include "WingRider.h"
 #include "../../Monster/Boss/Boss_Canibal.h"
+#include "../scene/HelloWorldScene.h"
 //#include "Blazefang.h"
 //#include "Broodguard.h"
 //#include "Elite.h"
@@ -287,7 +288,8 @@ void BaseMap::addWaves(float dt)
 
 void BaseMap::waveEvent()
 {
-	schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
+	if(GameManager::getInstance()->mode == false)
+		schedule(schedule_selector(BaseMap::addMonsters), 1.0f, waveVector.at(wave).size(), 0);
 //	schedule(schedule_selector(BaseMap::addMonstersplus), 1.0f, waveVector.at(wave).size(), 0);
 }
 

@@ -20,6 +20,8 @@ public:
     
 	static GameManager* getInstance();
 
+	bool mode;
+	Vector<KRTerrain*> terrain_vector;
 
 	//某存档是否已经新建，true表示新建，false表示未新建
 	char SLOTX_ISEXIT[20];
