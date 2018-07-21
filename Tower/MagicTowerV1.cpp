@@ -24,11 +24,6 @@ bool MagicTowerV1::init()
 }
  void MagicTowerV1::buildingAnimation()
  {
-	 if (TowerAIManager::getInstance()->getAble())
-	 {
-		 return;
-	 }
-
 	auto building = Sprite::create();
 	auto constructing = Sprite::createWithSpriteFrameName("tower_constructing_0003.png");
 	auto hpBgSprite = Sprite::createWithSpriteFrameName("buildbar_bg.png");
@@ -78,6 +73,11 @@ void MagicTowerV1::updateTower()
 
 void MagicTowerV1::showUpdateMenu()
 {
+	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}
+
 	auto updatePanleLayer = UpdatePanleLayer::create();
 	updatePanleLayer->setTag(myTerrain->getTag()+100);
 	updatePanleLayer->setTower(this);

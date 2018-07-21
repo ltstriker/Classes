@@ -24,6 +24,7 @@ bool KRTerrain::init(int type)
 		terrain = Sprite::createWithSpriteFrameName("build_terrain_0004.png");}
 			 break;
 	}
+	isBuilt = false;
 	this->addChild(terrain);
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(KRTerrain::onTouchBegan, this);

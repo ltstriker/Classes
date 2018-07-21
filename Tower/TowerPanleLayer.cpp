@@ -148,17 +148,15 @@ void TowerPanleLayer::addTower(int type)
 
 	switch (type)
 	{
-	/*case(2): {
-		auto barracksTower = BaseBarracksTower::create();
-		barracksTower->setPosition(Point(0, 20));
-		barracksTower->setTag(terrain->getTag());
-		barracksTower->setMyTerrain(terrain);
-		terrain->addChild(barracksTower);
-		barracksTower->buildingAnimation();
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - barracksTower->getBuildMoney();
+	case(2): {
+		auto arrowTower = ArrowTowerV1::create();
+		arrowTower->setPosition(Point(0, 20));
+		arrowTower->setTag(terrain->getTag());
+		arrowTower->setMyTerrain(terrain);
+		terrain->addChild(arrowTower);
+		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
 	}
 			 break;
-			 */
 	case(1): {
 		auto arrowTower = ArrowTowerV1::create();
 		arrowTower->setPosition(Point(0, 20));
@@ -177,28 +175,19 @@ void TowerPanleLayer::addTower(int type)
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - artilleryTower->getBuildMoney();
 	}
 			 break;
-	case(3): {
+	case(3): 		
 		auto mageTower = MagicTowerV1::create();
 		mageTower->setPosition(Point(0, 20));
 		mageTower->setTag(terrain->getTag());
 		mageTower->setMyTerrain(terrain);
 		terrain->addChild(mageTower);
 		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - mageTower->getBuildMoney();
-	}
-			 break;
-	default: {
-		auto arrowTower = ArrowTowerV1::create();
-		arrowTower->setPosition(Point(0, 20));
-		arrowTower->setTag(terrain->getTag());
-		arrowTower->setMyTerrain(terrain);
-		terrain->addChild(arrowTower);
-		GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - arrowTower->getBuildMoney();
-	}
-			 break;
+		break;
 	}
 	
 	//SoundManager::playTowerBuilding();
 	isBuilt = true;
+	terrain->isBuilt = true;
 	terrain->terrain->setVisible(false);
 	this->setVisible(false);
 }

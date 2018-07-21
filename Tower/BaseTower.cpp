@@ -18,6 +18,7 @@ BaseTower::~BaseTower()
 void BaseTower::sellTower()
 {
 	static_cast<KRTerrain*>(this->getParent())->terrain->setVisible(true);
+	static_cast<KRTerrain*>(this->getParent())->isBuilt = false;
 	this->removeTower();
 }
 
