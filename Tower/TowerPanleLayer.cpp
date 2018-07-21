@@ -118,11 +118,6 @@ void TowerPanleLayer::addTempTower(int type)
 		tempTower->setPosition(Point(0, 25));
 		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(ARCHER_1);}
 			 break;
-	/*case(2): {
-		tempTower = Sprite::createWithSpriteFrameName("tower_preview_barrack.png");
-		tempTower->setPosition(Point(0, 25));
-		static_cast<BaseMap*>(this->getParent()->getParent())->playerState->showTowerInfo(BARAACKS_1);}
-			 break;*/
 	case(3): {
 		tempTower = Sprite::createWithSpriteFrameName("tower_preview_mage.png");
 		tempTower->setPosition(Point(0, 10));
