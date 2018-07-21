@@ -1,5 +1,5 @@
 #include "Fallen.h"
-
+#include "../../UI/GameManager.h"
 USING_NS_CC;
 
 Fallen* Fallen::createMonster(std::vector<Point> points) {
@@ -9,6 +9,11 @@ Fallen* Fallen::createMonster(std::vector<Point> points) {
 		monster->setMaxHp(100);
 		monster->setCurrHp(100);
 		monster->setMoney(30);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 30;
+		}
+
 		monster->setRunSpeed(30); // 速度30
 		monster->runNextPoint();
 		monster->setArmor(0); // 攻击0
@@ -27,6 +32,11 @@ Fallen* Fallen::createMonster(std::vector<Point> points, Point birthLocation, in
 		monster->setMaxHp(100);
 		monster->setCurrHp(100);
 		monster->setMoney(30);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 30;
+		}
+
 		monster->setRunSpeed(30); // 速度30
 		monster->birth(birthLocation, pointCounter);
 		monster->setArmor(0); // 攻击0
