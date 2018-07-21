@@ -1,5 +1,5 @@
 #include "Thug.h"
-
+#include "../../UI/GameManager.h"
 USING_NS_CC;
 
 
@@ -10,6 +10,11 @@ Thug* Thug::createMonster(std::vector<Point> points) {
 		monster->setMaxHp(35);
 		monster->setCurrHp(35);
 		monster->setMoney(10);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 10;
+		}
+
 		monster->setForce(4); // ¹¥»÷4
 		monster->setArmor(0); // ·ÀÓù0
 		// monster->setForce(8);

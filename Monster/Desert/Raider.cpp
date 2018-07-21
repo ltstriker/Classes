@@ -1,5 +1,5 @@
 #include "Raider.h"
-
+#include "../../UI/GameManager.h"
 USING_NS_CC;
 
 Raider* Raider::createMonster(std::vector<Point> points) {
@@ -9,6 +9,11 @@ Raider* Raider::createMonster(std::vector<Point> points) {
 		monster->setMaxHp(160);
 		monster->setCurrHp(160);
 		monster->setMoney(30);
+
+		if (GameManager::getInstance()->mode == true) {
+			GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY - 30;
+		}
+
 		monster->setRunSpeed(40); // ËÙ¶È40
 		monster->setArmor(10); // ·ÀÓù10
 		monster->setForce(8); // ¹¥»÷8
