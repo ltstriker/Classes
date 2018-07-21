@@ -29,7 +29,7 @@ public:
 	void ChangetoBasicMode(Ref* pSender);
 	MenuItemImage* mode2;
 	void ChangetoAdvMode(Ref* pSender);
-	bool mode;
+
 
 	void startMenuCallback(cocos2d::Ref* pSender);
 	void preLoad();

@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 #include "TransitionGame.h"
+#include "../GameManager.h"
 
 USING_NS_CC;
 
@@ -33,7 +34,7 @@ bool HelloWorld::init()
 	preLoad();
 	initAction();
 
-	mode = false;
+	GameManager::getInstance()->mode = false;
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -92,14 +93,14 @@ void HelloWorld::ChangetoBasicMode(Ref* pSender)
 {
 	mode1->selected();
 	mode2->unselected();
-	mode = false;
+	GameManager::getInstance()->mode = false;
 }
 
 void HelloWorld::ChangetoAdvMode(Ref* pSender)
 {
 	mode1->unselected();
 	mode2->selected();
-	mode = true;
+	GameManager::getInstance()->mode = true;
 }
 
 void HelloWorld::startMenuCallback(cocos2d::Ref* pSender)
@@ -151,6 +152,7 @@ void HelloWorld::initAction()
 	init_Wolf();
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_sellSmoke_00%02d.png", 1, 11, 0.04f), "sell_smoke");
 	AnimationCache::getInstance()->addAnimation(createAnimation("effect_buildSmoke_00%02d.png", 1, 10, 0.04f), "build_smoke");
+	AnimationCache::getInstance()->addAnimation(createAnimation("fx_blood_splat_red_00%02d.png", 1, 9, 0.04f), "blood_red");
 }
 
 void HelloWorld::init_ArtilleryTower()
