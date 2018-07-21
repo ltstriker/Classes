@@ -5,6 +5,15 @@
 
 USING_NS_CC;
 
+HelloWorld* HelloWorld::instance;
+
+HelloWorld* HelloWorld::getinstance()
+{
+	if (instance == NULL)
+		instance = new HelloWorld();
+	return instance;
+}
+
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
