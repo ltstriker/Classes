@@ -34,7 +34,8 @@ void MageBolt::shoot()
 		}
 	}
 	auto dist = ((BaseMonster*)target)->baseSprite->getPosition();
-	auto mt = ParabolaTo::create(0.5f, (CCPoint)getPosition(), (CCPoint)(dist - getParent()->getPosition()));
+	//auto mt = ParabolaTo::create(0.5f, (CCPoint)getPosition(), (CCPoint)(dist - getParent()->getPosition()));
+	auto mt = MoveTo::create(0.5f, dist-getParent()->getPosition());
 	auto rtt = RotateWithAction::create(0.5);
 
 	auto bulletAction0 = Spawn::create(mt, rtt, NULL);
