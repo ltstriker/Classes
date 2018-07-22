@@ -181,7 +181,7 @@ void Bomb::removeBullet()
 
 		if (monster != NULL && bombPostion.distance(monsterPosition) <= 50 && monster->getAttackBySoldier())
 		{
-			//SoundManager::playBomb();
+			 
 			auto currHp = monster->getCurrHp();
 
 			currHp = currHp - this->getMaxForce() + monster->getArmor();

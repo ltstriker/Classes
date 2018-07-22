@@ -51,7 +51,7 @@ void ArtilleryTowerV1::buildingSmokeAnimation(float dt)
 	smoke->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation("build_smoke")),
 		CallFuncN::create(CC_CALLBACK_0(Sprite::removeFromParent, smoke)), NULL));
-	//SoundManager::playArtilleryReady();
+	 
 	initTower(1);
 	setListener();
 
@@ -78,7 +78,7 @@ void ArtilleryTowerV1::showUpdateMenu()
 	}
 
 	auto updatePanleLayer = UpdatePanleLayer::create();
-	CCLOG(std::to_string(myTerrain->getTag()).c_str());
+	 
 	updatePanleLayer->setTag(myTerrain->getTag() + 100);
 	updatePanleLayer->setTower(this);
 	updatePanleLayer->setPosition(this->getParent()->getPosition());

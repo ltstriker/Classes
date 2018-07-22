@@ -95,7 +95,7 @@ bool UpdatePanleLayer2WithFlag::initWithIcons(int icon1,int icon2,int money1,int
 
 void UpdatePanleLayer2WithFlag::inAnimation()
 {
-	//SoundManager::playTowerMenu();
+	 
 	planesprite->runAction(Sequence::create(ScaleTo::create(0.1f,1.0f,1.0f),
 		CallFuncN::create(CC_CALLBACK_0(UpdatePanleLayer2WithFlag::addIcons,this)),
 		NULL));	
@@ -142,17 +142,17 @@ bool UpdatePanleLayer2WithFlag::onTouchBegan(Touch *touch, Event *event)
 				switch (target->getTag())
 				{
 				case(1):
-					//SoundManager::playTowerUpdate();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY-tower->getUpdateMoney();
 					tower->update1();
 					break;
 				case(2):
-					//SoundManager::playTowerUpdate();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY-tower->getUpdateMoney();
 					tower->update2();
 					break;
 				case(3)://ÊÛ³ö
-					//SoundManager::playTowerSell();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY+ (tower->getBuildMoney()/2);
 					tower->sellTower();
 					break;

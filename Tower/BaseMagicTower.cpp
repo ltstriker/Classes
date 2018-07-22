@@ -48,7 +48,7 @@ void BaseMagicTower::shoot(float dt)
 	if(nearestMonster!=NULL && nearestMonster->getCurrHp() > 0)
     {
 		auto currBullet = MageTowerBullet();
-		//SoundManager::playMageTowerShot();
+		 
 		Point shootVector = nearestMonster->baseSprite->getPosition() - this->getParent()->getPosition();
 		
 		auto position=currBullet->getPosition()-shootVector;

@@ -14,7 +14,7 @@
 //#include "Tremor.h"
 //#include "Munra.h"
 #include "../scene/Failure.h"
-//#include "SoundManager.h"
+ 
 #include "../../Monster/Boss/Boss_Efreeti.h"
 //#include "Executioner.h"
 //#include "Canibal.h"
@@ -46,7 +46,7 @@ BaseMap* BaseMap::getinstance()
 
 void BaseMap::loadPathFromPlist()
 {
-	CCLOG("basemap load path from plist");
+	 
 	winSize = Director::getInstance()->getWinSize();
 	auto plistDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level%d_paths.plist", getLevel())->getCString());
 
@@ -76,7 +76,7 @@ void BaseMap::loadPathFromPlist()
 
 void BaseMap::showWaveProgressBars(float dt)
 {
-	CCLOG("base map show wave progress bars");
+	 
 	for (int i = 0; i<waveFlags.size(); i++) {
 		waveFlags.at(i)->restartWaveFlag();
 	}
@@ -84,7 +84,7 @@ void BaseMap::showWaveProgressBars(float dt)
 
 void BaseMap::addWaveProgressBars(std::vector<Point> waveFlagLocations)
 {
-	CCLOG("BaseMap::addWaveProgressBars");
+	 
 	for (unsigned int i = 0; i<waveFlagLocations.size(); i++) {
 		auto waveFlag = WaveFlag::createWaveFlag();
 		waveFlag->setPosition(waveFlagLocations.at(i));
@@ -121,7 +121,7 @@ void BaseMap::addWaveProgressBars(std::vector<Point> waveFlagLocations)
 
 void BaseMap::onEnterTransitionDidFinish()
 {
-	CCLOG("basemap: onEnterTransitionDidFinish");
+	 
 	GameManager::getInstance()->MONEY = startGold;
 	GameManager::getInstance()->LIFE = maxLife;
 	playerState->setGold(startGold);
@@ -129,13 +129,13 @@ void BaseMap::onEnterTransitionDidFinish()
 	playerState->setWave(0, maxWave);
 	playerState->startProgressTimers();
 	scheduleUpdate();
-	CCLOG("after basemap on enter transition did finished");
+	 
 	schedule(schedule_selector(BaseMap::addWaves), 0.5f);
 }
 
 void BaseMap::loadAndSetLevelData()
 {
-	CCLOG("BaseMap::loadAndSetLevelData");
+	 
 	//加载初始血量金钱等
 	auto dataDic = Dictionary::createWithContentsOfFile(String::createWithFormat("level%d_%d_monsters.plist", getLevel(), difficulty)->getCString());
 	auto data_array = dynamic_cast<__Array*>(dataDic->objectForKey("data"));
@@ -172,7 +172,7 @@ void BaseMap::loadAndSetLevelData()
 
 void BaseMap::setMapPosition()
 {
-	CCLOG("BaseMap::setMapPosition");
+	 
 	Point location = Point();
 	auto mapSize = mapSprite->getBoundingBox().size;
 	location.x = winSize.width / 2 - mapSize.width / 2;
@@ -241,10 +241,10 @@ void BaseMap::updateGoldAndLife()
 
 void BaseMap::onExitTransitionDidStart()
 {
-	CCLOG("on exit from basemap");
+	 
 	GameManager::eraseAll();
 	this->unscheduleAllCallbacks();
-	CCLOG("after unschedule");
+	 
 }
 
 
@@ -252,7 +252,7 @@ void BaseMap::onExitTransitionDidStart()
 void BaseMap::initTouchLayer()
 {
 	//设置防御塔升级菜单层
-	CCLOG("BaseMap::initTouchLayer");
+	 
 	mTouchLayer = TouchLayer::create();
 	mTouchLayer->setContentSize(mapSprite->getContentSize());
 	mTouchLayer->setAnchorPoint(Point(0, 0));
@@ -262,7 +262,7 @@ void BaseMap::initTouchLayer()
 
 void BaseMap::bindPlayerStateMenu(PlayerStateMenu* playerState)
 {
-	CCLOG("BaseMap::bindPlayerStateMenu");
+	 
 	this->playerState = playerState;
 	this->playerState->mTouchLayer = this->mTouchLayer;
 }
@@ -369,7 +369,7 @@ void BaseMap::initMap()
 void BaseMap::victory()
 {
 	//停止计时器
-	CCLOG(" BaseMap::victory");
+	 
 	auto instance = GameManager::getInstance();
 	auto dataInstance = UserDefault::getInstance();
 	unscheduleUpdate();
@@ -437,7 +437,7 @@ void BaseMap::addMonsters(float dt)
 		{
 			for (int k = 0; k < path[i][j].size(); k++)
 			{
-				CCLOG("path[%d][%d][%d]: %f, %f\n", i, j, k, path[i][j][k].x, path[i][j][k].y);
+				 
 			}
 		}
 	}*/

@@ -56,7 +56,7 @@ bool MagicTowerV1::init()
 	initTower(1);
 	setListener();
 	schedule(schedule_selector(MagicTowerV1::shoot), 2.0f);
-	//SoundManager::playMageTowerReady();
+	 
 }
 
 void MagicTowerV1::updateTower()

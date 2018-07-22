@@ -59,7 +59,7 @@ bool SimplePanleLayer::onTouchBegan(Touch *touch, Event *event)
 		{
 			if(target->getIsAble())//Èç¹ûÇ®¹»ÓÃ
 			{
-				//SoundManager::playTowerSell();
+				 
 				GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY+ (tower->getBuildMoney()/2);
 				tower->sellTower();
 				this->setVisible(false);

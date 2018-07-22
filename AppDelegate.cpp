@@ -29,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::createWithRect("KingdomRush", Rect(0, 0, 960, 640));
-		glview->setFrameSize(1138,640); 
+		glview->setFrameSize(1200,700); 
         director->setOpenGLView(glview);
     }
 	//director->setDisplayStats(true);
@@ -46,7 +46,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
-	CCLOG("applicationDidEnterBackground");
+	 
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
@@ -54,7 +54,7 @@ void AppDelegate::applicationDidEnterBackground() {
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
-	CCLOG("applicationWillEnterForeground");
+	 
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

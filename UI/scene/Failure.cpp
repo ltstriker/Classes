@@ -1,9 +1,9 @@
 #include "Failure.h"
 #include "TransitionGame.h"
-//#include "GameView.h"
+ 
 #include "GameScene.h"
 #include "HelloWorldScene.h"
-//#include "SoundManager.h"
+ 
 
 USING_NS_CC;
 
