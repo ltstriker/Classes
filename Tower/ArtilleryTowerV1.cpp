@@ -72,7 +72,7 @@ void ArtilleryTowerV1::updateTower()
 
 void ArtilleryTowerV1::showUpdateMenu()
 {
-	if (TowerAIManager::getInstance()->getAble())
+	if (GameManager::getInstance()->mode == true)
 	{
 		return;
 	}

@@ -65,7 +65,12 @@ void KRTerrain::AIAddTower(int type)
 
 void KRTerrain::showUpdateMenu()
 {
-	if (TowerAIManager::getInstance()->getAble())
+/*	if (TowerAIManager::getInstance()->getAble())
+	{
+		return;
+	}*/
+
+	if (GameManager::getInstance()->mode == true)
 	{
 		return;
 	}
