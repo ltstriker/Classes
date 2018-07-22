@@ -73,7 +73,7 @@ void MagicTowerV1::updateTower()
 
 void MagicTowerV1::showUpdateMenu()
 {
-	if (TowerAIManager::getInstance()->getAble())
+	if (GameManager::getInstance()->mode == true)
 	{
 		return;
 	}
