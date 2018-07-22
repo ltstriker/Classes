@@ -14,10 +14,6 @@ bool Arrow::init()
 
 void Arrow::shoot()
 {
-	//auto sf = SpriteFrame::create("/bullet/arrow_broken.png", CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 500, 500)));
-	//sprite->setSpriteFrame(sf);
-	 
-	//auto firePosition = nearestMonster->baseSprite->getPosition() - this->getParent()->getPosition();
 	auto bombPostion = this->getPosition() + this->getParent()->getPosition();
 	Node* target = nullptr;
 	auto instance = GameManager::getInstance();
@@ -35,81 +31,18 @@ void Arrow::shoot()
 		if (temp_dis < min_dis) {
 			target = monster;
 			min_dis = temp_dis;
-			//auto spritepos = monster->getPosition();
 			
 		}
 	}
-	if (target == nullptr) {
-		 
-		return;
-	}
-	if (target == tower) {
-		 
-		return;
-	}
-	
-	//target = monsterVector.at(0);
-	/// 
-	//target = tower;
-	/* 
-	//CCLOG("arr")
-	 
-	 */
-	//auto ccvisi
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	auto rightup = Vec2(origin.x + visibleSize.width, origin.y +0* visibleSize.height);
 	auto dist = ((BaseMonster*)target)->baseSprite->getPosition();
-	auto mt = ParabolaTo::create(0.5f, (CCPoint)getPosition(), (CCPoint)(dist-getParent()->getPosition()));
-	auto rtt = RotateWithAction::create(0.5);
+	auto mt = ParabolaTo::create(0.3f, (CCPoint)getPosition(), (CCPoint)(dist-getParent()->getPosition()));
+	auto rtt = RotateWithAction::create(0.3);
 
 	auto bulletAction0 = Spawn::create(mt, rtt, NULL);
 	runAction(Sequence::create(bulletAction0,
 		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
 		NULL));
-
-	/*runAction(Sequence::create(bulletAction,
-		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
-		NULL));*/
 }
-
-void Arrow::shoot(Vec2 dist)
-{
-	auto bombPostion = this->getPosition();
-	/*Sprite* target = nullptr;
-	auto instance = GameManager::getInstance();
-	auto tower = this->getParent();
-	auto monsterVector = instance->monsterVector;
-	double  min_dis = 1000000.0f;
-	for (int i = 0; i < monsterVector.size(); i++) {
-	auto monster = monsterVector.at(i);
-	auto towerPos = tower->getPosition();
-	double temp_dis = towerPos.distance(monster->getPosition());
-	if (temp_dis < min_dis) {
-	target = monster;
-	min_dis = temp_dis;
-	}
-	}*/
-	//auto dist = target->getPosition();
-	auto mt = ParabolaTo::create(1.0f, (CCPoint)bombPostion, (CCPoint)dist);
-	auto rtt = RotateWithAction::create(10.0);
-
-	bulletAction = Spawn::create(mt, rtt, NULL);
-	runAction(Sequence::create(bulletAction,
-		CallFuncN::create(CC_CALLBACK_0(Arrow::removeBullet, this)),
-		NULL));
-
-
-	/*runAction(Sequence::create(bulletAction,
-	CallFuncN::create(CC_CALLBACK_0(Bomb::removeBullet, this)),
-	NULL));
-	*/
-}
-
-void Arrow::shoot(BaseMonster * target)
-{
-}
-
 void Arrow::removeBullet()
 {
 	bool isMissed = true;

@@ -3,7 +3,7 @@
 #include "GameScene.h"
 #include "TransitionGame.h"
 #include "../GameManager.h"
-
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 HelloWorld* HelloWorld::instance;
@@ -106,7 +106,8 @@ void HelloWorld::ChangetoAdvMode(Ref* pSender)
 void HelloWorld::startMenuCallback(cocos2d::Ref* pSender)
 {
 	auto scene = GameScene::playGame(1, 0);
-	Director::getInstance()->replaceScene(TransitionGame::create(1.0f, scene));
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("/sounds/GameStart.mp3");
+	Director::getInstance()->replaceScene(TransitionGame::create(3.0f, scene));
 }
 
 void HelloWorld::preLoad()

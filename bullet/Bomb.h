@@ -17,8 +17,6 @@ public:
 	int type;
 	CREATE_FUNC(Bomb);
 	void shoot();
-	void shoot(Vec2 dist);
-	void shoot(BaseMonster* target);
 	void removeBullet();
 };
 
