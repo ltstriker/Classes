@@ -216,6 +216,10 @@ void Level1::addTerrains()
 		TowerAIManager::getInstance()->initAI();
 		schedule(schedule_selector(Level1::Update), 1.0f);
 	}
+	else
+	{
+		unschedule(schedule_selector(Level1::Update));
+	}
 }
 
 void Level1::Update(float dt)

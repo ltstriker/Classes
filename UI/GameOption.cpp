@@ -1,6 +1,7 @@
 #include "GameOption.h"
 #include "scene/GameScene.h"
 #include "scene/TransitionGame.h"
+#include "GameManager.h"
  
  
 #include "PlayerStateMenu.h"
@@ -283,12 +284,21 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 	{
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+			TowerAIManager::getInstance()->initAI();
+		}
 	}
 		break;
 	case(1)://ÍË³ö
 	{
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, HelloWorld::createScene()));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+		}
 	}
 		break;
 	default:
