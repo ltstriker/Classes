@@ -5,6 +5,8 @@
 
 TowerAIManager* TowerAIManager::_instance;
 
+int TowerAIManager::count = 0;
+
 bool TowerAIManager::getAble()
 {
 	return isAble;
@@ -14,6 +16,7 @@ TowerAIManager * TowerAIManager::getInstance()
 {
 	if (_instance == nullptr)
 	{
+		count = 0;
 		_instance = new TowerAIManager();
 		_instance->isAble = false;
 	}
@@ -22,12 +25,19 @@ TowerAIManager * TowerAIManager::getInstance()
 
 void TowerAIManager::initAI()
 {
+	count = 0;
 	isAble = true;
+}
+
+void TowerAIManager::TowerAi_delete()
+{
+	count = 0;
+	isAble = false;
+
 }
 
 void TowerAIManager::update()
 {
-	static int count = 0;
 	auto vec = GameManager::getInstance()->terrain_vector;
 	if (count == 0)
 	{

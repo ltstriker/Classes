@@ -8,7 +8,7 @@
 #include "../Monster/Desert/Immortal.h"
 #include "../Monster/Desert/Raider.h"
 #include "../Monster/Boss/Boss_Efreeti.h"
-//#include "SoundManager.h"
+ 
 //#include "TowerInfoLayer.h"
 //#include "MonsterInfoLayer.h"
 
@@ -168,7 +168,7 @@ bool PlayerStateMenu::init()
 		Rect rect = Rect(0, 0, size.width, size.height);
 		if (rect.containsPoint(locationInNode))
 		{  
-			//SoundManager::playClickEffect();
+			 
 			return true;  
 		}  
 		return false;  
@@ -640,7 +640,7 @@ void PlayerStateMenu::shopSkill(int type)
 		{
 			for (int k = 0; k < path1[i][j].size(); k++)
 			{
-				CCLOG("path[%d][%d][%d]: %f, %f\n", i, j, k, path1[i][j][k].x, path1[i][j][k].y);
+				 
 			}
 		}
 	}*/

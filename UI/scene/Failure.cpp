@@ -1,9 +1,10 @@
 #include "Failure.h"
 #include "TransitionGame.h"
-//#include "GameView.h"
+#include "../GameManager.h"
+#include "../../Tower/TowerAIManager.h"
 #include "GameScene.h"
 #include "HelloWorldScene.h"
-//#include "SoundManager.h"
+ 
 
 USING_NS_CC;
 
@@ -209,10 +210,19 @@ void Failure::onTouchEnded(Touch* touch, Event* event)
 	case(0)://重新开始
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+			TowerAIManager::getInstance()->initAI();
+		}
 		break;
 	case(1)://退出
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f,HelloWorld::createScene()));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+		}
 		break;
 	default:
 		break;

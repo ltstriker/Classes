@@ -60,7 +60,7 @@ void Boss_Efreeti::death() {
 		GameManager::getInstance()->monsterVector.eraseObject(this);
 	}
 	if (getState() != stateDeath) {
-		//SoundManager::playEfreetiDeath();
+		 
 		unschedule(schedule_selector(Boss_Efreeti::skill)); // 移除调度器
 		setState(stateDeath);
 		hpBgSprite->setVisible(false); // 移除血条
@@ -80,7 +80,7 @@ void Boss_Efreeti::skill(float dt)
 {
 	setIsAttacking(true); // 进入攻击模式
 	stopWalking(); // 停止移动
-	//SoundManager::playEfreetiClap();
+	 
 	// 播放技能动画
 	baseSprite->runAction(Sequence::create(
 		Animate::create(AnimationCache::getInstance()->getAnimation(getName() + "skill")),
@@ -105,7 +105,7 @@ void Boss_Efreeti::addSons() {
 
 // 笑声
 void Boss_Efreeti::laugh() {
-	//SoundManager::playEfreetiLaugh();
+	 
 }
 
 // 爆炸死亡

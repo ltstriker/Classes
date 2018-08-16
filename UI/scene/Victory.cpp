@@ -1,6 +1,6 @@
 #include "Victory.h"
 #include "TransitionGame.h"
-//#include "GameView.h"
+ 
 #include "GameScene.h"
 #include "../GameManager.h"
 
@@ -188,9 +188,18 @@ void Victory::showStar(int star)
 void Victory::OnContinueTouch(Ref* pSpender)
 {
 	Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
-
+	if (GameManager::getInstance()->mode == true)
+	{
+		TowerAIManager::getInstance()->TowerAi_delete();
+		TowerAIManager::getInstance()->initAI();
+	}
 }
 void Victory::OnRestartTouch(Ref* pSpender)
 {
 	Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
+	if (GameManager::getInstance()->mode == true)
+	{
+		TowerAIManager::getInstance()->TowerAi_delete();
+		TowerAIManager::getInstance()->initAI();
+	}
 }

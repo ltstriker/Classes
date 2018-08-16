@@ -11,7 +11,10 @@ public:
 	static TowerAIManager* getInstance();
 	void initAI();
 	void update();
+	void TowerAi_delete();
 private:
+
+	static int count;
 	bool isAble;
 	static TowerAIManager* _instance;
 	TowerAIManager() {};

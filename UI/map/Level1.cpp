@@ -11,7 +11,7 @@ Level1::~Level1(){};
 
 bool Level1::initWithDifficulty(int difficulty)
 {
-	CCLOG("level init with difficulty");
+	 
     if ( !Layer::init() )
     {
         return false;
@@ -29,13 +29,13 @@ bool Level1::initWithDifficulty(int difficulty)
 	addWaveProgressBars(points);
 	waveFlags.at(0)->restartWaveFlag();
 	waveFlags.at(1)->restartWaveFlag();
-//	SoundManager::playDesertBattle();
+
 	return true;
 }
 
 Level1* Level1::createGame(int difficulty)
 {  
-	CCLOG("level1 create game");
+	 
    auto layer = new Level1();
 	if(layer && layer->initWithDifficulty(difficulty)){
 		layer->autorelease();
@@ -53,7 +53,7 @@ void Level1::addOrnament()
 
 /*void Level1::onExit()
 {
-	CCLOG("level1 on exit");
+	 
 	SpriteFrameCache::getInstance()->removeSpriteFrameByName("sprite_level1_2-hd.plist");
 }*/
 
@@ -215,6 +215,10 @@ void Level1::addTerrains()
 	{
 		TowerAIManager::getInstance()->initAI();
 		schedule(schedule_selector(Level1::Update), 1.0f);
+	}
+	else
+	{
+		unschedule(schedule_selector(Level1::Update));
 	}
 }
 

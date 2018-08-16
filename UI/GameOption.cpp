@@ -1,8 +1,9 @@
 #include "GameOption.h"
 #include "scene/GameScene.h"
 #include "scene/TransitionGame.h"
-//#include "GameView.h"
-//#include "SoundManager.h"
+#include "GameManager.h"
+ 
+ 
 #include "PlayerStateMenu.h"
 #include "SimpleAudioEngine.h"
 #include "scene/HelloWorldScene.h"
@@ -283,12 +284,21 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 	{
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, GameScene::playGame(1, 0)));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+			TowerAIManager::getInstance()->initAI();
+		}
 	}
 		break;
 	case(1)://ÍË³ö
 	{
 		Director::getInstance()->resume();
 		Director::getInstance()->replaceScene(TransitionGame::create(1.0f, HelloWorld::createScene()));
+		if (GameManager::getInstance()->mode == true)
+		{
+			TowerAIManager::getInstance()->TowerAi_delete();
+		}
 	}
 		break;
 	default:
@@ -298,7 +308,7 @@ void GameOption::onTouchEnded(Touch* touch, Event* event)
 
 bool GameOption::onTouchBegan(Touch* touch, Event* event)
 {
-	CCLOG("on touch begin");
+	 
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
 	Point locationInNode = target->convertTouchToNodeSpace(touch);
@@ -307,8 +317,8 @@ bool GameOption::onTouchBegan(Touch* touch, Event* event)
 	Rect rect = Rect(0, 0, size.width, size.height);
 	if (rect.containsPoint(locationInNode))
 	{  	
-		CCLOG("on touch hit");
-		//SoundManager::playClickEffect();
+		 
+		 
 		target->setScale(0.9f);
 		return true;  
 	}  
@@ -341,7 +351,7 @@ void GameOption::onKeyReleased(EventKeyboard::KeyCode keycode, Event* event)
     switch (keycode)
     {
 	case EventKeyboard::KeyCode::KEY_BACK:   //·µ»Ø¼üÌý
-		//SoundManager::playClickEffect();
+		 
 		static_cast<PlayerStateMenu*>(this->getParent())->removeGameOption();
 		
         break;

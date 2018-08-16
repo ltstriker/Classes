@@ -127,12 +127,12 @@ bool UpdatePanleLayerWithFlag::onTouchBegan(Touch *touch, Event *event)
 				switch (target->getTag())
 				{
 				case(1)://Éý¼¶
-					//SoundManager::playTowerUpdate();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY-tower->getUpdateMoney();
 					tower->updateTower();
 					break;
 				case(2)://ÊÛ³ö
-					//SoundManager::playTowerSell();
+					 
 					GameManager::getInstance()->MONEY = GameManager::getInstance()->MONEY+ (tower->getBuildMoney()/2);
 					tower->sellTower();
 					break;
